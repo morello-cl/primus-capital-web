@@ -16,7 +16,7 @@ router.post('/login', function(req, res, next){
 
   setTimeout(() => {
 
-  axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
+  axios.post( 'https://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
     username: 'pruebas',
     password: 'Primus123'
   })
@@ -33,6 +33,10 @@ router.post('/login', function(req, res, next){
         res.status(400).json({});
     });
   }, 15000);
+});
+
+router.get('/search-doc', function(req, res, next){
+  res.render('buscar-documento');
 });
 
 module.exports = router;

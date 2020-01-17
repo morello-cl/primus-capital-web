@@ -34,7 +34,7 @@ block content
 				.sidebar-navs
 					ul.nav.nav-pills-circle
 						li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
-							a.nav-link.text-center.m-2(href='search-doc')
+							a.nav-link.text-center.m-2
 								i.fe.fe-search
 						li.nav-item(data-toggle='tooltip' data-placement='top' title='Home')
 							a.nav-link.text-center.m-2
@@ -77,67 +77,47 @@ block content
 				.side-app
 					.page-header
 						div
-							h1.page-title Prisma Capital
+							h1.page-title Buscar Documento
 							ol.breadcrumb
 								li.breadcrumb-item
 									a(href='#') Home
-								li.breadcrumb-item.active(aria-current='page') Main
+								li.breadcrumb-item.active(aria-current='page') Buscar Documento
 
 					.row
-						.col-xs-12.col-sm-12.col-lg-12
+						.col-sm-12.col-md-12.col-lg-12.col-xl-6
 							.card
 								.card-header
-									h3.card-title Reportes que ud. puede encontrar en este sitio web
-								.card-body
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Otorgamientos
-													p Esta opción permite a ud. conocer todos sus contratos, con el detalle de documentos cedidos por contrato, incluyendo datos tales como monto documento, monto anticipado, diferencia de precio, comision, gastos, etc.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Cancelaciones
-													p Esta opción permite a ud. conocer las cancelaciones de documentos cedidos, fechas de pago y cobros de mora.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Cartera Vigente
-													p Esta opción permite a ud. conocer los documentos vigentes y morosos a una determinada fecha.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Excedentes
-													p Esta opción permite a ud. conocer los excedentes generados, su procedencia y el destino de estos.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Protestos
-													p Esta opción permite a ud. conocer los documentos que han sido protestados históricamente, y los que aún permanecen impagos.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Prorrogas
-													p Esta opción permite a ud.conocer los documentos sobre los cuales se han afectado prorrogas y los costos involucrados en esta transacción.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													p 
-														| Para cada reporte existen diferentes opciones de consulta, las cuales pueden entregar información con distintos niveles de detalle, desde resumenes por contrato, resumenes por documentos, hasta detalles por abono.
-														| Estas consultas pueden realizarse a cualquier fecha deseada.
+									h3.card-title Busqueda de Documento
+								.card-body.p-4
+									.mb-5
+										.form-group
+											label.form-label.mt-0 Tipo Documento
+											select.form-control.select2.custom-select(data-placeholder='Elija uno')
+												option(label='Elija uno') 
+												option(value='1') Factura
+												option(value='2') Cheque
+												option(value='3') Letra
+												option(value='4') Pagare
+									.mb-5
+										.form-group
+											label.form-label Nro. de Documento
+											.input-group
+												input.form-control(type='text' placeholder='Buscar Nro. de documento...')
+												span.input-group-append
+													button.btn.btn-primary(type='button') Go!
+
+									.mb-5
+										p.mb-2
+											| Busqueda de documento por Tipo
+											br
+											| 1. Seleccione tipo de documento de la lista
+											br
+											| 2. Ingrese un número de documento
+									.mb-5
+										p.mb-2
+											span.float-right.text-muted
+												| Nota: Si se encuentra más de un documento con el mismo número, debera seleccionar el deudor buscado.
+
 
 
 		footer.footer
@@ -182,6 +162,23 @@ block content
 	script(src='/assets/plugins/sidebar/sidebar.js')
 	//  APEXCHART JS 
 	script(src='/assets/js/apexcharts.js')
+
+	script(src='/assets/plugins/select2/select2.full.min.js')
+
+	script(src='/assets/plugins/bootstrap-daterangepicker/moment.min.js')
+	script(src='/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
+	//  TIMEPICKER JS 
+	script(src='/assets/plugins/time-picker/jquery.timepicker.js')
+	script(src='/assets/plugins/time-picker/toggles.min.js')
+	//  DATEPICKER JS 
+	script(src='/assets/plugins/date-picker/spectrum.js')
+	script(src='/assets/plugins/date-picker/jquery-ui.js')
+	script(src='/assets/plugins/input-mask/jquery.maskedinput.js')
+	//  MULTI SELECT JS
+	script(src='/assets/plugins/multipleselect/multiple-select.js')
+	script(src='/assets/plugins/multipleselect/multi-select.js')
+
+	script(src='/assets/js/form-elements.js')
 	//  INDEX JS 
 	//script(src='/assets/js/index1.js')
 	//  CUSTOM JS 
