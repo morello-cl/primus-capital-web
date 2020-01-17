@@ -1,159 +1,72 @@
 extends layout
 
 block content
-	.page
-		.page-main
-			.app-sidebar__overlay(data-toggle='sidebar')
-			aside.app-sidebar
-				.side-header
-					a.header-brand1(href='index.html')
-						//img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='logo')
-						img.header-brand-img.desktop-logo(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
-						//img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='logo')
-						img.header-brand-img.toggle-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-						//img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='logo')
-						img.header-brand-img.light-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-						//img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='logo')
-						img.header-brand-img.light-logo1(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
-					a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
-				.app-sidebar__user
-					.dropdown.user-pro-body.text-center
-						//.user-pic
-							img.avatar-xl.rounded-circle(src='/assets/images/users/10.jpg' alt='user-img')
-						.user-info
-							h6.mb-0.text-dark 
-								| R.U.T. 99.999.999-N
-							span.text-muted.app-sidebar__user-name.text-sm 
-								| Su Ejecutivo de Cuenta es 
-								br
-								| nnnnn nnnnn nnnnnn
-								br
-								| Telefono +56 1234 1234
-								br
-								| Email email@correo.com
-				.sidebar-navs
-					ul.nav.nav-pills-circle
-						li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
-							a.nav-link.text-center.m-2(href='search-doc')
-								i.fe.fe-search
-						li.nav-item(data-toggle='tooltip' data-placement='top' title='Home')
-							a.nav-link.text-center.m-2
-								i.fe.fe-home
-						li.nav-item(data-toggle='tooltip' data-placement='top' title='Email')
-							a.nav-link.text-center.m-2
-								i.fe.fe-mail
-						li.nav-item(data-toggle='tooltip' data-placement='top' title='Cerrar Sesión')
-							a.nav-link.text-center.m-2
-								i.fe.fe-power
-				ul.side-menu
-					li
-						h3 Reportes
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-clipboard
-							span.side-menu__label Otorgamientos
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-notepad
-							span.side-menu__label Cancelaciones
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-book
-							span.side-menu__label Cartera Vigente
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-envelope
-							span.side-menu__label Excedentes
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-receipt
-							span.side-menu__label Protestos
-					li
-						a.side-menu__item(href='#')
-							i.side-menu__icon.ti-stamp
-							span.side-menu__label Prorrogas
+	.app-content
+		.side-app
+			.page-header
+				div
+					h1.page-title Prisma Capital
+					ol.breadcrumb
+						li.breadcrumb-item
+							a(href='#') Home
+						li.breadcrumb-item.active(aria-current='page') Main
 
-			.app-content
-				.side-app
-					.page-header
-						div
-							h1.page-title Prisma Capital
-							ol.breadcrumb
-								li.breadcrumb-item
-									a(href='#') Home
-								li.breadcrumb-item.active(aria-current='page') Main
+			.row
+				.col-xs-12.col-sm-12.col-lg-12
+					.card
+						.card-header
+							h3.card-title Reportes que ud. puede encontrar en este sitio web
+						.card-body
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Otorgamientos
+											p Esta opción permite a ud. conocer todos sus contratos, con el detalle de documentos cedidos por contrato, incluyendo datos tales como monto documento, monto anticipado, diferencia de precio, comision, gastos, etc.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Cancelaciones
+											p Esta opción permite a ud. conocer las cancelaciones de documentos cedidos, fechas de pago y cobros de mora.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Cartera Vigente
+											p Esta opción permite a ud. conocer los documentos vigentes y morosos a una determinada fecha.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Excedentes
+											p Esta opción permite a ud. conocer los excedentes generados, su procedencia y el destino de estos.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Protestos
+											p Esta opción permite a ud. conocer los documentos que han sido protestados históricamente, y los que aún permanecen impagos.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											h4
+												strong Prorrogas
+											p Esta opción permite a ud.conocer los documentos sobre los cuales se han afectado prorrogas y los costos involucrados en esta transacción.
+							.row
+								.col-md-12
+									.card
+										.card-body
+											p 
+												| Para cada reporte existen diferentes opciones de consulta, las cuales pueden entregar información con distintos niveles de detalle, desde resumenes por contrato, resumenes por documentos, hasta detalles por abono.
+												| Estas consultas pueden realizarse a cualquier fecha deseada.
 
-					.row
-						.col-xs-12.col-sm-12.col-lg-12
-							.card
-								.card-header
-									h3.card-title Reportes que ud. puede encontrar en este sitio web
-								.card-body
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Otorgamientos
-													p Esta opción permite a ud. conocer todos sus contratos, con el detalle de documentos cedidos por contrato, incluyendo datos tales como monto documento, monto anticipado, diferencia de precio, comision, gastos, etc.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Cancelaciones
-													p Esta opción permite a ud. conocer las cancelaciones de documentos cedidos, fechas de pago y cobros de mora.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Cartera Vigente
-													p Esta opción permite a ud. conocer los documentos vigentes y morosos a una determinada fecha.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Excedentes
-													p Esta opción permite a ud. conocer los excedentes generados, su procedencia y el destino de estos.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Protestos
-													p Esta opción permite a ud. conocer los documentos que han sido protestados históricamente, y los que aún permanecen impagos.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													h4
-														strong Prorrogas
-													p Esta opción permite a ud.conocer los documentos sobre los cuales se han afectado prorrogas y los costos involucrados en esta transacción.
-									.row
-										.col-md-12
-											.card
-												.card-body
-													p 
-														| Para cada reporte existen diferentes opciones de consulta, las cuales pueden entregar información con distintos niveles de detalle, desde resumenes por contrato, resumenes por documentos, hasta detalles por abono.
-														| Estas consultas pueden realizarse a cualquier fecha deseada.
-
-
-		footer.footer
-			.container
-				.row.align-items-center.flex-row-reverse
-					.col-md-12.col-sm-12.text-center
-						| Copyright © 2020 
-						a(href='#') Primas Capital
-						| . Designed by 
-						a(href='#') Ideas Digitales
-
-
-
-	//  BACK-TO-TOP 
-	a#back-to-top(href='#top')
-		i.fa.fa-angle-up
 
 	//  JQUERY JS 
 	script(src='/assets/js/jquery-3.4.1.min.js')

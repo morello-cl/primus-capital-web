@@ -13,7 +13,7 @@
             password: 'Primus123'
         }
 
-        axios.post( '/login', _login)
+        axios.post( 'https://prisma.inpark.app/login', _login)
         .then(r => {
             console.log(r.data);
         })

@@ -5,47 +5,57 @@ block content
 		.side-app
 			.page-header
 				div
-					h1.page-title Buscar Documento
+					h1.page-title Otorgamientos
 					ol.breadcrumb
 						li.breadcrumb-item
 							a(href='#') Home
-						li.breadcrumb-item.active(aria-current='page') Buscar Documento
+						li.breadcrumb-item.active(aria-current='page') Otorgamientos
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-4
 					.card
 						.card-header
-							h3.card-title Busqueda de Documento
+							h3.card-title Opciones de Consulta
 						.card-body.p-4
 							.mb-5
-								.form-group
-									label.form-label.mt-0 Tipo Documento
-									select.form-control.select2.custom-select(data-placeholder='Elija uno')
-										option(label='Elija uno') 
-										option(value='1') Factura
-										option(value='2') Cheque
-										option(value='3') Letra
-										option(value='4') Pagare
+								.col-lg-12
+									.card
+										.card-header
+											.card-title Contrato(s)
+										.card-body
+											.form-group.form-elements
+												.custom-controls-stacked
+													label.custom-control.custom-radio
+														input.custom-control-input(type='radio' name='example-radios' value='option1' checked)
+														span.custom-control-label Todos
+													label.custom-control.custom-radio
+														input.custom-control-input(type='radio' name='example-radios' value='option2')
+														span.custom-control-label Individual
+													.input-group
+														input.form-control(type='text' placeholder='Nro. de contrato...', disabled)
 							.mb-5
-								.form-group
-									label.form-label Nro. de Documento
-									.input-group
-										input.form-control(type='text' placeholder='Buscar Nro. de documento...')
-										span.input-group-append
-											button.btn.btn-primary(type='button') Go!
+								.col-lg-12
+									.card
+										.card-header
+											.card-title Date Range Picker
+										.card-body
+											.input-group
+												.input-group-text
+													i.fa.fa-calendar
+												input.form-control.pull-right#reservation(type='text')
 
 							.mb-5
-								p.mb-2
-									| Busqueda de documento por Tipo
-									br
-									| 1. Seleccione tipo de documento de la lista
-									br
-									| 2. Ingrese un número de documento
+								.row
+									.col-lg-6
+										button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+									.col-lg-6
+										button.btn.btn-primary.btn-block(type="button") Consultar
+
+							
 							.mb-5
 								p.mb-2
 									span.float-right.text-muted
-										| Nota: Si se encuentra más de un documento con el mismo número, debera seleccionar el deudor buscado.
-
+										| Estado: favor seleccione preferencias de consulta.
 
 
 	//  JQUERY JS 

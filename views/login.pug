@@ -1,82 +1,126 @@
-extends layout
+doctype html
+html(lang="es")
+	head
+		meta(charset='UTF-8')
+		meta(name='viewport' content='width=device-width,initial-scale=1,user-scalable=0')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='description' content='Volgh –  Bootstrap 4 Responsive Application Admin panel Theme Ui Kit & Premium Dashboard Design Modern Flat HTML Template')
+		meta(name='author' content='Spruko Technologies Private Limited')
+		meta(name='keywords' content='analytics dashboard, bootstrap 4 web app admin template, bootstrap admin panel, bootstrap admin template, bootstrap dashboard, bootstrap panel, Application dashboard design, dashboard design template, dashboard jquery clean html, dashboard template theme, dashboard responsive ui, html admin backend template ui kit, html flat dashboard template, it admin dashboard ui, premium modern html template')
 
-block content
-	.login-img
-		#global-loader
-			img.loader-img(src='/assets/images/loader.svg' alt='Loader')
-		
-		.page
-			div
-				.col.col-login.mx-auto
-					.text-center
-						// 
-						//https://via.placeholder.com/200x68.png
-						img.header-brand-img(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt="Primus Capital")
-						//assets/images/brand/logo.png
-				.container-login100
-					.wrap-login100.p-6
+		// FAVICON 
+		link(rel='shortcut icon' type='image/x-icon' href='/assets/images/brand/favicon.ico')
+		// TITLE 
+		title Primus Capital
+
+		link(href='/assets/plugins/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+
+		link(href='/assets/css/style.css' rel='stylesheet')
+		link(href='/assets/css/skin-modes.css' rel='stylesheet')
+
+		link(href='/assets/plugins/sidemenu/sidemenu.css' rel='stylesheet')
+		link(href='/assets/plugins/single-page/css/main.css' rel='stylesheet' type='text/css')
+
+		link(href='/assets/plugins/charts-c3/c3-chart.css' rel='stylesheet')
+
+		link(href='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css' rel='stylesheet')
+
+		link(href='/assets/css/icons.css' rel='stylesheet')
+
+		link(href='/assets/plugins/sidebar/sidebar.css' rel='stylesheet')
+
+		link(href='/assets/plugins/fileuploads/css/fileupload.css' rel='stylesheet' type='text/css')
+
+		link(href='/assets/plugins/select2/select2.min.css' rel='stylesheet')
+
+		link(rel='stylesheet' href='/assets/plugins/bootstrap-daterangepicker/daterangepicker.css')
+
+		link(href='/assets/plugins/time-picker/jquery.timepicker.css' rel='stylesheet')
+
+		link(href='/assets/plugins/date-picker/spectrum.css' rel='stylesheet')
+
+		link(rel='stylesheet' href='/assets/plugins/multipleselect/multiple-select.css')
+
+		// COLOR SKIN CSS 
+		link#theme(rel='stylesheet' type='text/css' media='all' href='/assets/colors/color1.css')
+
+	body
+		.login-img
+			#global-loader
+				img.loader-img(src='/assets/images/loader.svg' alt='Loader')
+			
+			.page
+				div
+					.col.col-login.mx-auto
 						.text-center
+							// 
+							//https://via.placeholder.com/200x68.png
 							img.header-brand-img(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt="Primus Capital")
-						p
-						form.login100-form.validate-form
-							span.login100-form-title
-								| Ingreso a Primus Capital
-							.text-center.pt-3
-								p.text-dark.mb-0
-									| Para ingresar a los servicios en línea, en 
-									strong Primus Capital Spa.
-									|  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
+							//assets/images/brand/logo.png
+					.container-login100
+						.wrap-login100.p-6
+							.text-center
+								img.header-brand-img(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt="Primus Capital")
 							p
-							.wrap-input100.validate-input(data-validate='Valid R.U.T. is required')
-								input.input100(type='text' name='rut' placeholder='R.U.T.')
-								span.focus-input100
-								span.symbol-input100
-									i.mdi.mdi-account-card-details(aria-hidden='true')
-							.wrap-input100.validate-input(data-validate='Password is required')
-								input.input100(type='password' name='pass' placeholder='Password')
-								span.focus-input100
-								span.symbol-input100
-									i.zmdi.zmdi-lock(aria-hidden='true')
-							.text-right.pt-1
-								p.mb-0
-									a.text-primary.ml-1(href='#')
-										| Forgot Password?
-							.container-login100-form-btn
-								a.login100-form-btn.btn-primary#btn-login(href='#')
-									| Ingresar
-							p
-							#error-msg.alert.alert-danger.alert-dismissible.fade.show.mb-0(role='alert')
-								span.alert-inner--icon
-									i.fe.fe-slash
-								span.alert-inner--text.mb-0
-									strong  Error!
-									|  No es posible validar Cliente!
-								button.close(type='button' data-dismiss='alert' aria-label='Close')
-									span(aria-hidden='true') ×
-							.text-center.pt-3
-								p.text-dark.mb-0
-									| Por su seguridad, una vez concluída su sesión, presione en el menú el botón 
-									strong SALIR
-		
-	script(src='https://unpkg.com/axios/dist/axios.min.js')
+							form.login100-form.validate-form
+								span.login100-form-title
+									| Ingreso a Primus Capital
+								.text-center.pt-3
+									p.text-dark.mb-0
+										| Para ingresar a los servicios en línea, en 
+										strong Primus Capital Spa.
+										|  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
+								p
+								.wrap-input100.validate-input(data-validate='Valid R.U.T. is required')
+									input.input100(type='text' name='rut' placeholder='R.U.T.')
+									span.focus-input100
+									span.symbol-input100
+										i.mdi.mdi-account-card-details(aria-hidden='true')
+								.wrap-input100.validate-input(data-validate='Password is required')
+									input.input100(type='password' name='pass' placeholder='Password')
+									span.focus-input100
+									span.symbol-input100
+										i.zmdi.zmdi-lock(aria-hidden='true')
+								.text-right.pt-1
+									p.mb-0
+										a.text-primary.ml-1(href='#')
+											| Forgot Password?
+								.container-login100-form-btn
+									a.login100-form-btn.btn-primary#btn-login(href='#')
+										| Ingresar
+								p
+								#error-msg.alert.alert-danger.alert-dismissible.fade.show.mb-0(role='alert')
+									span.alert-inner--icon
+										i.fe.fe-slash
+									span.alert-inner--text.mb-0
+										strong  Error!
+										|  No es posible validar Cliente!
+									button.close(type='button' data-dismiss='alert' aria-label='Close')
+										span(aria-hidden='true') ×
+								.text-center.pt-3
+									p.text-dark.mb-0
+										| Por su seguridad, una vez concluída su sesión, presione en el menú el botón 
+										strong SALIR
+			
+		script(src='https://unpkg.com/axios/dist/axios.min.js')
 
-	//  JQUERY JS 
-	script(src='/assets/js/jquery-3.4.1.min.js')
-	//  BOOTSTRAP JS 
-	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
-	script(src='/assets/plugins/bootstrap/js/popper.min.js')
-	//  SPARKLINE JS 
-	script(src='/assets/js/jquery.sparkline.min.js')
-	//  CHART-CIRCLE JS 
-	script(src='/assets/js/circle-progress.min.js')
-	//  RATING STAR JS 
-	script(src='/assets/plugins/rating/jquery.rating-stars.js')
-	//  INPUT MASK JS 
-	script(src='/assets/plugins/input-mask/jquery.mask.min.js')
-	//  CUSTOM SCROLL BAR JS
-	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
-	link(href='/assets/css/icons.css' rel='stylesheet')
-	//  CUSTOM JS
-	script(src='/assets/js/custom.js')
+		//  JQUERY JS 
+		script(src='/assets/js/jquery-3.4.1.min.js')
+		//  BOOTSTRAP JS 
+		script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
+		script(src='/assets/plugins/bootstrap/js/popper.min.js')
+		//  SPARKLINE JS 
+		script(src='/assets/js/jquery.sparkline.min.js')
+		//  CHART-CIRCLE JS 
+		script(src='/assets/js/circle-progress.min.js')
+		//  RATING STAR JS 
+		script(src='/assets/plugins/rating/jquery.rating-stars.js')
+		//  INPUT MASK JS 
+		script(src='/assets/plugins/input-mask/jquery.mask.min.js')
+		//  CUSTOM SCROLL BAR JS
+		script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
+		link(href='/assets/css/icons.css' rel='stylesheet')
+		//  CUSTOM JS
+		script(src='/assets/js/custom.js')
 
-	script(src='/assets/js/app/login.js')
+		script(src='/assets/js/app/login.js')

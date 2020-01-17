@@ -12,21 +12,21 @@ html(lang="es")
 		link(rel='shortcut icon' type='image/x-icon' href='/assets/images/brand/favicon.ico')
 		// TITLE 
 		title Primus Capital
-		// BOOTSTRAP CSS 
+
 		link(href='/assets/plugins/bootstrap/css/bootstrap.min.css' rel='stylesheet')
-		// STYLE CSS 
+
 		link(href='/assets/css/style.css' rel='stylesheet')
 		link(href='/assets/css/skin-modes.css' rel='stylesheet')
-		// SIDE-MENU CSS 
+
 		link(href='/assets/plugins/sidemenu/sidemenu.css' rel='stylesheet')
 		link(href='/assets/plugins/single-page/css/main.css' rel='stylesheet' type='text/css')
-		// C3 CHARTS CSS 
+
 		link(href='/assets/plugins/charts-c3/c3-chart.css' rel='stylesheet')
-		// CUSTOM SCROLL BAR CSS
+
 		link(href='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css' rel='stylesheet')
-		// - FONT-ICONS CSS 
+
 		link(href='/assets/css/icons.css' rel='stylesheet')
-		// SIDEBAR CSS 
+
 		link(href='/assets/plugins/sidebar/sidebar.css' rel='stylesheet')
 
 		link(href='/assets/plugins/fileuploads/css/fileupload.css' rel='stylesheet' type='text/css')
@@ -44,5 +44,92 @@ html(lang="es")
 		// COLOR SKIN CSS 
 		link#theme(rel='stylesheet' type='text/css' media='all' href='/assets/colors/color1.css')
 
-	body
-		block content
+	body.app.sidebar-mini
+		#global-loader
+			img.loader-img(src='/assets/images/loader.svg' alt='Loader')
+
+		.page
+			.page-main
+				.app-sidebar__overlay(data-toggle='sidebar')
+				aside.app-sidebar
+					.side-header
+						a.header-brand1(href='index.html')
+							//img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='logo')
+							img.header-brand-img.desktop-logo(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
+							//img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='logo')
+							img.header-brand-img.toggle-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
+							//img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='logo')
+							img.header-brand-img.light-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
+							//img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='logo')
+							img.header-brand-img.light-logo1(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
+						a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+					.app-sidebar__user
+						.dropdown.user-pro-body.text-center
+							//.user-pic
+								img.avatar-xl.rounded-circle(src='/assets/images/users/10.jpg' alt='user-img')
+							.user-info
+								h6.mb-0.text-dark 
+									| R.U.T. 99.999.999-N
+								span.text-muted.app-sidebar__user-name.text-sm 
+									| Su Ejecutivo de Cuenta es 
+									br
+									| nnnnn nnnnn nnnnnn
+									br
+									| Telefono +56 1234 1234
+									br
+									| Email email@correo.com
+					.sidebar-navs
+						ul.nav.nav-pills-circle
+							li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
+								a.nav-link.text-center.m-2(href='/search-doc')
+									i.fe.fe-search
+							li.nav-item(data-toggle='tooltip' data-placement='top' title='Home')
+								a.nav-link.text-center.m-2(href='/')
+									i.fe.fe-home
+							li.nav-item(data-toggle='tooltip' data-placement='top' title='Email')
+								a.nav-link.text-center.m-2
+									i.fe.fe-mail
+							li.nav-item(data-toggle='tooltip' data-placement='top' title='Cerrar Sesión')
+								a.nav-link.text-center.m-2
+									i.fe.fe-power
+					ul.side-menu
+						li
+							h3 Reportes
+						li
+							a.side-menu__item(href='/award')
+								i.side-menu__icon.ti-clipboard
+								span.side-menu__label Otorgamientos
+						li
+							a.side-menu__item(href='/cancellations')
+								i.side-menu__icon.ti-notepad
+								span.side-menu__label Cancelaciones
+						li
+							a.side-menu__item(href='/wallet-staff')
+								i.side-menu__icon.ti-book
+								span.side-menu__label Cartera Vigente
+						li
+							a.side-menu__item(href='/surplus')
+								i.side-menu__icon.ti-envelope
+								span.side-menu__label Excedentes
+						li
+							a.side-menu__item(href='/protests')
+								i.side-menu__icon.ti-receipt
+								span.side-menu__label Protestos
+						li
+							a.side-menu__item(href='#')
+								i.side-menu__icon.ti-stamp
+								span.side-menu__label Prorrogas
+
+			block content
+
+			footer.footer
+				.container
+					.row.align-items-center.flex-row-reverse
+						.col-md-12.col-sm-12.text-center
+							| Copyright © 2020 
+							a(href='#') Primas Capital
+							| . Designed by 
+							a(href='#') Ideas Digitales
+
+			a#back-to-top(href='#top')
+				i.fa.fa-angle-up

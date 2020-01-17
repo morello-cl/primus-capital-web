@@ -1,0 +1,132 @@
+extends layout
+
+block content
+	.app-content
+		.side-app
+			.page-header
+				div
+					h1.page-title Protestos
+					ol.breadcrumb
+						li.breadcrumb-item
+							a(href='#') Home
+						li.breadcrumb-item.active(aria-current='page') Protestos
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-4
+					.card
+						.card-header
+							h3.card-title Opciones de Consulta
+						.card-body.p-4
+							.mb-5
+								.col-lg-12
+									.card
+										.card-header
+											.card-title Protestos por Deudor
+										.card-body
+											.form-group.form-elements
+												.custom-controls-stacked
+													label.custom-control.custom-radio
+														input.custom-control-input(type='radio' name='c-options' value='option1' checked)
+														span.custom-control-label Todos
+													label.custom-control.custom-radio
+														input.custom-control-input(type='radio' name='c-options' value='option2')
+														span.custom-control-label R.U.T. Deudor
+
+							.mb-5
+								.col-lg-12
+									.card
+										.card-header
+											.card-title Tipo de Informe
+										.card-body
+											.form-group.form-elements
+													.custom-controls-stacked
+														label.custom-control.custom-radio
+															input.custom-control-input(type='radio' name='p-type' value='option4' checked)
+															span.custom-control-label Vigente
+													.custom-controls-stacked
+														label.custom-control.custom-radio
+															input.custom-control-input(type='radio' name='p-type' value='option5')
+															span.custom-control-label Historico
+
+							.mb-5
+								.col-lg-12
+									.card
+										.card-header
+											.card-title Fecha
+										.card-body
+											.form-group.form-elements
+													.custom-controls-stacked
+														label.custom-control.custom-radio
+															input.custom-control-input(type='radio' name='p-datetime' value='option4' checked)
+															span.custom-control-label A hoy
+													.custom-controls-stacked
+														label.custom-control.custom-radio
+															input.custom-control-input(type='radio' name='p-datetime' value='option5')
+															span.custom-control-label Otra Fecha
+											.input-group
+												.input-group-text
+													i.fa.fa-calendar
+												input.form-control.pull-right#reservation(type='text')
+
+							.mb-5
+								.row
+									.col-lg-6
+										button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+									.col-lg-6
+										button.btn.btn-primary.btn-block(type="button") Consultar
+
+							
+							.mb-5
+								p.mb-2
+									span.float-right.text-muted
+										| Estado: favor seleccione preferencias de consulta.
+
+
+	//  JQUERY JS 
+	script(src='/assets/js/jquery-3.4.1.min.js')
+	//  BOOTSTRAP JS 
+	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
+	script(src='/assets/plugins/bootstrap/js/popper.min.js')
+	//  SPARKLINE JS
+	script(src='/assets/js/jquery.sparkline.min.js')
+	//  CHART-CIRCLE JS
+	script(src='/assets/js/circle-progress.min.js')
+	//  RATING STARJS 
+	script(src='/assets/plugins/rating/jquery.rating-stars.js')
+	//  CHARTJS CHART JS
+	script(src='/assets/plugins/chart/Chart.bundle.js')
+	script(src='/assets/plugins/chart/utils.js')
+	//  PIETY CHART JS
+	script(src='/assets/plugins/peitychart/jquery.peity.min.js')
+	script(src='/assets/plugins/peitychart/peitychart.init.js')
+	//  ECHART JS
+	script(src='/assets/plugins/echarts/echarts.js')
+	//  SIDE-MENU JS
+	script(src='/assets/plugins/sidemenu/sidemenu.js')
+	//  CUSTOM SCROLLBAR JS
+	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
+	//  SIDEBAR JS 
+	script(src='/assets/plugins/sidebar/sidebar.js')
+	//  APEXCHART JS 
+	script(src='/assets/js/apexcharts.js')
+
+	script(src='/assets/plugins/select2/select2.full.min.js')
+
+	script(src='/assets/plugins/bootstrap-daterangepicker/moment.min.js')
+	script(src='/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
+	//  TIMEPICKER JS 
+	script(src='/assets/plugins/time-picker/jquery.timepicker.js')
+	script(src='/assets/plugins/time-picker/toggles.min.js')
+	//  DATEPICKER JS 
+	script(src='/assets/plugins/date-picker/spectrum.js')
+	script(src='/assets/plugins/date-picker/jquery-ui.js')
+	script(src='/assets/plugins/input-mask/jquery.maskedinput.js')
+	//  MULTI SELECT JS
+	script(src='/assets/plugins/multipleselect/multiple-select.js')
+	script(src='/assets/plugins/multipleselect/multi-select.js')
+
+	script(src='/assets/js/form-elements.js')
+	//  INDEX JS 
+	//script(src='/assets/js/index1.js')
+	//  CUSTOM JS 
+	script(src='/assets/js/custom.js')
