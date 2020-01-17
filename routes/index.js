@@ -19,14 +19,16 @@ router.post('/login', function(req, res, next){
   })
     .then(r => {
         console.log('r', r);
+
+        res.json();
     })
     .catch(err => {
         console.log('err.code', err.code);
         console.log('err.message', err.message);
         console.log('err.stack', err.stack);
-    });
 
-  res.json();
+        res.json();
+    });
 });
 
 module.exports = router;
