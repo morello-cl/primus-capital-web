@@ -1,0 +1,67 @@
+extends layout
+
+block content
+	.login-img
+		#global-loader
+			img.loader-img(src='/assets/images/loader.svg' alt='Loader')
+		
+		.page
+			div
+				.col.col-login.mx-auto
+					.text-center
+						img.header-brand-img(src='https://via.placeholder.com/200x68.png' alt="Primus Capital")
+						//assets/images/brand/logo.png
+				.container-login100
+					.wrap-login100.p-6
+						form.login100-form.validate-form
+							span.login100-form-title
+								| Ingreso a Primus Capital
+							.text-center.pt-3
+								p.text-dark.mb-0
+									| Para ingresar a los servicios en línea, en 
+									strong Primus Capital Spa.
+									|  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
+							.wrap-input100.validate-input(data-validate='Valid R.U.T. is required')
+								input.input100(type='text' name='rut' placeholder='R.U.T.')
+								span.focus-input100
+								span.symbol-input100
+									i.mdi.mdi-account-card-details(aria-hidden='true')
+							.wrap-input100.validate-input(data-validate='Password is required')
+								input.input100(type='password' name='pass' placeholder='Password')
+								span.focus-input100
+								span.symbol-input100
+									i.zmdi.zmdi-lock(aria-hidden='true')
+							.text-right.pt-1
+								p.mb-0
+									a.text-primary.ml-1(href='forgot-password.html')
+										| Forgot Password?
+							.container-login100-form-btn
+								a.login100-form-btn.btn-primary#btn-login(href='#')
+									| Ingresar
+							.text-center.pt-3
+								p.text-dark.mb-0
+									| Por su seguridad, una vez concluída su sesión, presione en el menú el botón 
+									strong SALIR
+		
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
+
+	//  JQUERY JS 
+	script(src='/assets/js/jquery-3.4.1.min.js')
+	//  BOOTSTRAP JS 
+	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
+	script(src='/assets/plugins/bootstrap/js/popper.min.js')
+	//  SPARKLINE JS 
+	script(src='/assets/js/jquery.sparkline.min.js')
+	//  CHART-CIRCLE JS 
+	script(src='/assets/js/circle-progress.min.js')
+	//  RATING STAR JS 
+	script(src='/assets/plugins/rating/jquery.rating-stars.js')
+	//  INPUT MASK JS 
+	script(src='/assets/plugins/input-mask/jquery.mask.min.js')
+	//  CUSTOM SCROLL BAR JS
+	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
+	link(href='/assets/css/icons.css' rel='stylesheet')
+	//  CUSTOM JS
+	script(src='/assets/js/custom.js')
+
+	script(src='/assets/js/app/login.js')
