@@ -13,7 +13,7 @@ router.get('/login', function(req, res, next){
 router.post('/login', function(req, res, next){
   console.log('aca....');
 
-  axios.post( 'http//200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
+  axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
     username: 'pruebas',
     password: 'Primus123'
   })
@@ -27,7 +27,7 @@ router.post('/login', function(req, res, next){
         console.log('err.message', err.message);
         console.log('err.stack', err.stack);
 
-        res.json();
+        res.status().json();
     });
 });
 
