@@ -21,6 +21,7 @@ block content
 									| Para ingresar a los servicios en línea, en 
 									strong Primus Capital Spa.
 									|  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
+							p
 							.wrap-input100.validate-input(data-validate='Valid R.U.T. is required')
 								input.input100(type='text' name='rut' placeholder='R.U.T.')
 								span.focus-input100
@@ -33,11 +34,20 @@ block content
 									i.zmdi.zmdi-lock(aria-hidden='true')
 							.text-right.pt-1
 								p.mb-0
-									a.text-primary.ml-1(href='forgot-password.html')
+									a.text-primary.ml-1(href='#')
 										| Forgot Password?
 							.container-login100-form-btn
 								a.login100-form-btn.btn-primary#btn-login(href='#')
 									| Ingresar
+							p
+							#error-msg.alert.alert-danger.alert-dismissible.fade.show.mb-0(role='alert')
+								span.alert-inner--icon
+									i.fe.fe-slash
+								span.alert-inner--text.mb-0
+									strong  Error!
+									|  No es posible validar Cliente!
+								button.close(type='button' data-dismiss='alert' aria-label='Close')
+									span(aria-hidden='true') ×
 							.text-center.pt-3
 								p.text-dark.mb-0
 									| Por su seguridad, una vez concluída su sesión, presione en el menú el botón 

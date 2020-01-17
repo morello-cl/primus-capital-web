@@ -1,6 +1,8 @@
 (function($) {
     "use strict";
 
+    $('#error-msg').hide();
+
     $("#btn-login").click(function(e) {
         e.preventDefault();
 
@@ -16,6 +18,8 @@
             console.log(r.data);
         })
         .catch(err => {
+            $('#error-msg').show();
+
             console.log(err.code);
             console.log(err.message);
             console.log(err.stack);
