@@ -20,14 +20,14 @@ router.post('/login', function(req, res, next){
     .then(r => {
         console.log('r', r);
 
-        res.json();
+        res.status(400).json({});
     })
     .catch(err => {
         console.log('err.code', err.code);
         console.log('err.message', err.message);
         console.log('err.stack', err.stack);
 
-        res.status().json();
+        res.status(400).json({});
     });
 });
 
