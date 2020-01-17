@@ -11,18 +11,15 @@
             password: 'Primus123'
         }
 
-        axios.post( '//200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', _login, { 
-                timeout: 60000,
-                withCredentials: false
-            })
-            .then(r => {
-                console.log(r.data);
-            })
-            .catch(err => {
-                console.log(err.code);
-                console.log(err.message);
-                console.log(err.stack);
-            });
+        axios.post( '/login', _login)
+        .then(r => {
+            console.log(r.data);
+        })
+        .catch(err => {
+            console.log(err.code);
+            console.log(err.message);
+            console.log(err.stack);
+        });
 
         $("#btn-login").attr('disabled', false);
 	});
