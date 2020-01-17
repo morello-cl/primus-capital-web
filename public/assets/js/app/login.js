@@ -11,7 +11,7 @@
             password: 'Primus123'
         }
 
-        axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', _login, { 
+        axios.post( '//200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', _login, { 
                 timeout: 60000,
                 withCredentials: false
             })
