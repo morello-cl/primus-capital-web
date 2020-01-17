@@ -16,10 +16,7 @@ router.post('/login', function(req, res, next){
   axios.post( 'http//200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
     username: 'pruebas',
     password: 'Primus123'
-  }, { 
-        timeout: 60000,
-        withCredentials: false
-    })
+  })
     .then(r => {
         console.log('r', r);
     })
