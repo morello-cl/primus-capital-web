@@ -4,7 +4,8 @@ const axios = require('axios');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  //res.render('index');
+  res.render('login');
 });
 
 router.get('/login', function(req, res, next){
