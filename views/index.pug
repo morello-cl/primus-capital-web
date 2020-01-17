@@ -1,9 +1,266 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
+	.page
+		.page-main
+			.app-sidebar__overlay(data-toggle='sidebar')
+			aside.app-sidebar
+				.side-header
+					a.header-brand1(href='index.html')
+						//img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='logo')
+						img.header-brand-img.desktop-logo(src='https://via.placeholder.com/200x68.png' alt='logo')
+						//img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='logo')
+						img.header-brand-img.toggle-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
+						//img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='logo')
+						img.header-brand-img.light-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
+						//img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='logo')
+						img.header-brand-img.light-logo1(src='https://via.placeholder.com/200x68.png' alt='logo')
+					a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+				.app-sidebar__user
+					.dropdown.user-pro-body.text-center
+						//.user-pic
+							img.avatar-xl.rounded-circle(src='/assets/images/users/10.jpg' alt='user-img')
+						.user-info
+							h6.mb-0.text-dark 
+								| R.U.T. 99.999.999-N
+							span.text-muted.app-sidebar__user-name.text-sm 
+								| Su Ejecutivo de Cuenta es 
+								br
+								| nnnnn nnnnn nnnnnn
+								br
+								| Telefono +56 1234 1234
+								br
+								| Email email@correo.com
+				.sidebar-navs
+					ul.nav.nav-pills-circle
+						li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
+							a.nav-link.text-center.m-2
+								i.fe.fe-search
+						li.nav-item(data-toggle='tooltip' data-placement='top' title='Home')
+							a.nav-link.text-center.m-2
+								i.fe.fe-home
+						li.nav-item(data-toggle='tooltip' data-placement='top' title='Email')
+							a.nav-link.text-center.m-2
+								i.fe.fe-mail
+						li.nav-item(data-toggle='tooltip' data-placement='top' title='Cerrar Sesión')
+							a.nav-link.text-center.m-2
+								i.fe.fe-power
+				ul.side-menu
+					li
+						h3 Reportes
+					li
+						a.side-menu__item(href='widgets.html')
+							i.side-menu__icon.ti-package
+							span.side-menu__label Otorgamientos
+					li
+						a.side-menu__item(href='maps.html')
+							i.side-menu__icon.ti-map-alt
+							span.side-menu__label Cancelaciones
+					li
+						a.side-menu__item(href='maps.html')
+							i.side-menu__icon.ti-map-alt
+							span.side-menu__label Cartera Vigente
+					li
+						a.side-menu__item(href='maps.html')
+							i.side-menu__icon.ti-map-alt
+							span.side-menu__label Excedentes
+					li
+						a.side-menu__item(href='maps.html')
+							i.side-menu__icon.ti-map-alt
+							span.side-menu__label Protestos
+					li
+						a.side-menu__item(href='maps.html')
+							i.side-menu__icon.ti-map-alt
+							span.side-menu__label Prorrogas
+
+			.app-content
+				.side-app
+					.page-header
+						div
+							h1.page-title Dashboard 02
+							ol.breadcrumb
+								li.breadcrumb-item
+									a(href='#') Home
+								li.breadcrumb-item.active(aria-current='page') Dashboard 02
+						.d-flex.ml-auto.header-right-icons.header-search-icon
+							.dropdown.d-sm-flex
+								a.nav-link.icon(href='#' data-toggle='dropdown')
+									i.fe.fe-search
+								.dropdown-menu.header-search.dropdown-menu-left
+									.input-group.w-100.p-2
+										input.form-control(type='text' placeholder='Search....')
+										.input-group-append
+											button.btn.btn-primary(type='button')
+												i.fa.fa-search(aria-hidden='true')
+							//  SEARCH 
+							.dropdown.d-md-flex
+								a.nav-link.icon.full-screen-link.nav-link-bg
+									i.fe.fe-maximize.fullscreen-button
+							//  FULL-SCREEN 
+							//.dropdown.d-md-flex.notifications
+								a.nav-link.icon(data-toggle='dropdown')
+									i.fe.fe-bell
+									span.nav-unread.badge.badge-success.badge-pill 2
+								.dropdown-menu.dropdown-menu-right.dropdown-menu-arrow
+									.notifications-menu
+										a.dropdown-item.d-flex.pb-3(href='#')
+											.fs-16.text-success.mr-3
+												i.fa.fa-thumbs-o-up
+											div
+												strong Someone likes our posts.
+										a.dropdown-item.d-flex.pb-3(href='#')
+											.fs-16.text-primary.mr-3
+												i.fa.fa-commenting-o
+											div
+												strong 3 New Comments.
+										a.dropdown-item.d-flex.pb-3(href='#')
+											.fs-16.text-danger.mr-3
+												i.fa.fa-cogs
+											div
+												strong Server Rebooted
+									.dropdown-divider
+									a.dropdown-item.text-center(href='#') View all Notification
+							//  NOTIFICATIONS 
+							//.dropdown.d-md-flex.message
+								a.nav-link.icon.text-center(data-toggle='dropdown')
+									i.fe.fe-mail
+									span.nav-unread.badge.badge-danger.badge-pill 3
+								.dropdown-menu.dropdown-menu-right.dropdown-menu-arrow
+									.message-menu
+										a.dropdown-item.d-flex.pb-3(href='#')
+											span.avatar.avatar-md.brround.mr-3.align-self-center.cover-image(data-image-src='../assets/images/users/1.jpg')
+											div
+												strong Madeleine
+												|  Hey! there I' am available....
+
+												.small.text-muted.
+													
+													3 hours ago
+													
+										a.dropdown-item.d-flex.pb-3(href='#')
+											span.avatar.avatar-md.brround.mr-3.align-self-center.cover-image(data-image-src='../assets/images/users/12.jpg')
+											div
+												strong Anthony
+												|  New product Launching...
+
+												.small.text-muted.
+													
+													5 hour ago
+													
+										a.dropdown-item.d-flex.pb-3(href='#')
+											span.avatar.avatar-md.brround.mr-3.align-self-center.cover-image(data-image-src='../assets/images/users/4.jpg')
+											div
+												strong Olivia
+												|  New Schedule Realease......
+
+												.small.text-muted.
+													
+													45 mintues ago
+													
+										a.dropdown-item.d-flex.pb-3(href='#')
+											span.avatar.avatar-md.brround.mr-3.align-self-center.cover-image(data-image-src='../assets/images/users/15.jpg')
+											div
+												strong Sanderson
+												|  New Schedule Realease......
+
+												.small.text-muted.
+													
+													2 days ago
+													
+									.dropdown-divider
+									a.dropdown-item.text-center(href='#') See all Messages
+							//  MESSAGE-BOX 
+							//.dropdown.profile-1
+								a.nav-link.pr-2.leading-none.d-flex(href='#' data-toggle='dropdown')
+									span
+										img.avatar.profile-user.brround.cover-image(src='../assets/images/users/10.jpg' alt='profile-user')
+								.dropdown-menu.dropdown-menu-right.dropdown-menu-arrow
+									.drop-heading
+										.text-center
+											h5.text-dark.mb-0 Elizabeth Dyer
+											small.text-muted Administrator
+									.dropdown-divider.m-0
+									a.dropdown-item(href='#')
+										i.dropdown-icon.mdi.mdi-account-outline
+										|  Profile
+
+									a.dropdown-item(href='#')
+										i.dropdown-icon.mdi.mdi-settings
+										|  Settings
+
+									a.dropdown-item(href='#')
+										span.float-right
+										i.dropdown-icon.mdi.mdi-message-outline
+										|  Inbox
+
+									a.dropdown-item(href='#')
+										i.dropdown-icon.mdi.mdi-comment-check-outline
+										|  Message
+
+									.dropdown-divider
+									a.dropdown-item(href='#')
+										i.dropdown-icon.mdi.mdi-compass-outline
+										|  Need help?
+
+									a.dropdown-item(href='login.html')
+										i.dropdown-icon.mdi.mdi-logout-variant
+										|  Sign out
+
+							.dropdown.d-md-flex.header-settings
+								a.nav-link.icon(href='#' data-toggle='sidebar-right' data-target='.sidebar-right')
+									i.fe.fe-align-right
+							//  SIDE-MENU 
+
+					.row
+						.col-xs-12.col-sm-12.col-lg-12
+							.card
+								.card-header
+									h3.card-title Social Activities
+								.card-body
+
+		footer.footer
+			.container
+				.row.align-items-center.flex-row-reverse
+					.col-md-12.col-sm-12.text-center
+						| Copyright © 2020 
+						a(href='#') Primas Capital
+						| . Designed by 
+						a(href='#') Ideas Digitales
+
+
 
 	//  BACK-TO-TOP 
 	a#back-to-top(href='#top')
 		i.fa.fa-angle-up
+
+	//  JQUERY JS 
+	script(src='/assets/js/jquery-3.4.1.min.js')
+	//  BOOTSTRAP JS 
+	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
+	script(src='/assets/plugins/bootstrap/js/popper.min.js')
+	//  SPARKLINE JS
+	script(src='/assets/js/jquery.sparkline.min.js')
+	//  CHART-CIRCLE JS
+	script(src='/assets/js/circle-progress.min.js')
+	//  RATING STARJS 
+	script(src='/assets/plugins/rating/jquery.rating-stars.js')
+	//  CHARTJS CHART JS
+	script(src='/assets/plugins/chart/Chart.bundle.js')
+	script(src='/assets/plugins/chart/utils.js')
+	//  PIETY CHART JS
+	script(src='/assets/plugins/peitychart/jquery.peity.min.js')
+	script(src='/assets/plugins/peitychart/peitychart.init.js')
+	//  ECHART JS
+	script(src='/assets/plugins/echarts/echarts.js')
+	//  SIDE-MENU JS
+	script(src='/assets/plugins/sidemenu/sidemenu.js')
+	//  CUSTOM SCROLLBAR JS
+	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
+	//  SIDEBAR JS 
+	script(src='/assets/plugins/sidebar/sidebar.js')
+	//  APEXCHART JS 
+	script(src='/assets/js/apexcharts.js')
+	//  INDEX JS 
+	//script(src='/assets/js/index1.js')
+	//  CUSTOM JS 
+	script(src='/assets/js/custom.js')
