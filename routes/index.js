@@ -14,6 +14,8 @@ router.get('/login', function(req, res, next){
 router.post('/login', function(req, res, next){
   console.log('aca....');
 
+  setTimeout(() => {
+
   axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
     username: 'pruebas',
     password: 'Primus123'
@@ -30,6 +32,7 @@ router.post('/login', function(req, res, next){
 
         res.status(400).json({});
     });
+  }, 15000);
 });
 
 module.exports = router;
