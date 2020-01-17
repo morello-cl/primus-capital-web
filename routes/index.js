@@ -11,6 +11,8 @@ router.get('/login', function(req, res, next){
   res.render('login');
 });
 router.post('/login', function(req, res, next){
+  console.log('aca....');
+  
   axios.post( 'http//200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
     username: 'pruebas',
     password: 'Primus123'
