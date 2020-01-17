@@ -3,7 +3,7 @@
 		{
 			"exec_mode": "cluster_mode",
 			"instances": 1,
-			"name": "primas",
+			"name": "prisma",
 			"script": "bin/www",
 			"node_args": "--max_old_space_size=256 --experimental-modules",
 			"max_memory_restart" : "200M",
