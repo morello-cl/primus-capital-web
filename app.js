@@ -29,9 +29,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy({
-    usernameField: 'rut',
-    passwordField: 'password'
-  }, function(username, password, done){
+    usernameField     : 'rut',
+    passwordField     : 'password',
+    passReqToCallback : true
+  }, async function(req, username, password, done){
     console.log('uno', username, password);
     
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
@@ -54,14 +55,16 @@ passport.use(new LocalStrategy({
           refresh_token_expires_in: r.data.refresh_token_expires_in
       };
 
-      return done(null, user);
+      console.log('user', user);
+
+      return done(null, user, { message: ''});
     })
     .catch(function(err) {
         console.log('err.code', err.code);
         console.log('err.message', err.message);
         console.log('err.stack', err.stack);
 
-        return done(err);
+        return done(null, false, { message: 'Usuario o Password no Existen'});
     });
   })
 );
