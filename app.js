@@ -29,36 +29,42 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy({
-  usernameField: 'rut',
-  passwordField: 'password'
-}, function(username, password, done){
-  console.log('uni', username, password);
-  
-  axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
-      username: username,
-      password: password
-  })
-  .then(function(r) {
-      console.log('r.data', r.data);
+    usernameField: 'rut',
+    passwordField: 'password'
+  }, function(username, password, done){
+    console.log('uno', username, password);
+    
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
+        username: username,
+        password: password
+    })
+    .then(function(r) {
+        console.log('r.data', r.data);
 
-      return done(null, { 
+        let user = { 
           id: 1,
-          rut: rut,
+          rut: username,
           nombre: '',
           ejecutivo: '',
           fono: '',
           email: '',
-          jwt: r.data
-      });
-  })
-  .catch(function(err) {
-      console.log('err.code', err.code);
-      console.log('err.message', err.message);
-      console.log('err.stack', err.stack);
+          access_token: r.data.access_token,
+          token_expires_in: r.data.token_expires_in,
+          refresh_token: r.data.refresh_token,
+          refresh_token_expires_in: r.data.refresh_token_expires_in
+      };
 
-      return done(err, null);
-  });
-}));
+      return done(null, user);
+    })
+    .catch(function(err) {
+        console.log('err.code', err.code);
+        console.log('err.message', err.message);
+        console.log('err.stack', err.stack);
+
+        return done(err);
+    });
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

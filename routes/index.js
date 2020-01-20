@@ -20,37 +20,40 @@ router.get('/', isLoggedIn, function(req, res, next) {
 router.get('/login', function(req, res, next){
   res.render('login');
 });
-router.post('/login', passport.authenticate("local", { failureRedirect: "/login" }), function(req, res, next) {
-  console.log('user', req.user);
-  res.redirect('/');
-});
+router.post('/login', 
+  passport.authenticate("local", { failureRedirect: "/login" }), 
+  function(req, res, next) {
+    console.log('user', req.user);
+    res.redirect('/');
+  }
+);
 
 router.get("/logout", (req, res, next) => {
 	req.logout();
 	res.redirect("/");
 });
 
-router.get('/search-doc', function(req, res, next){
+router.get('/search-doc', isLoggedIn, function(req, res, next){
   res.render('buscar-documento');
 });
 
-router.get('/award', function(req, res, next){
+router.get('/award', isLoggedIn, function(req, res, next){
   res.render('otorgamiento');
 });
 
-router.get('/cancellations', function(req, res, next){
+router.get('/cancellations', isLoggedIn, function(req, res, next){
   res.render('cancelaciones');
 });
 
-router.get('/wallet-staff', function(req, res, next){
+router.get('/wallet-staff', isLoggedIn, function(req, res, next){
   res.render('cartera-vigente');
 });
 
-router.get('/surplus', function(req, res, next){
+router.get('/surplus', isLoggedIn, function(req, res, next){
   res.render('excedentes');
 });
 
-router.get('/protests', function(req, res, next){
+router.get('/protests', isLoggedIn, function(req, res, next){
   res.render('protestos');
 });
 
