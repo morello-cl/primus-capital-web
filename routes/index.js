@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
+const passport = require('passport');
+
+function isLoggedIn(req, res, next) {
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated()) return next();
+
+	// if they aren't redirect them to the home page
+	return res.redirect("/login");
+}
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
   res.render('index');
   //res.render('login');
 });
@@ -11,25 +20,14 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next){
   res.render('login');
 });
-router.post('/login', function(req, res, next){
-  console.log('aca....');
+router.post('/login', passport.authenticate("local", { failureRedirect: "/login" }), function(req, res, next) {
+  console.log('user', req.user);
+  res.redirect('/');
+});
 
-  axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
-    username: 'pruebas',
-    password: 'Primus123'
-  })
-  .then(r => {
-      console.log('r.data', r.data);
-
-      res.json({});
-  })
-  .catch(err => {
-      console.log('err.code', err.code);
-      console.log('err.message', err.message);
-      console.log('err.stack', err.stack);
-
-      res.status(400).json({});
-  });
+router.get("/logout", (req, res, next) => {
+	req.logout();
+	res.redirect("/");
 });
 
 router.get('/search-doc', function(req, res, next){

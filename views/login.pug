@@ -62,7 +62,7 @@ html(lang="es")
 							.text-center
 								img.header-brand-img(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt="Primus Capital")
 							p
-							form.login100-form.validate-form
+							form.login100-form.validate-form#form-login(action='/login', method='post')
 								span.login100-form-title
 									| Ingreso a Primus Capital
 								.text-center.pt-3
@@ -72,12 +72,12 @@ html(lang="es")
 										|  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
 								p
 								.wrap-input100.validate-input(data-validate='Valid R.U.T. is required')
-									input.input100(type='text' name='rut' placeholder='R.U.T.')
+									input.input100#rut(type='text', name='rut', placeholder='R.U.T.')
 									span.focus-input100
 									span.symbol-input100
 										i.mdi.mdi-account-card-details(aria-hidden='true')
 								.wrap-input100.validate-input(data-validate='Password is required')
-									input.input100(type='password' name='pass' placeholder='Password')
+									input.input100#password(type='password', name='password', placeholder='Password')
 									span.focus-input100
 									span.symbol-input100
 										i.zmdi.zmdi-lock(aria-hidden='true')
@@ -86,7 +86,7 @@ html(lang="es")
 										a.text-primary.ml-1(href='#')
 											| Forgot Password?
 								.container-login100-form-btn
-									a.login100-form-btn.btn-primary#btn-login(href='#')
+									button.login100-form-btn.btn-primary#btn-login(type='submit')
 										| Ingresar
 								p
 								#error-msg.alert.alert-danger.alert-dismissible.fade.show.mb-0(role='alert')
@@ -95,7 +95,7 @@ html(lang="es")
 									span.alert-inner--text.mb-0
 										strong  Error!
 										|  No es posible validar Cliente!
-									button.close(type='button' data-dismiss='alert' aria-label='Close')
+									button.close(type='button', data-dismiss='alert', aria-label='Close')
 										span(aria-hidden='true') ×
 								.text-center.pt-3
 									p.text-dark.mb-0
