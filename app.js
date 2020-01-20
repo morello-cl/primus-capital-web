@@ -1,8 +1,10 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const cookieSession = require("cookie-session");
+const logger = require('morgan');
 const axios = require('axios');
 const cors = require('cors');
 const passport = require("passport");
@@ -19,14 +21,46 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.set("trust proxy", 1);
+	const expiryDate = new Date(Date.now() + 60 * 60 * 1000 * 24); // 24 hour
+	app.use(
+		cookieSession({
+			name: "primusCapitalSessionId",
+			keys: ['dkihdjcsjsamdkdjdbgelcndh', 'djdjdbabbhshsgsgdlfljr'],
+			cookie: {
+				secure: true,
+				httpOnly: true,
+				domain: "*",
+				// path: 'foo/bar',
+				expires: expiryDate,
+			},
+		})
+	);
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  console.log("serializeUser", user);
+
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  console.log('deserializeUser', user);
+
+
+  done(null, user);
+});
 
 passport.use(new LocalStrategy({
     usernameField     : 'rut',
@@ -40,7 +74,6 @@ passport.use(new LocalStrategy({
         password: password
     })
     .then(function(r) {
-        console.log('r.data', r.data);
 
         let user = { 
           id: 1,
@@ -56,6 +89,8 @@ passport.use(new LocalStrategy({
       };
 
       console.log('user', user);
+
+
 
       return done(null, user, { message: ''});
     })

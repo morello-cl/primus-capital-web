@@ -4,6 +4,8 @@ const axios = require('axios');
 const passport = require('passport');
 
 function isLoggedIn(req, res, next) {
+  console.log('isLoggedIn', req.user);
+
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated()) return next();
 
@@ -13,20 +15,13 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('index');
-  //res.render('login');
+  res.render('index', { user: req.user });
 });
 
 router.get('/login', function(req, res, next){
   res.render('login');
 });
-router.post('/login', 
-  passport.authenticate("local", { failureRedirect: "/login" }), 
-  function(req, res, next) {
-    console.log('user', req.user);
-    res.redirect('/');
-  }
-);
+router.post('/login', passport.authenticate("local", { successRedirect: "/", failureRedirect: "/login" }));
 
 router.get("/logout", (req, res, next) => {
 	req.logout();
@@ -34,27 +29,27 @@ router.get("/logout", (req, res, next) => {
 });
 
 router.get('/search-doc', isLoggedIn, function(req, res, next){
-  res.render('buscar-documento');
+  res.render('buscar-documento', { user: req.user });
 });
 
 router.get('/award', isLoggedIn, function(req, res, next){
-  res.render('otorgamiento');
+  res.render('otorgamiento', { user: req.user });
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){
-  res.render('cancelaciones');
+  res.render('cancelaciones', { user: req.user });
 });
 
 router.get('/wallet-staff', isLoggedIn, function(req, res, next){
-  res.render('cartera-vigente');
+  res.render('cartera-vigente', { user: req.user });
 });
 
 router.get('/surplus', isLoggedIn, function(req, res, next){
-  res.render('excedentes');
+  res.render('excedentes', { user: req.user });
 });
 
 router.get('/protests', isLoggedIn, function(req, res, next){
-  res.render('protestos');
+  res.render('protestos', { user: req.user });
 });
 
 module.exports = router;
