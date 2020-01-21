@@ -41,7 +41,8 @@ html(lang="es")
 
 		link(rel='stylesheet' href='/assets/plugins/multipleselect/multiple-select.css')
 
-		// COLOR SKIN CSS 
+		link(rel='stylesheet', href='/assets/css/bootstrap-table.min.css')
+
 		link#theme(rel='stylesheet' type='text/css' media='all' href='/assets/colors/color1.css')
 
 	body.app.sidebar-mini
@@ -69,15 +70,20 @@ html(lang="es")
 								img.avatar-xl.rounded-circle(src='/assets/images/users/10.jpg' alt='user-img')
 							.user-info
 								h6.mb-0.text-dark 
-									| R.U.T. 99.999.999-N
+									| R.U.T. 
+									if user
+										| #{user.rut}
 								span.text-muted.app-sidebar__user-name.text-sm 
 									| Su Ejecutivo de Cuenta es 
 									br
-									| nnnnn nnnnn nnnnnn
+									if user
+										| &nbsp;#{user.ejecutivo}
 									br
-									| Telefono +56 1234 1234
+									if user
+										| Telefono #{user.fono}
 									br
-									| Email email@correo.com
+									if user
+										| Email #{user.email}
 					.sidebar-navs
 						ul.nav.nav-pills-circle
 							li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
@@ -122,14 +128,74 @@ html(lang="es")
 
 			block content
 
-			footer.footer
-				.container
-					.row.align-items-center.flex-row-reverse
-						.col-md-12.col-sm-12.text-center
-							| Copyright © 2020 
-							a(href='#') Primas Capital
-							| . Designed by 
-							a(href='#') Ideas Digitales
-
 			a#back-to-top(href='#top')
 				i.fa.fa-angle-up
+
+			footer.footer.footer-efect.mt-4
+				.container-fluid.bg-primary.text-light
+					.row.p-5
+						.col-md-3.col-12
+							img(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-footer.png' style='height:43px;')
+							br
+							br
+							img(src='https://primuscapital.cl/wp-content/uploads/logo-achef.png' style='height:30px;')
+						.col-md-9.col-12
+							.row
+								.col-md-3.col-sm-6.col-12.mb-2.pl-0
+									ul.nav.flex-column
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/somos-primus-capital/') Nosotros
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/productos-y-servicios/') Productos y servicios
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/informacion-de-interes/#preguntas') Preguntas frecuentes
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/informacion-de-interes/#canal') Canal de denuncias
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/contactanos/#trabaja') Trabaja con nosotros
+								.col-md-3.col-sm-6.col-12.mb-2.pl-0
+									ul.nav.flex-column
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/politicas-de-privacidad/') Políticas de privacidad
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/acceso-clientes/') Acceso Clientes
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/contactanos') Contáctanos
+										li.nav-item
+											a.nav-link.inverse.font-small-90(href='https://primuscapital.cl/noticias/') Noticias
+								.col-md-3.col-sm-6.col-12.mb-2.pl-0
+									p
+										strong.font-small-90 Primus Capital Chile
+										br
+										br
+										strong.font-small-90 Dirección
+										span.font-small-90 : Apoquindo 3000, piso 10, Las Condes, Región Metropolitana
+										br
+										br
+										strong.font-small-90 Teléfono
+										| : 
+										a.text-white.font-small-90(href='tel:%20+56224112100') +562 2411 2100
+								.col-md-3.col-sm-6.col-12.mb-2.pl-0
+									p
+										strong.font-small-90 Primus Capital Perú
+										br
+										br
+										strong.font-small-90 Dirección
+										span.font-small-90 : Av.Jorge Basadre 310, Oficina 601 A. San Isidro, Lima
+										br
+										br
+										strong.font-small-90 Teléfono
+										| : 
+										a.text-white.font-small-90(href='tel:%20+5115000504') +511 500 0504
+										|  anexo 102
+
+						.col-12
+							.float-right
+								a.icon-social-media.mr-2(href='https://es-la.facebook.com/pages/category/Financial-Service/Primus-Capital-2095418694044137/' title='Seguir en Facebook' target='_blank' data-toggle='tooltip' data-placement='top' data-original-title='Seguir en Facebook')
+									i.fab.fa-facebook-f
+								a.icon-social-media.mr-2(href='https://cl.linkedin.com/company/primus-capital-spa' title='Seguir en LinkedIn' target='_blank' data-toggle='tooltip' data-placement='top' data-original-title='Seguir en LinkedIn')
+									i.fab.fa-linkedin-in
+								a.icon-social-media.mr-2(href='https://www.instagram.com/primuscapitalchile/' title='Seguir en Instagram' target='_blank' data-toggle='tooltip' data-placement='top' data-original-title='Seguir en Instagram')
+									i.fab.fa-instagram
+								a.icon-social-media(href='https://twitter.com/PrimusCapitalCl' title='Seguir en Twitter' target='_blank' data-toggle='tooltip' data-placement='top' data-original-title='Seguir en Twitter')
+									i.fab.fa-twitter

@@ -12,7 +12,7 @@ block content
 						li.breadcrumb-item.active(aria-current='page') Otorgamientos
 
 			.row
-				.col-sm-12.col-md-12.col-lg-12.col-xl-4
+				.col-sm-12.col-md-12.col-lg-12.col-xl-3
 					.card
 						.card-header
 							h3.card-title Opciones de Consulta
@@ -37,7 +37,7 @@ block content
 								.col-lg-12
 									.card
 										.card-header
-											.card-title Date Range Picker
+											.card-title Fecha
 										.card-body
 											.input-group
 												.input-group-text
@@ -47,9 +47,9 @@ block content
 							.mb-5
 								.row
 									.col-lg-6
-										button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+										button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
 									.col-lg-6
-										button.btn.btn-primary.btn-block(type="button") Consultar
+										button.btn.btn-primary.btn-block#btn-ot-search(type="button") Consultar
 
 							
 							.mb-5
@@ -58,11 +58,21 @@ block content
 										| Estado: favor seleccione preferencias de consulta.
 
 
+				.col-sm-12.col-md-12.col-lg-12.col-xl-9
+					.card
+						.card-header
+							h3.card-title Resumen
+						.card-body.p-4
+							table#tbl_award
+
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
+
 	//  JQUERY JS 
 	script(src='/assets/js/jquery-3.4.1.min.js')
 	//  BOOTSTRAP JS 
 	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
 	script(src='/assets/plugins/bootstrap/js/popper.min.js')
+
 	//  SPARKLINE JS
 	script(src='/assets/js/jquery.sparkline.min.js')
 	//  CHART-CIRCLE JS
@@ -106,3 +116,8 @@ block content
 	//script(src='/assets/js/index1.js')
 	//  CUSTOM JS 
 	script(src='/assets/js/custom.js')
+
+	script(src='/assets/js/bootstrap-table.min.js')
+	script(src='/assets/js/bootstrap-table-locale-all.min.js')
+
+	script(src='/assets/js/app/otorgamiento.js')

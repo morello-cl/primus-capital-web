@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+.footer-efect {
+  background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDBweCIgdmlld0JveD0iMCAwIDEyODAgMTQwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiMzMDQyOTQiPjxwYXRoIGQ9Ik0wIDB2NjBzNTczLjA5IDgwIDEyODAgODBWMHoiIGZpbGwtb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMCAwdjMwczU3My4wOSAxMTAgMTI4MCAxMTBWMHoiIGZpbGwtb3BhY2l0eT0iLjUiLz48cGF0aCBkPSJNMCAwczU3My4wOSAxNDAgMTI4MCAxNDBWMHoiLz48L2c+PC9zdmc+);
+  background-size:100% 100px;
+  bottom:0;height:100px;
+  z-index:1;
+  transform:rotateX(180deg);
 }
