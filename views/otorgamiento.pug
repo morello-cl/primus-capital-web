@@ -12,7 +12,7 @@ block content
 						li.breadcrumb-item.active(aria-current='page') Otorgamientos
 
 			.row
-				.col-sm-12.col-md-12.col-lg-12.col-xl-3
+				.col-sm-12.col-md-12.col-lg-12.col-xl-4
 					.card
 						.card-header
 							h3.card-title Opciones de Consulta
@@ -26,10 +26,10 @@ block content
 											.form-group.form-elements
 												.custom-controls-stacked
 													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='example-radios' value='option1' checked)
+														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_all' checked)
 														span.custom-control-label Todos
 													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='example-radios' value='option2')
+														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind')
 														span.custom-control-label Individual
 													.input-group
 														input.form-control(type='text' placeholder='Nro. de contrato...', disabled)
@@ -39,10 +39,38 @@ block content
 										.card-header
 											.card-title Fecha
 										.card-body
-											.input-group
-												.input-group-text
-													i.fa.fa-calendar
-												input.form-control.pull-right#reservation(type='text')
+											.form-group.form-elements
+												.custom-controls-stacked
+													.row
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_hoy' checked)
+																span.custom-control-label A hoy
+													.row
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_per')
+																span.custom-control-label Periodo
+													#ot_opt_op2
+														.row
+															.col-md-1
+															.col-md-11
+																label(for='ot_date_ini') Desde
+																.form-group
+																	.input-group.date(id='ot_date_ini')
+																		input#ot_date_ini_txt.form-control(type='text', placeholder='')
+																		span.input-group-addon
+																			span.fa.fa-calendar
+														.row
+															.col-md-1
+															.col-md-11
+																label(for='ot_date_end') Hasta
+																.form-group
+																	.input-group.date(id='ot_date_end')
+																		input#ot_date_end_txt.form-control(type='text', placeholder='')
+																		span.input-group-addon
+																			span.fa.fa-calendar
+
 
 							.mb-5
 								.row
@@ -58,7 +86,7 @@ block content
 										| Estado: favor seleccione preferencias de consulta.
 
 
-				.col-sm-12.col-md-12.col-lg-12.col-xl-9
+				.col-sm-12.col-md-12.col-lg-12.col-xl-8
 					.card
 						.card-header
 							h3.card-title Resumen
@@ -99,7 +127,7 @@ block content
 	script(src='/assets/plugins/select2/select2.full.min.js')
 
 	script(src='/assets/plugins/bootstrap-daterangepicker/moment.min.js')
-	script(src='/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
+	//script(src='/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
 	//  TIMEPICKER JS 
 	script(src='/assets/plugins/time-picker/jquery.timepicker.js')
 	script(src='/assets/plugins/time-picker/toggles.min.js')
@@ -111,7 +139,7 @@ block content
 	script(src='/assets/plugins/multipleselect/multiple-select.js')
 	script(src='/assets/plugins/multipleselect/multi-select.js')
 
-	script(src='/assets/js/form-elements.js')
+	//script(src='/assets/js/form-elements.js')
 	//  INDEX JS 
 	//script(src='/assets/js/index1.js')
 	//  CUSTOM JS 
@@ -119,5 +147,7 @@ block content
 
 	script(src='/assets/js/bootstrap-table.min.js')
 	script(src='/assets/js/bootstrap-table-locale-all.min.js')
+
+	script(src='/assets/js/bootstrap-datetimepicker.min.js')
 
 	script(src='/assets/js/app/otorgamiento.js')
