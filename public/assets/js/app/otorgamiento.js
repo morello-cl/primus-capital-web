@@ -106,7 +106,7 @@
 				sortable: true,
 			}
 		],
-		data: [],
+		url: '/award/api/sp_11_res/2019-04-01/2019-06-27',
 		locale: "es-SP",
 		sortName: "data.fecha",
 		sortOrder: "desc",
@@ -131,19 +131,21 @@
 
         console.log('#btn-ot-search', $('#reservation').val());
 
-        axios.post(`/award/api/sp_11_res/`, {
+        /*
+        axios.get(`/award/api/sp_11_res/`, {
             dt_ini: '2019-04-01',
             dt_end: '2019-06-27'
         })
             .then(function(r){
                 console.log(r.data);
 
-                $("#tableDeuda").bootstrapTable("refresh", {
+                $("#tbl_award").bootstrapTable("refresh", {
                     data: r.data,
                 });
             })
             .catch(function(err){
                 console.log('err', err);
             });
+            */
 	});
 })(jQuery);

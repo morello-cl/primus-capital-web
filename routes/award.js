@@ -13,14 +13,14 @@ function isLoggedIn(req, res, next) {
 	return res.redirect("/login");
 }
 
-router.post('/sp_11_res', isLoggedIn, function(req, res, next){
+router.get('/sp_11_res/:dt_ini/:dt_end', isLoggedIn, function(req, res, next){
     
     console.log('aca 2');
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_res', {
         rut: 0,
-        fdesde: req.body.dt_ini,
-        fhasta: req.body.dt_end,
+        fdesde: req.params.dt_ini,
+        fhasta: req.params.dt_end,
         codempl : 0,
         codcli: 0
     }, {
