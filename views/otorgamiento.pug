@@ -32,7 +32,7 @@ block content
 														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind')
 														span.custom-control-label Individual
 													.input-group
-														input.form-control(type='text' placeholder='Nro. de contrato...', disabled)
+														input.form-control#ot_nro(type='text' placeholder='Nro. de contrato...', disabled)
 							.mb-5
 								.col-lg-12
 									.card
@@ -42,19 +42,19 @@ block content
 											.form-group.form-elements
 												.custom-controls-stacked
 													.row
-														.col-md-4
+														.col-md-12
 															label.custom-control.custom-radio
 																input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_hoy' checked)
 																span.custom-control-label A hoy
 													.row
-														.col-md-4
+														.col-md-12
 															label.custom-control.custom-radio
 																input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_per')
 																span.custom-control-label Periodo
 													#ot_opt_op2
 														.row
 															.col-md-1
-															.col-md-11
+															.col-md-11.col-lg-7.col-xl-9
 																label(for='ot_date_ini') Desde
 																.form-group
 																	.input-group.date(id='ot_date_ini')
@@ -63,7 +63,7 @@ block content
 																			span.fa.fa-calendar
 														.row
 															.col-md-1
-															.col-md-11
+															.col-md-11.col-lg-7.col-xl-9
 																label(for='ot_date_end') Hasta
 																.form-group
 																	.input-group.date(id='ot_date_end')
