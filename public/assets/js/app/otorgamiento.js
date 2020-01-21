@@ -47,7 +47,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "comision",
@@ -55,7 +56,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "iva",
@@ -63,7 +65,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "gastos",
@@ -71,7 +74,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "impto",
@@ -79,7 +83,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "mon_oper",
@@ -87,7 +92,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "apl",
@@ -95,7 +101,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
             },
             {
 				field: "agirar",
@@ -103,7 +110,8 @@
 				//formatter: function(value, row, index) {
                 //    return numeral(value).format("$ 0");
                 //},
-				sortable: true,
+                sortable: true,
+                searchable: true,
 			}
 		],
 		url: '/award/api/sp_11_res/2019-04-01/2019-06-27',
