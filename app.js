@@ -13,7 +13,7 @@ const LocalStrategy = require('passport-local').Strategy;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const awardRouter = require('./routes/award');
-//const authRouter = require("./routes/auth");
+const cancellationsRouter = require('./routes/cancellations');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.set("trust proxy", 1);
-	const expiryDate = new Date(Date.now() + 60 * 60 * 1000 * 24); // 24 hour
+	const expiryDate = new Date(Date.now() + 60 * 60 * 250); // 15 min
 	app.use(
 		cookieSession({
 			name: "primusCapitalSessionId",
@@ -107,6 +107,7 @@ passport.use(new LocalStrategy({
 
 app.use('/', indexRouter);
 app.use('/award/api', awardRouter);
+app.use('/cancellations/api', cancellationsRouter);
 //app.use('/users', usersRouter);
 //app.use("/auth", authRouter);
 
