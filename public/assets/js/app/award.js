@@ -1,5 +1,33 @@
+function urlSp11resTable(rut, date_ini, date_end) {
+	let url = '/award/api/sp_11_res/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(date_ini){
+		url = `${url}&date[gte]=${date_ini}`;
+	} else {
+		url = `${url}&date[gte]=1900-01-01`;
+	}
+	if(date_end) {
+		url = `${url}&date[lte]=${date_end}`;
+	} else {
+		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
+	}
+
+	return url;
+}
+
 (function($) {
-    "use strict";
+	"use strict";
+	
+	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
+	$("#ot_nro").rut().on('rutInvalido', function(e) {
+		$('#ot_nro').addClass('is-invalid');
+	});
+	$("#ot_nro").rut().on('rutValido', function(e, rut, dv) {
+		$('#ot_nro').removeClass('is-invalid');
+	});
 
     const date_now = moment().startOf("day");
 
@@ -168,10 +196,10 @@
                 searchable: true,
 			}
 		],
-		url: `/award/api/sp_11_res/${'1900-01-01'}/${date_now.format('YYYY-MM-DD')}`,
+		url: urlSp11resTable(null, null, null),
 		locale: "es-SP",
-		sortName: "data.fecha",
-		sortOrder: "desc",
+		//sortName: "data.fecha",
+		//sortOrder: "desc",
 		clickToSelect: false,
 		showRefresh: true,
 		showExport: true,
@@ -184,8 +212,8 @@
 		//sidePagination: "server",
 		pagination: true,
 		pageNumber: 1,
-		pageSize: 25,
-		pageList: [25, 50, 75],
+		pageSize: 10,
+		pageList: [20, 30, 40, 50],
 	});
 
     $("#btn-ot-search").click(function(e) {
@@ -198,24 +226,7 @@
         const __url = `/award/api/sp_11_res/${dt_ini}/${dt_end}`;
 
         $("#tbl_award").bootstrapTable("refresh", {
-            url: __url,
+            url: urlSp11resTable($.formatRut($("#ot_nro").val(), false), dt_ini, dt_end),
         });
-
-        /*
-        axios.get(`/award/api/sp_11_res/`, {
-            dt_ini: '2019-04-01',
-            dt_end: '2019-06-27'
-        })
-            .then(function(r){
-                console.log(r.data);
-
-                $("#tbl_award").bootstrapTable("refresh", {
-                    data: r.data,
-                });
-            })
-            .catch(function(err){
-                console.log('err', err);
-            });
-            */
 	});
 })(jQuery);

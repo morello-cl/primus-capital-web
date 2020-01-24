@@ -9,10 +9,11 @@ const axios = require('axios');
 const cors = require('cors');
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+const moment = require('moment');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const awardRouter = require('./routes/award');
+const awardRouter = require('./routes/award_route');
 const cancellationsRouter = require('./routes/cancellations');
 
 var app = express();
@@ -57,10 +58,18 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-  console.log('deserializeUser', user);
+  //console.log('deserializeUser', user);
+
+  let expirationDate= moment(user.token_expires_in);
+  console.log('expirationDate', expirationDate.format(), user.token_expires_in);
 
 
-  done(null, user);
+  if(moment().diff(expirationDate, 'second') > 0) {
+    console.log('token vencido...');
+    done(null, false);
+  } else {
+    done(null, user);
+  }
 });
 
 passport.use(new LocalStrategy({
@@ -91,8 +100,6 @@ passport.use(new LocalStrategy({
 
       console.log('user', user);
 
-
-
       return done(null, user, { message: ''});
     })
     .catch(function(err) {
@@ -108,8 +115,6 @@ passport.use(new LocalStrategy({
 app.use('/', indexRouter);
 app.use('/award/api', awardRouter);
 app.use('/cancellations/api', cancellationsRouter);
-//app.use('/users', usersRouter);
-//app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
