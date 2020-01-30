@@ -28,7 +28,7 @@ router.get('/sp_11_res', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            //console.log(r.data);
+            console.log(r.data);
 
             res.json(r.data);
         })
