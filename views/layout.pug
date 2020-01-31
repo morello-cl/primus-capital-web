@@ -55,15 +55,11 @@ html(lang="es")
 				.app-sidebar__overlay(data-toggle='sidebar')
 				aside.app-sidebar
 					.side-header
-						a.header-brand1(href='index.html')
-							//img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='logo')
-							img.header-brand-img.desktop-logo(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
-							//img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='logo')
-							img.header-brand-img.toggle-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-							//img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='logo')
-							img.header-brand-img.light-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-							//img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='logo')
-							img.header-brand-img.light-logo1(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
+						a.header-brand1(href='/')
+							img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='Primus Capital')
+							img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='Primus Capital')
+							img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='Primus Capital')
+							img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='Primus Capital')
 						a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
 					.app-sidebar__user
 						.dropdown.user-pro-body.text-center
@@ -126,6 +122,17 @@ html(lang="es")
 							a.side-menu__item(href='#')
 								i.side-menu__icon.ti-stamp
 								span.side-menu__label Prorrogas
+
+				//  Mobile Header 
+				.mobile-header
+					.container-fluid
+						.d-flex
+							a.app-sidebar__toggle(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+							//  sidebar-toggle
+							a.header-brand(href='/')
+								img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='Primus Capital')
+								img.header-brand-img.desktop-logo.mobile-light(src='/assets/images/brand/logo-3.png' alt='Primus Capital')
+
 
 			block content
 
