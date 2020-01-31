@@ -11,11 +11,13 @@
 			"merge_logs": true,
 			"watch": true,
 			"env": {
-				"NODE_ENV": "production"
+				"NODE_ENV": "production",
+				"PORT": "13433"
 			},
 			"env_development": {
 				"NODE_ENV": "development",
-				"DEBUG": "*"
+				"DEBUG": "*",
+				"PORT": "13432"
 			}
 		}
 	]
