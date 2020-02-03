@@ -8,17 +8,17 @@ block content
 					h1.page-title Otorgamientos
 					ol.breadcrumb
 						li.breadcrumb-item
-							a(href='#') Home
+							a(href='#') Inicio
 						li.breadcrumb-item.active(aria-current='page') Otorgamientos
 
 			.row
-				.col-sm-12.col-md-12.col-lg-12.col-xl-4
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
 						.card-header
 							h3.card-title Opciones de Consulta
-						.card-body.p-4
-							.mb-5
-								.col-lg-12
+						.card-body
+							.row
+								.col-md-4
 									.card
 										.card-header
 											.card-title Contrato(s)
@@ -33,8 +33,7 @@ block content
 														span.custom-control-label Individual
 													.input-group
 														input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
-							.mb-5
-								.col-lg-12
+								.col-md-8
 									.card
 										.card-header
 											.card-title Fecha
@@ -53,17 +52,16 @@ block content
 																span.custom-control-label Periodo
 													#ot_opt_op2
 														.row
-															.col-md-1
-															.col-md-11.col-lg-7.col-xl-9
+															.col-md-2
+															.col-md-5
 																label(for='ot_date_ini') Desde
 																.form-group
 																	.input-group.date(id='ot_date_ini')
 																		input#ot_date_ini_txt.form-control(type='text', placeholder='')
 																		span.input-group-addon
 																			span.fa.fa-calendar
-														.row
-															.col-md-1
-															.col-md-11.col-lg-7.col-xl-9
+
+															.col-md-5
 																label(for='ot_date_end') Hasta
 																.form-group
 																	.input-group.date(id='ot_date_end')
@@ -72,26 +70,48 @@ block content
 																			span.fa.fa-calendar
 
 
-							.mb-5
-								.row
-									.col-lg-6
-										button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
-									.col-lg-6
-										button.btn.btn-primary.btn-block#btn-ot-search(type="button") Consultar
+							.row
+								.col-md-6
+								.col-md-6
+									.row
+										.col-lg-6
+											button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
+										.col-lg-6
+											button.btn.btn-secondary.btn-block#btn-ot-search(type="button") Consultar
 
-							
-							.mb-5
-								p.mb-2
-									span.float-right.text-muted
+							p
+							.row
+								.col-md-12
+									span.text-muted.text-right
 										| Estado: favor seleccione preferencias de consulta.
 
 
-				.col-sm-12.col-md-12.col-lg-12.col-xl-8
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header
+						.card-header(data-toggle="collapse", role="button", href="#tblAwardRes", aria-expanded="true", aria-controls="tblAwardRes")
 							h3.card-title Resumen
 						.card-body.p-4
-							table#tbl_award
+							.collapse#tblAwardRes
+								table#tbl_award_res(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblAwardDet", aria-expanded="true", aria-controls="tblAwardDet")
+							h3.card-title Detalle
+						.card-body.p-4
+							.collapse#tblAwardDet
+								table#tbl_award_det(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblAwardDoc", aria-expanded="true", aria-controls="tblAwardDoc")
+							h3.card-title Documento
+						.card-body.p-4
+							.collapse#tblAwardDoc
+								table#tbl_award_doc(data-show-export="true")
 
 	script(src='https://unpkg.com/axios/dist/axios.min.js')
 
@@ -133,8 +153,11 @@ block content
 	//  CUSTOM JS 
 	script(src='/assets/js/custom.js')
 
-	script(src='/assets/js/bootstrap-table.min.js')
-	script(src='/assets/js/bootstrap-table-locale-all.min.js')
+	script(src='/assets/js/lib/bootstrap-table.min.js')
+	script(src='/assets/js/lib/bootstrap-table-locale-all.min.js')
+	script(src='/assets/js/lib/FileSaver.min.js')
+	script(src='/assets/js/lib/tableExport.min.js')
+	script(src='/assets/js/lib/bootstrap-table-export.js')
 
 	script(src='/assets/js/bootstrap-datetimepicker.min.js')
 

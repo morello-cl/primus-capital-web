@@ -1,3 +1,82 @@
+const exportOptionsBoostrapTable = {
+	consoleLog: false,
+	csvEnclosure: '"',
+	csvSeparator: ";",
+	csvUseBOM: true,
+	displayTableName: false,
+	escape: false,
+	excelstyles: [
+		"css",
+		"properties",
+		"to",
+		"export",
+		"to",
+		"excel"
+	],
+	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
+	htmlContent: false,
+	ignoreColumn: [],
+	ignoreRow: [],
+	jspdf: {
+		orientation: "p",
+		unit: "pt",
+		format: "a4",
+		margins: {
+			left: 20,
+			right: 10,
+			top: 10,
+			bottom: 10
+		},
+		autotable: {
+			styles: {
+				cellPadding: 2,
+				rowHeight: 12,
+				fontSize: 8,
+				fillColor: 255,
+				textColor: 50,
+				fontStyle: "normal",
+				overflow: "ellipsize",
+				halign: "left",
+				valign: "middle"
+			},
+			headerStyles: {
+				fillColor: [
+					52, 73, 94
+				],
+				textColor: 255,
+				fontStyle: "bold",
+				halign: "center"
+			},
+			alternateRowStyles: {
+				fillColor: 245
+			},
+			tableExport: {
+				onAfterAutotable: null,
+				onBeforeAutotable: null,
+				onTable: null
+			}
+		}
+	},
+	numbers: {
+		html: {
+			decimalMark: ".",
+			thousandsSeparator: ","
+		},
+		output: {
+			decimalMark: ",",
+			thousandsSeparator: "."
+		}
+	},
+	onCellData: null,
+	onCellHtmlData: null,
+	outputMode: "file",
+	tbodySelector: "tr",
+	theadSelector: "tr",
+	tableName: "primus_capital_report",
+	type: "csv",
+	worksheetName: "Otorgamientos"
+};
+
 function urlSp11resTable(rut, date_ini, date_end) {
 	let url = '/award/api/sp_11_res/?';
 
@@ -83,7 +162,7 @@ function urlSp11resTable(rut, date_ini, date_end) {
     });
     
 
-    $("#tbl_award").bootstrapTable({
+    $("#tbl_award_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -198,18 +277,15 @@ function urlSp11resTable(rut, date_ini, date_end) {
 		],
 		url: urlSp11resTable(null, null, null),
 		locale: "es-SP",
-		//sortName: "data.fecha",
-		//sortOrder: "desc",
 		clickToSelect: false,
-		showRefresh: true,
-		showExport: true,
-		//exportDataType: "all",
-		//exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
-		//exportOptions: exportOptionsBoostrapTable,
+		showRefresh: false,
+		showColumns: true,
+		exportDataType: "all",
+		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
-		//sidePagination: "server",
 		pagination: true,
 		pageNumber: 1,
 		pageSize: 10,
@@ -225,8 +301,15 @@ function urlSp11resTable(rut, date_ini, date_end) {
         const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
         const __url = `/award/api/sp_11_res/${dt_ini}/${dt_end}`;
 
-        $("#tbl_award").bootstrapTable("refresh", {
+        $("#tbl_award_res").bootstrapTable("refresh", {
             url: urlSp11resTable($.formatRut($("#ot_nro").val(), false), dt_ini, dt_end),
         });
+	});
+
+	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		if(field === 'contratos') {
+			console.log('field', field);
+			console.log('row', row);
+		}
 	});
 })(jQuery);
