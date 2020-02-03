@@ -216,28 +216,24 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			{
 				field: "nomcliente",
 				title: "Nombre",
-				width: '500',
 				searchable: true,
 			},
 			{
 				field: "contratos",
 				title: "Contratos",
 				align: 'center',
-				width: '100',
 				searchable: true,
 			},
 			{
 				field: "tasa_min",
 				title: "Tasa Min.",
 				align: 'center',
-				width: '100',
 				searchable: true,
             },
             {
 				field: "tasa_max",
 				title: "Tasa Max",
 				align: 'center',
-				width: '100',
 				sortable: true,
 				searchable: true,
 			},
@@ -245,7 +241,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "mon_doc",
 				title: "Mon Doc",
 				align: 'right',
-				width: '250',
 				sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -256,7 +251,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "mont_ant",
 				title: "Mon Ant",
 				align: 'right',
-				width: '250',
 				sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -267,7 +261,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "dif_precio",
 				title: "Dif Precio",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -278,7 +271,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "comision",
 				title: "Comision",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -289,7 +281,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "iva",
 				title: "IVA",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -300,7 +291,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "gastos",
 				title: "Gastos",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -311,7 +301,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "impto",
 				title: "Impto",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -322,7 +311,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "mon_oper",
 				title: "Mon Oper",
 				align: 'right',
-				width: '250',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -333,7 +321,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "apl",
 				title: "Aplic",
 				align: 'right',
-				width: '250',
                 sortable: true,
                 searchable: true,
             },
@@ -371,6 +358,12 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T.",
 				searchable: true,
+				class: 'text-nowrap',
+				formatter: function(value, row, index) {
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+
+                    return rut_client;
+                },
 			},
 			{
 				field: "nomcliente",
@@ -528,6 +521,12 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T.",
 				searchable: true,
+				class: 'text-nowrap',
+				formatter: function(value, row, index) {
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+
+                    return rut_client;
+                },
 			},
 			{
 				field: "nomcliente",
