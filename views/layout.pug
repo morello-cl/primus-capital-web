@@ -4,9 +4,9 @@ html(lang="es")
 		meta(charset='UTF-8')
 		meta(name='viewport' content='width=device-width,initial-scale=1,user-scalable=0')
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
-		meta(name='description' content='Volgh –  Bootstrap 4 Responsive Application Admin panel Theme Ui Kit & Premium Dashboard Design Modern Flat HTML Template')
-		meta(name='author' content='Spruko Technologies Private Limited')
-		meta(name='keywords' content='analytics dashboard, bootstrap 4 web app admin template, bootstrap admin panel, bootstrap admin template, bootstrap dashboard, bootstrap panel, Application dashboard design, dashboard design template, dashboard jquery clean html, dashboard template theme, dashboard responsive ui, html admin backend template ui kit, html flat dashboard template, it admin dashboard ui, premium modern html template')
+		meta(name='description' content='Primus Capital')
+		meta(name='author' content='www.ideasdigitales.cl')
+		meta(name='keywords' content='')
 
 		// FAVICON 
 		link(rel='shortcut icon' type='image/x-icon' href='/assets/images/brand/favicon.ico')
@@ -46,6 +46,7 @@ html(lang="es")
 
 		link#theme(rel='stylesheet' type='text/css' media='all' href='/assets/colors/color1.css')
 
+
 	body.app.sidebar-mini
 		#global-loader
 			img.loader-img(src='/assets/images/loader.svg' alt='Loader')
@@ -55,15 +56,11 @@ html(lang="es")
 				.app-sidebar__overlay(data-toggle='sidebar')
 				aside.app-sidebar
 					.side-header
-						a.header-brand1(href='index.html')
-							//img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='logo')
-							img.header-brand-img.desktop-logo(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
-							//img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='logo')
-							img.header-brand-img.toggle-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-							//img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='logo')
-							img.header-brand-img.light-logo(src='https://via.placeholder.com/64x68.png' alt='logo')
-							//img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='logo')
-							img.header-brand-img.light-logo1(src='https://primuscapital.cl/wp-content/uploads/logo-primus-capital-banner.png' alt='logo')
+						a.header-brand1(href='/')
+							img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='Primus Capital')
+							img.header-brand-img.toggle-logo(src='/assets/images/brand/logo-1.png' alt='Primus Capital')
+							img.header-brand-img.light-logo(src='/assets/images/brand/logo-2.png' alt='Primus Capital')
+							img.header-brand-img.light-logo1(src='/assets/images/brand/logo-3.png' alt='Primus Capital')
 						a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
 					.app-sidebar__user
 						.dropdown.user-pro-body.text-center
@@ -126,6 +123,17 @@ html(lang="es")
 							a.side-menu__item(href='#')
 								i.side-menu__icon.ti-stamp
 								span.side-menu__label Prorrogas
+
+				//  Mobile Header 
+				.mobile-header
+					.container-fluid
+						.d-flex
+							a.app-sidebar__toggle(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+							//  sidebar-toggle
+							a.header-brand(href='/')
+								img.header-brand-img.desktop-logo(src='/assets/images/brand/logo.png' alt='Primus Capital')
+								img.header-brand-img.desktop-logo.mobile-light(src='/assets/images/brand/logo-3.png' alt='Primus Capital')
+
 
 			block content
 

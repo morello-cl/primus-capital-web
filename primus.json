@@ -3,7 +3,7 @@
 		{
 			"exec_mode": "cluster_mode",
 			"instances": 1,
-			"name": "prisma",
+			"name": "primus-dev",
 			"script": "bin/www",
 			"node_args": "--max_old_space_size=256 --experimental-modules",
 			"max_memory_restart" : "200M",
@@ -11,11 +11,13 @@
 			"merge_logs": true,
 			"watch": true,
 			"env": {
-				"NODE_ENV": "production"
+				"NODE_ENV": "production",
+				"PORT": "13433"
 			},
 			"env_development": {
 				"NODE_ENV": "development",
-				"DEBUG": "*"
+				"DEBUG": "*",
+				"PORT": "13432"
 			}
 		}
 	]
