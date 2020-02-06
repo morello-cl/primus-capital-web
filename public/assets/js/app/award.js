@@ -336,7 +336,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
 			}
 		],
-		url: urlSp11resTable(null, null, null),
+		url: null,
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
