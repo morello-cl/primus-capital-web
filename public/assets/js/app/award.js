@@ -151,8 +151,6 @@ function urlSp11docTable(rut, date_ini, date_end) {
     const date_end = moment().startOf("day");
 
     const date_ini = moment().add(-6, 'M');
-
-    console.log('date_ini', date_ini.format('DD-MM-YYYY'));
     
     
     $("#ot_date_ini").datetimepicker({
@@ -167,7 +165,15 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		defaultDate: date_end,
 		minDate: date_ini,
         maxDate: date_end
-    });
+	});
+
+	$('#btn_ot_date_ini').click(function(e){
+		$('#ot_date_ini').data("DateTimePicker").toggle();
+	});
+
+	$('#btn_ot_date_end').click(function(e){
+		$('#ot_date_end').data("DateTimePicker").toggle();
+	});
     
     $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
 		$("#ot_date_end").datetimepicker({

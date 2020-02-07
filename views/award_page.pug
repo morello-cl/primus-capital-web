@@ -18,28 +18,36 @@ block content
 							h3.card-title Opciones de Consulta
 						.card-body
 							.row
-								.col-md-4
+								.col-md-6
 									.card
 										.card-header
 											.card-title Contrato(s)
 										.card-body
 											.form-group.form-elements
 												.custom-controls-stacked
-													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_res' checked)
-														span.custom-control-label Resumen
-													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_det' checked)
-														span.custom-control-label Detalle
-													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_doc' checked)
-														span.custom-control-label Documento
-													label.custom-control.custom-radio
-														input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind')
-														span.custom-control-label Individual
-													.input-group
-														input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
-								.col-md-8
+													.row
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_res' checked)
+																span.custom-control-label Resumen
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_det')
+																span.custom-control-label Detalle
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_doc')
+																span.custom-control-label Documento
+													p
+													.row
+														.col-md-4
+															label.custom-control.custom-radio
+																input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind')
+																span.custom-control-label Individual
+														.col-md-5
+															.input-group
+																input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
+								.col-md-6
 									.card
 										.card-header
 											.card-title Fecha
@@ -51,6 +59,7 @@ block content
 															label.custom-control.custom-radio
 																input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_hoy' checked)
 																span.custom-control-label A hoy
+													p
 													.row
 														.col-md-12
 															label.custom-control.custom-radio
@@ -58,22 +67,24 @@ block content
 																span.custom-control-label Periodo
 													#ot_opt_op2
 														.row
-															.col-md-2
+															.col-md-1
 															.col-md-5
 																label(for='ot_date_ini') Desde
 																.form-group
 																	.input-group.date(id='ot_date_ini')
 																		input#ot_date_ini_txt.form-control(type='text', placeholder='')
-																		span.input-group-addon
-																			span.fa.fa-calendar
+																		span.input-group-append
+																			button.btn.btn-default#btn_ot_date_ini(type='button')
+																				span.fa.fa-calendar
 
 															.col-md-5
 																label(for='ot_date_end') Hasta
 																.form-group
 																	.input-group.date(id='ot_date_end')
 																		input#ot_date_end_txt.form-control(type='text', placeholder='')
-																		span.input-group-addon
-																			span.fa.fa-calendar
+																		span.input-group-append
+																			button.btn.btn-default#btn_ot_date_end(type='button')
+																				span.fa.fa-calendar
 
 
 							.row
