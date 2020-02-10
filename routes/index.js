@@ -37,7 +37,7 @@ router.get('/award', isLoggedIn, function(req, res, next){
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){
-  res.render('cancelaciones', { user: req.user });
+  res.render('cancellations_page', { user: req.user });
 });
 
 router.get('/wallet-staff', isLoggedIn, function(req, res, next){

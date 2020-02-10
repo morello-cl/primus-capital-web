@@ -1,0 +1,200 @@
+extends layout
+
+block content
+	.app-content
+		.side-app
+			.page-header
+				div
+					h1.page-title Cancelaciones
+					ol.breadcrumb
+						li.breadcrumb-item
+							a(href='/') Inicio
+						li.breadcrumb-item.active(aria-current='page') Cancelaciones
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", role="button", href="#divBodyCancelAward", aria-expanded="false", aria-controls="divBodyCancelAward")
+							h3.card-title Opciones de Consulta
+						.card-body
+							#divBodyCancelAward
+								.row
+									.col-sm-12.col-md-12.col-lg-4.col-xl-6
+										.card
+											.card-header
+												.card-title Contrato(s)
+											.card-body
+												.form-group.form-elements
+													.custom-controls-stacked
+														.row
+															.col-sm-12.col-md-12.col-lg-12.col-xl-4
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_res' checked)
+																	span.custom-control-label Contrato
+															.col-sm-12.col-md-12.col-lg-12.col-xl-4
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_doc')
+																	span.custom-control-label Documento
+															.col-sm-12.col-md-12.col-lg-12.col-xl-4
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_abo')
+																	span.custom-control-label Abono a documento
+
+									.col-sm-12.col-md-12.col-lg-8.col-xl-6
+										.card
+											.card-header
+												.card-title Fecha
+											.card-body
+												.form-group.form-elements
+													.custom-controls-stacked
+														.row
+															.col-sm-12.col-md-12.col-lg-12.col-xl-12
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_hoy' checked)
+																	span.custom-control-label A hoy
+														p
+														.row
+															.col-sm-12.col-md-12.col-lg-12.col-xl-4
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_per')
+																	span.custom-control-label Periodo
+
+															.col-sm-12.col-md-12.col-lg-6.col-xl-4
+																label(for='ca_date_ini') Desde
+																.form-group
+																	.input-group.date(id='ca_date_ini')
+																		input#ca_date_ini_txt.form-control(type='text', placeholder='', readonly)
+																		span.input-group-addon
+																			span.fa.fa-calendar
+
+															.col-sm-12.col-md-12.col-lg-6.col-xl-4
+																label(for='ca_date_end') Hasta
+																.form-group
+																	.input-group.date(id='ca_date_end')
+																		input#ca_date_end_txt.form-control(type='text', placeholder='', readonly)
+																		span.input-group-addon
+																			span.fa.fa-calendar
+
+
+								.row
+									.col-md-6
+									.col-md-6
+										.row
+											.col-lg-6
+												button.btn.btn-outline-warning.btn-block#btn-ca-clear(type="button") Limpiar
+											.col-lg-6
+												button.btn.btn-outline-secondary.btn-block#btn-ca-search(type="button") Consultar
+
+								p
+								.row
+									.col-md-12
+										span.text-muted.text-right
+											| Estado: favor seleccione preferencias de consulta.
+
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", role="button", href="#tblCancelRes", aria-expanded="false", aria-controls="tblCancelRes")
+							h3.card-title Resumen
+						.card-body.p-4
+							.collapse#tblCancelRes
+								table#tbl_cancel_res(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", role="button", href="#tblCancelDet", aria-expanded="false", aria-controls="tblCancelDet")
+							h3.card-title Detalle
+						.card-body.p-4
+							.collapse#tblCancelDet
+								table#tbl_cancel_det(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblCancelDoc", aria-expanded="false", aria-controls="tblCancelDoc")
+							h3.card-title Documento
+						.card-body.p-4
+							.collapse#tblCancelDoc
+								table#tbl_cancel_doc(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblCancelAbo", aria-expanded="false", aria-controls="tblCancelAbo")
+							h3.card-title Abono a documento
+						.card-body.p-4
+							.collapse#tblCancelAbo
+								table#tbl_cancel_abo(data-show-export="true")
+
+
+	script(src='https://unpkg.com/axios/dist/axios.min.js')
+
+	//  JQUERY JS 
+	script(src='/assets/js/jquery-3.4.1.min.js')
+	//  BOOTSTRAP JS 
+	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
+	script(src='/assets/plugins/bootstrap/js/popper.min.js')
+	//  SPARKLINE JS
+	script(src='/assets/js/jquery.sparkline.min.js')
+	//  CHART-CIRCLE JS
+	//script(src='/assets/js/circle-progress.min.js')
+	//  RATING STARJS 
+	script(src='/assets/plugins/rating/jquery.rating-stars.js')
+	//  CHARTJS CHART JS
+	script(src='/assets/plugins/chart/Chart.bundle.js')
+	script(src='/assets/plugins/chart/utils.js')
+	//  PIETY CHART JS
+	script(src='/assets/plugins/peitychart/jquery.peity.min.js')
+	script(src='/assets/plugins/peitychart/peitychart.init.js')
+	//  ECHART JS
+	//script(src='/assets/plugins/echarts/echarts.js')
+	//  SIDE-MENU JS
+	script(src='/assets/plugins/sidemenu/sidemenu.js')
+	//  CUSTOM SCROLLBAR JS
+	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
+	//  SIDEBAR JS 
+	script(src='/assets/plugins/sidebar/sidebar.js')
+	//  APEXCHART JS 
+	//script(src='/assets/js/apexcharts.js')
+
+	script(src='/assets/plugins/select2/select2.full.min.js')
+
+	//script(src='/assets/plugins/bootstrap-daterangepicker/moment.min.js')
+	//script(src='/assets/plugins/bootstrap-daterangepicker/daterangepicker.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js')
+
+	//  TIMEPICKER JS 
+	script(src='/assets/plugins/time-picker/jquery.timepicker.js')
+	script(src='/assets/plugins/time-picker/toggles.min.js')
+	//  DATEPICKER JS 
+	script(src='/assets/plugins/date-picker/spectrum.js')
+	script(src='/assets/plugins/date-picker/jquery-ui.js')
+	script(src='/assets/plugins/input-mask/jquery.maskedinput.js')
+	//  MULTI SELECT JS
+	script(src='/assets/plugins/multipleselect/multiple-select.js')
+	script(src='/assets/plugins/multipleselect/multi-select.js')
+
+	//script(src='/assets/js/form-elements.js')
+	//  INDEX JS 
+	//script(src='/assets/js/index1.js')
+
+	//  CUSTOM JS 
+	script(src='/assets/js/custom.js')
+
+	script(src='/assets/js/lib/bootstrap-table.min.js')
+	script(src='/assets/js/lib/bootstrap-table-locale-all.min.js')
+	script(src='/assets/js/lib/FileSaver.min.js')
+	script(src='/assets/js/lib/tableExport.min.js')
+	script(src='/assets/js/lib/bootstrap-table-export.js')
+
+	script(src='/assets/js/lib/voca.min.js')
+	
+	script(src='/assets/js/lib/numeral.min.js')
+	script(src='/assets/js/lib/locales.min.js')
+
+	script(src='/assets/js/bootstrap-datetimepicker.min.js')
+
+	script(src='/assets/js/lib/rut.js')
+	script(src='/assets/js/app/cancellations.js')
