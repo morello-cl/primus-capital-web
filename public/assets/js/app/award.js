@@ -140,7 +140,11 @@ function urlSp11docTable(rut, date_ini, date_end) {
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
-		$('#ot_nro').addClass('is-invalid');
+		if(v($("#ot_nro").val()).isBlank()) {
+			$('#ot_nro').removeClass('is-invalid');
+		} else {
+			$('#ot_nro').addClass('is-invalid');
+		}
 	});
 	$("#ot_nro").rut().on('rutValido', function(e, rut, dv) {
 		$('#ot_nro').removeClass('is-invalid');
@@ -151,10 +155,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
     const date_end = moment().startOf("day");
 
     const date_ini = moment().add(-6, 'M');
-
-    console.log('date_ini', date_ini.format('DD-MM-YYYY'));
-    
-    
+     
     $("#ot_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
@@ -166,8 +167,50 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		locale: "es",
 		defaultDate: date_end,
 		minDate: date_ini,
-        maxDate: date_end
-    });
+		maxDate: date_end
+	});
+
+	$('#btn-ot-clear').click(function(e){
+		e.preventDefault();
+
+		// opciones activas por defecto
+		$('input:radio[name=ot_op1]').filter('[value=ot_opt_res]').prop('checked', true);
+		$('#ot_nro').prop('disabled', true);
+		$('#ot_nro').val(null);
+		$('input:radio[name=ot_op2]').filter('[value=ot_opt_hoy]').prop('checked', true);
+		$('#ot_date_ini_txt').prop('readonly', true);
+		$('#ot_date_end_txt').prop('readonly', true);
+
+		// buscador queda modo default
+		$("#ot_date_ini").datetimepicker({
+			defaultDate: date_ini
+		});
+		$("#ot_date_end").datetimepicker({
+			defaultDate: date_end
+		});
+
+		// limpiar tablas
+		$('#tblAwardRes').collapse('hide');
+		$("#tbl_award_res").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblAwardDet').collapse('hide');
+		$("#tbl_award_det").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblAwardDoc').collapse('hide');
+		$("#tbl_award_doc").bootstrapTable("refresh", {
+            url: [],
+        });
+	});
+
+	$('#btn_ot_date_ini').click(function(e){
+		$('#ot_date_ini').data("DateTimePicker").toggle();
+	});
+
+	$('#btn_ot_date_end').click(function(e){
+		$('#ot_date_end').data("DateTimePicker").toggle();
+	});
     
     $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
 		$("#ot_date_end").datetimepicker({
@@ -180,14 +223,14 @@ function urlSp11docTable(rut, date_ini, date_end) {
         });
     });
 
-    console.log('ot_op2', $('input:radio[name=ot_op2]:checked').val());
-    $('#ot_opt_op2').hide();
 
     $('input:radio[name=ot_op2]').click(function(e){
         if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {
-            $('#ot_opt_op2').show();
+			$('#ot_date_ini_txt').prop('readonly', false);
+			$('#ot_date_end_txt').prop('readonly', false);
         } else {
-            $('#ot_opt_op2').hide();
+			$('#ot_date_ini_txt').prop('readonly', true);
+			$('#ot_date_end_txt').prop('readonly', true);
         }
     });
 
@@ -336,7 +379,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
 			}
 		],
-		url: urlSp11resTable(null, null, null),
+		url: null,
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -676,25 +719,54 @@ function urlSp11docTable(rut, date_ini, date_end) {
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
 		
-		$('#tblAwardRes').collapse('show');
-		$('#tblAwardDet').collapse('hide');
-		$('#tblAwardDoc').collapse('hide');
+		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {
+			$('#tblAwardRes').collapse('show');
+			$('#tblAwardDet').collapse('hide');
+			$('#tblAwardDoc').collapse('hide');
 
-        const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-		const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-		const rut = $.formatRut($("#ot_nro").val(), false);
-		const nro_client = rut.substring(0, rut.length -2 );
+			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const rut = $.formatRut($("#ot_nro").val(), false);
+			const nro_client = rut.substring(0, rut.length -2 );
+	
+			$("#tbl_award_res").bootstrapTable("refresh", {
+				url: urlSp11resTable(nro_client, dt_ini, dt_end),
+			});
+		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_det') {
+			$('#tblAwardRes').collapse('hide');
+			$('#tblAwardDet').collapse('show');
+			$('#tblAwardDoc').collapse('hide');
 
-        $("#tbl_award_res").bootstrapTable("refresh", {
-            url: urlSp11resTable(nro_client, dt_ini, dt_end),
-        });
+			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const rut = $.formatRut($("#ot_nro").val(), false);
+			const nro_client = rut.substring(0, rut.length -2 );
+
+			$("#tbl_award_det").bootstrapTable("refresh", {
+				url: urlSp11detTable(nro_client, dt_ini, dt_end),
+			});
+		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_doc') {
+			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const rut = $.formatRut($("#ot_nro").val(), false);
+			const nro_client = rut.substring(0, rut.length -2 );
+
+			$("#tbl_award_doc").bootstrapTable("refresh", {
+				url: urlSp11docTable(nro_client, dt_ini, dt_end),
+			});
+
+			$('#tblAwardRes').collapse('hide');
+			$('#tblAwardDet').collapse('hide');
+			$('#tblAwardDoc').collapse('show');
+		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_ind'){
+			$('#tblAwardRes').collapse('hide');
+			$('#tblAwardDet').collapse('hide');
+			$('#tblAwardDoc').collapse('hide');
+		}
 	});
 
 	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
-		if(field === 'contratos') {
-			console.log('res.field', field);
-			console.log('res.row', row);
-			
+		if(field === 'contratos') {			
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;

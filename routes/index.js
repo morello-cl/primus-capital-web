@@ -37,11 +37,11 @@ router.get('/award', isLoggedIn, function(req, res, next){
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){
-  res.render('cancelaciones', { user: req.user });
+  res.render('cancellations_page', { user: req.user });
 });
 
-router.get('/wallet-staff', isLoggedIn, function(req, res, next){
-  res.render('cartera-vigente', { user: req.user });
+router.get('/wallet-staft', isLoggedIn, function(req, res, next){
+  res.render('wallet-staft_page', { user: req.user });
 });
 
 router.get('/surplus', isLoggedIn, function(req, res, next){

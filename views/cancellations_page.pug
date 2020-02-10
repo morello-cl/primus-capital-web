@@ -5,19 +5,19 @@ block content
 		.side-app
 			.page-header
 				div
-					h1.page-title Otorgamientos
+					h1.page-title Cancelaciones
 					ol.breadcrumb
 						li.breadcrumb-item
-							a(href='#') Inicio
-						li.breadcrumb-item.active(aria-current='page') Otorgamientos
+							a(href='/') Inicio
+						li.breadcrumb-item.active(aria-current='page') Cancelaciones
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", role="button", href="#divBodySearchAward", aria-expanded="false", aria-controls="divBodySearchAward")
+						.card-header(data-toggle="collapse", role="button", href="#divBodyCancelAward", aria-expanded="false", aria-controls="divBodyCancelAward")
 							h3.card-title Opciones de Consulta
 						.card-body
-							#divBodySearchAward
+							#divBodyCancelAward
 								.row
 									.col-sm-12.col-md-12.col-lg-4.col-xl-6
 										.card
@@ -29,25 +29,17 @@ block content
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_res' checked)
-																	span.custom-control-label Resumen
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_res' checked)
+																	span.custom-control-label Contrato
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_det')
-																	span.custom-control-label Detalle
-															.col-sm-12.col-md-12.col-lg-12.col-xl-4
-																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_doc')
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_doc')
 																	span.custom-control-label Documento
-														p
-														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind')
-																	span.custom-control-label Individual
-															.col-sm-12.col-md-12.col-lg-12.col-xl-5
-																.input-group
-																	input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
+																	input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_abo')
+																	span.custom-control-label Abono a documento
+
 									.col-sm-12.col-md-12.col-lg-8.col-xl-6
 										.card
 											.card-header
@@ -58,28 +50,28 @@ block content
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-12
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_hoy' checked)
+																	input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_hoy' checked)
 																	span.custom-control-label A hoy
 														p
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_per')
+																	input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_per')
 																	span.custom-control-label Periodo
 
 															.col-sm-12.col-md-12.col-lg-6.col-xl-4
-																label(for='ot_date_ini') Desde
+																label(for='ca_date_ini') Desde
 																.form-group
-																	.input-group.date(id='ot_date_ini')
-																		input#ot_date_ini_txt.form-control(type='text', placeholder='', readonly)
+																	.input-group.date(id='ca_date_ini')
+																		input#ca_date_ini_txt.form-control(type='text', placeholder='', readonly)
 																		span.input-group-addon
 																			span.fa.fa-calendar
 
 															.col-sm-12.col-md-12.col-lg-6.col-xl-4
-																label(for='ot_date_end') Hasta
+																label(for='ca_date_end') Hasta
 																.form-group
-																	.input-group.date(id='ot_date_end')
-																		input#ot_date_end_txt.form-control(type='text', placeholder='', readonly)
+																	.input-group.date(id='ca_date_end')
+																		input#ca_date_end_txt.form-control(type='text', placeholder='', readonly)
 																		span.input-group-addon
 																			span.fa.fa-calendar
 
@@ -89,9 +81,9 @@ block content
 									.col-md-6
 										.row
 											.col-lg-6
-												button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
+												button.btn.btn-outline-warning.btn-block#btn-ca-clear(type="button") Limpiar
 											.col-lg-6
-												button.btn.btn-outline-secondary.btn-block#btn-ot-search(type="button") Consultar
+												button.btn.btn-outline-secondary.btn-block#btn-ca-search(type="button") Consultar
 
 								p
 								.row
@@ -103,29 +95,39 @@ block content
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", role="button", href="#tblAwardRes", aria-expanded="false", aria-controls="tblAwardRes")
+						.card-header(data-toggle="collapse", role="button", href="#tblCancelRes", aria-expanded="false", aria-controls="tblCancelRes")
 							h3.card-title Resumen
 						.card-body.p-4
-							.collapse#tblAwardRes
-								table#tbl_award_res(data-show-export="true")
+							.collapse#tblCancelRes
+								table#tbl_cancel_res(data-show-export="true")
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", href="#tblAwardDet", aria-expanded="false", aria-controls="tblAwardDet")
+						.card-header(data-toggle="collapse", role="button", href="#tblCancelDet", aria-expanded="false", aria-controls="tblCancelDet")
 							h3.card-title Detalle
 						.card-body.p-4
-							.collapse#tblAwardDet
-								table#tbl_award_det(data-show-export="true")
+							.collapse#tblCancelDet
+								table#tbl_cancel_det(data-show-export="true")
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", href="#tblAwardDoc", aria-expanded="false", aria-controls="tblAwardDoc")
+						.card-header(data-toggle="collapse", href="#tblCancelDoc", aria-expanded="false", aria-controls="tblCancelDoc")
 							h3.card-title Documento
 						.card-body.p-4
-							.collapse#tblAwardDoc
-								table#tbl_award_doc(data-show-export="true")
+							.collapse#tblCancelDoc
+								table#tbl_cancel_doc(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblCancelAbo", aria-expanded="false", aria-controls="tblCancelAbo")
+							h3.card-title Abono a documento
+						.card-body.p-4
+							.collapse#tblCancelAbo
+								table#tbl_cancel_abo(data-show-export="true")
+
 
 	script(src='https://unpkg.com/axios/dist/axios.min.js')
 
@@ -134,17 +136,28 @@ block content
 	//  BOOTSTRAP JS 
 	script(src='/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
 	script(src='/assets/plugins/bootstrap/js/popper.min.js')
-
 	//  SPARKLINE JS
 	script(src='/assets/js/jquery.sparkline.min.js')
+	//  CHART-CIRCLE JS
+	//script(src='/assets/js/circle-progress.min.js')
 	//  RATING STARJS 
 	script(src='/assets/plugins/rating/jquery.rating-stars.js')
+	//  CHARTJS CHART JS
+	script(src='/assets/plugins/chart/Chart.bundle.js')
+	script(src='/assets/plugins/chart/utils.js')
+	//  PIETY CHART JS
+	script(src='/assets/plugins/peitychart/jquery.peity.min.js')
+	script(src='/assets/plugins/peitychart/peitychart.init.js')
+	//  ECHART JS
+	//script(src='/assets/plugins/echarts/echarts.js')
 	//  SIDE-MENU JS
 	script(src='/assets/plugins/sidemenu/sidemenu.js')
 	//  CUSTOM SCROLLBAR JS
 	script(src='/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')
 	//  SIDEBAR JS 
 	script(src='/assets/plugins/sidebar/sidebar.js')
+	//  APEXCHART JS 
+	//script(src='/assets/js/apexcharts.js')
 
 	script(src='/assets/plugins/select2/select2.full.min.js')
 
@@ -166,6 +179,7 @@ block content
 	//script(src='/assets/js/form-elements.js')
 	//  INDEX JS 
 	//script(src='/assets/js/index1.js')
+
 	//  CUSTOM JS 
 	script(src='/assets/js/custom.js')
 
@@ -183,4 +197,4 @@ block content
 	script(src='/assets/js/bootstrap-datetimepicker.min.js')
 
 	script(src='/assets/js/lib/rut.js')
-	script(src='/assets/js/app/award.js')
+	script(src='/assets/js/app/cancellations.js')

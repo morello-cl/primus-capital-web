@@ -14,7 +14,8 @@ const moment = require('moment');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const awardRouter = require('./routes/award_route');
-const cancellationsRouter = require('./routes/cancellations');
+const cancellationsRouter = require('./routes/cancellations_route');
+const walletStaftRouter = require('./routes/wallet-staft_route');
 
 var app = express();
 
@@ -115,6 +116,7 @@ passport.use(new LocalStrategy({
 app.use('/', indexRouter);
 app.use('/award/api', awardRouter);
 app.use('/cancellations/api', cancellationsRouter);
+app.use('/wallet-staft/api', walletStaftRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
