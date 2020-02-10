@@ -14,12 +14,8 @@ const moment = require('moment');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const awardRouter = require('./routes/award_route');
-<<<<<<< HEAD
 const cancellationsRouter = require('./routes/cancellations_route');
-=======
-const cancellationsRouter = require('./routes/cancellations');
 const walletStaftRouter = require('./routes/wallet-staft_route');
->>>>>>> feature/wallet-staft
 
 var app = express();
 
