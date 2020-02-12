@@ -18,6 +18,10 @@ router.get('/', isLoggedIn, function(req, res, next) {
   res.render('index', { user: req.user });
 });
 
+router.get('/login2', function(req, res, next){
+  res.render('_login');
+});
+
 router.get('/login', function(req, res, next){
   res.render('login');
 });
