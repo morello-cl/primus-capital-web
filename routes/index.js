@@ -15,7 +15,7 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('index', { user: req.user });
+  res.render('_index', { user: req.user });
 });
 
 router.get('/login2', function(req, res, next){
