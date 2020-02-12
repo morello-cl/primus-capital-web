@@ -18,12 +18,8 @@ router.get('/', isLoggedIn, function(req, res, next) {
   res.render('_index', { user: req.user });
 });
 
-router.get('/login2', function(req, res, next){
-  res.render('_login');
-});
-
 router.get('/login', function(req, res, next){
-  res.render('login');
+  res.render('_login');
 });
 router.post('/login', passport.authenticate("local", { successRedirect: "/", failureRedirect: "/login" }));
 
