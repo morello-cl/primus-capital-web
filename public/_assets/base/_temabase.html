@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resultados</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- FONT: OPEN SANS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" href="primus-bootstrap4-styles.css"> -->
+    <link rel="stylesheet" href="../4/primus/bootstrap.css">
+  </head>
+  <body>
+    <!-- init navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primus">
+      <a class="navbar-brand" href="#">
+        <img src="https://primuscapital.cl/wp-content/uploads/logo-primus-capital-header.png" alt="Primus Capital" id="logo" style="width:65%;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <button class="btn btn-custom btn-primary mx-2">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <span class="btn-tooltip">Búsqueda</span>
+        </button>
+        <button class="btn btn-custom btn-primary mx-2">
+          <i class="fas fa-home" aria-hidden="true"></i>
+          <span class="btn-tooltip">Home</span>
+        </button>
+        <button class="btn btn-custom btn-primary mx-2">
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
+          <span class="btn-tooltip">Estadísticas</span>
+        </button>
+        <button class="btn btn-custom btn-primary mx-2">
+          <i class="fas fa-times" aria-hidden="true"></i>
+          <span class="btn-tooltip">Cerrar</span>
+        </button>
+      </div>
+    </nav>  
+    <!-- end navbar -->
+    <!-- init nav options -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primus">
+      <a class="navbar-brand" href="#"><small>Apellido, Nombre Nombre</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">OTORGAMIENTOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">CANCELACIONES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">CARTERA VIGENTE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">EXCEDENTES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">PROTESTOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">PRORROGAS</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end nav options -->
+    
+    <!-- init body -->
+    <div class="container-fluid">
+      <!-- init submenu -->
+      <div class="row pt-2 bg-lightgrey">
+        <!-- init breadcrumb -->
+        <div class="col-md-8 col-sm-6 col-12 p-0">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="#">OTORGAMIENTO</a></li>
+              <li class="breadcrumb-item active" aria-current="page">DETALLE POR CONTRATO</li>
+            </ol>
+          </nav>
+          <!-- end breadcrumb -->
+        </div>
+        <div class="col-md-4 col-sm-6 col-12 pl-0">
+          <div class="float-right pt-1">
+            <button class="btn btn-custom btn-secondary mx-2">
+              <i class="fas fa-undo-alt"></i>
+              <span class="btn-tooltip">Volver</span>
+            </button>
+            <button class="btn btn-custom btn-secondary mx-2">
+              <i class="fas fa-file-excel"></i>
+              <span class="btn-tooltip">Imprimir</span>
+            </button>
+            <button class="btn btn-custom btn-secondary mx-2">
+              <i class="fas fa-print"></i>
+              <span class="btn-tooltip">Exportar</span>
+            </button>
+          </div>
+          </div>
+      </div>
+      <!-- end submenu -->
+      <h5 class="mt-4 text-grey">Resumen de Liquidación para Apellido, Nombre</h5>
+      <hr class="mt-1">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-12 pr-0">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td class=""><em>Ejecutivo Curse</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Producto</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Nro. Contrato</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Fecha Contrato</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Cant. Doc.</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12 pr-0">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td class=""><em>Monto Doctos.</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Monto Anticipado</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Dif. Precio</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Comision</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>I.V.A.</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12 pr-0">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td class=""><em>Impuesto</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Gasto</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Monto Operación</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Aplicaciones</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>A Girar</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="bg-lightgrey text-center" colspan="2">Detalle de Aplicaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class=""><em>Aplic. a documento(s)</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Aplic. a prorrogas(s)</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Aplic. a ctas. x cobrar</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+              <tr>
+                <td class=""><em>Aplic. a protesto(s)</em></td>
+                <td class="text-center"><b class="text-primary">Dato</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br>
+      <h5 class="text-grey">Detalle de Liquidación</h5>
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th>RUT Deudor</th>
+            <th>Nombre Deudor</th>
+            <th>Nro. Docto</th>
+            <th>Vencimiento</th>
+            <th>Monto Docto</th>
+            <th>Anticipado</th>
+            <th>Dif. Precio</th>
+            <th>Comisión</th>
+            <th>Días cob.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+          <tr>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+            <td>Datos</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <!-- init paginarion -->
+          <nav class="pt-1">
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+            </ul>
+          </nav>
+          <!-- init paginarion -->
+        </div>
+      </div>
+    </div>
+    <!-- end body -->
+
+    <div class="footer-efect mt-4"></div>
+    <div class="container-fluid bg-primary text-light">
+      <div class="row p-5">
+          <div class="col-md-3 col-12 pb-2">
+            <img src="https://primuscapital.cl/wp-content/uploads/logo-primus-capital-footer.png" style="height:43px;">
+            <br>
+            <br>
+            <img src="https://primuscapital.cl/wp-content/uploads/logo-achef.png" style="height:30px;">
+          </div>
+          <div class="col-md-9 col-12 pb-2">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 col-12 mb-2 pl-0">
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/somos-primus-capital/">Nosotros</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/productos-y-servicios/">Productos y servicios</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/informacion-de-interes/#preguntas">Preguntas frecuentes</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/informacion-de-interes/#canal">Canal de denuncias</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/contactanos/#trabaja">Trabaja con nosotros</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-sm-6 col-12 mb-2 pl-0">
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/politicas-de-privacidad/">Políticas de privacidad</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/acceso-clientes/">Acceso Clientes</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/contactanos">Contáctanos</a></li>
+                  <li class="nav-item"><a class="nav-link inverse font-small-90" href="https://primuscapital.cl/noticias/">Noticias</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-sm-6 col-12 mb-2 pl-0">
+                <p>
+                  <strong class="font-small-90">Primus Capital Chile</strong><br><br>
+                  <strong class="font-small-90">Dirección</strong><span class="font-small-90">: Apoquindo 3000, piso 10, Las Condes, Región Metropolitana</span><br><br>
+                  <strong class="font-small-90">Teléfono</strong>: <a class="text-white font-small-90" href="tel:%20+56224112100">+562 2411 2100</a>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-6 col-12 mb-2 pl-0">
+                <p>
+                  <strong class="font-small-90">Primus Capital Perú</strong><br><br>
+                  <strong class="font-small-90">Dirección</strong><span class="font-small-90">: Av.Jorge Basadre 310, Oficina 601 A. San Isidro, Lima</span><br><br>
+                  <strong class="font-small-90">Teléfono</strong>: <a class="text-white font-small-90" href="tel:%20+5115000504 ">+511 500 0504</a> anexo 102
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="float-right">
+              <a href="https://es-la.facebook.com/pages/category/Financial-Service/Primus-Capital-2095418694044137/" class="icon-social-media mr-2" title="Seguir en Facebook" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Seguir en Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://cl.linkedin.com/company/primus-capital-spa" class="icon-social-media mr-2" title="Seguir en LinkedIn" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Seguir en LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/primuscapitalchile/" class="icon-social-media mr-2" title="Seguir en Instagram" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Seguir en Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://twitter.com/PrimusCapitalCl" class="icon-social-media" title="Seguir en Twitter" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="Seguir en Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>      
+    <script>
+      $(function(){$('[data-toggle="tooltip"]').tooltip()})
+    </script>
+    <script>
+      $(".btn-custom").mouseover(function() {
+        $(this).addClass('btn-custom-hover');
+      });
+      $(".btn-custom").mouseout(function() {
+        $(this).removeClass('btn-custom-hover');
+      });
+    </script>  
+  </body>
+</html>
