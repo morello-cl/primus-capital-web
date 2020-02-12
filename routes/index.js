@@ -33,7 +33,7 @@ router.get('/search-doc', isLoggedIn, function(req, res, next){
 });
 
 router.get('/award', isLoggedIn, function(req, res, next){
-  res.render('award_page', { user: req.user });
+  res.render('_award', { user: req.user });
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){
