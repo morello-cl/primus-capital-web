@@ -137,6 +137,10 @@ function urlSp11docTable(rut, date_ini, date_end) {
 
 (function($) {
 	"use strict";
+
+	$('#tblAwardRes').hide('slow');
+	$('#tblAwardDet').hide('slow');
+	$('#tblAwardDoc').hide('slow');
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -748,9 +752,9 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {
-			$('#tblAwardRes').collapse('show');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('hide');
+			$('#tblAwardRes').show('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').hide('slow');
 
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -761,9 +765,9 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				url: urlSp11resTable(nro_client, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_det') {
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('show');
-			$('#tblAwardDoc').collapse('hide');
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').show('slow');
+			$('#tblAwardDoc').hide('slow');
 
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -783,13 +787,13 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				url: urlSp11docTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('show');
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').show('slow');
 		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_ind'){
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('hide');
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').hide('slow');
 		}
 	});
 
@@ -813,15 +817,15 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		});
 
 		// limpiar tablas
-		$('#tblAwardRes').collapse('hide');
+		$('#tblAwardRes').hide('slow');
 		$("#tbl_award_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblAwardDet').collapse('hide');
+		$('#tblAwardDet').hide('slow');
 		$("#tbl_award_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblAwardDoc').collapse('hide');
+		$('#tblAwardDoc').hide('slow');
 		$("#tbl_award_doc").bootstrapTable("refresh", {
             url: [],
         });
@@ -837,9 +841,9 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				url: urlSp11detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('show');
-			$('#tblAwardDoc').collapse('hide');
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').show('slow');
+			$('#tblAwardDoc').hide('slow');
 		}
 	});
 
@@ -857,9 +861,9 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				url: urlSp11docTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('show');
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').show('slow');
 		}
 	});
 })(jQuery);

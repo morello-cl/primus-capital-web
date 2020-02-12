@@ -103,32 +103,29 @@ block content
                                                 span.text-muted.text-right
                                                     | Estado: favor seleccione preferencias de consulta.
 
-                    .row
+                    .row#tblAwardRes
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
-                                .card-header(data-toggle="collapse", role="button", href="#tblAwardRes", aria-expanded="false", aria-controls="tblAwardRes")
+                                .card-header
                                     h3.card-title Resumen
                                 .card-body.p-4
-                                    .collapse#tblAwardRes
-                                        table#tbl_award_res(data-show-export="true")
+                                    table#tbl_award_res(data-show-export="true")
 
-                    .row
+                    .row#tblAwardDet
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
-                                .card-header(data-toggle="collapse", href="#tblAwardDet", aria-expanded="false", aria-controls="tblAwardDet")
+                                .card-header
                                     h3.card-title Detalle
                                 .card-body.p-4
-                                    .collapse#tblAwardDet
-                                        table#tbl_award_det(data-show-export="true")
+                                    table#tbl_award_det(data-show-export="true")
 
-                    .row
+                    .row#tblAwardDoc
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
-                                .card-header(data-toggle="collapse", href="#tblAwardDoc", aria-expanded="false", aria-controls="tblAwardDoc")
+                                .card-header
                                     h3.card-title Documento
                                 .card-body.p-4
-                                    .collapse#tblAwardDoc
-                                        table#tbl_award_doc(data-show-export="true")
+                                    table#tbl_award_doc(data-show-export="true")
 
             include _footer
 
