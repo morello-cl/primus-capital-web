@@ -16,8 +16,6 @@ function isLoggedIn(req, res, next) {
 router.get('/sp_11_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    console.log('res.rut', _rut);
-
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_res', {
         rut: _rut,
         fdesde: req.query.date.gte,
@@ -43,8 +41,6 @@ router.get('/sp_11_res', isLoggedIn, function(req, res, next){
 
 router.get('/sp_11_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
-
-    console.log('det.rut', _rut);
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_det', {
         rut: _rut,
@@ -72,10 +68,8 @@ router.get('/sp_11_det', isLoggedIn, function(req, res, next){
 router.get('/sp_11_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    console.log('doc.rut', _rut);
-
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_doc', {
-        rut: _rut,
+        Rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
