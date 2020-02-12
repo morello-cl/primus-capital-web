@@ -13,10 +13,10 @@ function isLoggedIn(req, res, next) {
 	return res.redirect("/login");
 }
 
-router.get('/sp_11_res', isLoggedIn, function(req, res, next){
+router.get('/sp_14_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_res', {
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_res', {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
@@ -39,7 +39,7 @@ router.get('/sp_11_res', isLoggedIn, function(req, res, next){
     
 });
 
-router.get('/sp_11_det', isLoggedIn, function(req, res, next){
+router.get('/sp_14_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_det', {
@@ -65,11 +65,41 @@ router.get('/sp_11_det', isLoggedIn, function(req, res, next){
     
 });
 
-router.get('/sp_11_doc', isLoggedIn, function(req, res, next){
+router.get('/sp_14_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_doc', {
-        Rut: _rut,
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_doc', {
+        rut: _rut,
+        contrato: _contrato,
+        fdesde: req.query.date.gte,
+        fhasta: req.query.date.lte,
+        codempl : 0,
+        codcli: 0
+    }, {
+        headers: { Authorization: `Bearer ${req.user.access_token}` }
+    })
+        .then(function(r){
+            console.log(r.data);
+
+            res.json(r.data);
+        })
+        .catch(function(err){
+            console.log('err', err);
+
+            res.status(400).json({
+            });
+        });
+    
+});
+
+router.get('/sp_14_abo', isLoggedIn, function(req, res, next){
+    let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_abo', {
+        rut: _rut,
+        contrato: _contrato,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,

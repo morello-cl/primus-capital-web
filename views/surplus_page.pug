@@ -5,49 +5,47 @@ block content
 		.side-app
 			.page-header
 				div
-					h1.page-title Otorgamientos
+					h1.page-title Excedentes
 					ol.breadcrumb
 						li.breadcrumb-item
 							a(href='#') Inicio
-						li.breadcrumb-item.active(aria-current='page') Otorgamientos
+						li.breadcrumb-item.active(aria-current='page') Excedentes
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", role="button", href="#divBodySearchAward", aria-expanded="false", aria-controls="divBodySearchAward")
+						.card-header(data-toggle="collapse", role="button", href="#divBodySearchSurplus", aria-expanded="false", aria-controls="divBodySearchSurplus")
 							h3.card-title Opciones de Consulta
-						.card-body
-							#divBodySearchAward
+						.card-body.p-4
+							#divBodySearchSurplus
 								.row
 									.col-sm-12.col-md-12.col-lg-4.col-xl-6
 										.card
 											.card-header
-												.card-title Contrato(s)
+												.card-title Ver Excedentes por
 											.card-body
 												.form-group.form-elements
 													.custom-controls-stacked
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_res' checked)
-																	span.custom-control-label Resumen
+																	input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_res' checked)
+																	span.custom-control-label Contrato
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_det')
-																	span.custom-control-label Detalle
-															.col-sm-12.col-md-12.col-lg-12.col-xl-4
-																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_doc')
+																	input.custom-control-input(type='radio' name='e-sp_op1' value='sp_opt_doc')
 																	span.custom-control-label Documento
+															.col-sm-12.col-md-12.col-lg-12.col-xl-4
+																label.custom-control.custom-radio
+																	input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_abo')
+																	span.custom-control-label Abono a Documento
 														p
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind' disabled)
-																	span.custom-control-label Individual
-															.col-sm-12.col-md-12.col-lg-12.col-xl-5
-																.input-group
-																	input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
+																	input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_car')
+																	span.custom-control-label Cartola de Excedente
+
 									.col-sm-12.col-md-12.col-lg-8.col-xl-6
 										.card
 											.card-header
@@ -58,31 +56,30 @@ block content
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-12
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_hoy' checked)
+																	input.custom-control-input(type='radio' name='sp_op2' value='sp_opt_hoy' checked)
 																	span.custom-control-label A hoy
 														p
 														.row
 															.col-sm-12.col-md-12.col-lg-12.col-xl-4
 																label.custom-control.custom-radio
-																	input.custom-control-input(type='radio' name='ot_op2' value='ot_opt_per')
+																	input.custom-control-input(type='radio' name='sp_op2' value='sp_opt_per')
 																	span.custom-control-label Periodo
 
 															.col-sm-12.col-md-12.col-lg-6.col-xl-4
-																label(for='ot_date_ini') Desde
+																label(for='sp_date_ini') Desde
 																.form-group
-																	.input-group.date(id='ot_date_ini')
-																		input#ot_date_ini_txt.form-control(type='text', placeholder='', readonly)
+																	.input-group.date(id='sp_date_ini')
+																		input#sp_date_ini_txt.form-control(type='text', placeholder='', readonly)
 																		span.input-group-addon
 																			span.fa.fa-calendar
 
 															.col-sm-12.col-md-12.col-lg-6.col-xl-4
-																label(for='ot_date_end') Hasta
+																label(for='sp_date_end') Hasta
 																.form-group
-																	.input-group.date(id='ot_date_end')
-																		input#ot_date_end_txt.form-control(type='text', placeholder='', readonly)
+																	.input-group.date(id='sp_date_end')
+																		input#sp_date_end_txt.form-control(type='text', placeholder='', readonly)
 																		span.input-group-addon
 																			span.fa.fa-calendar
-
 
 								.row
 									.col-md-6
@@ -99,33 +96,42 @@ block content
 										span.text-muted.text-right
 											| Estado: favor seleccione preferencias de consulta.
 
-
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", role="button", href="#tblAwardRes", aria-expanded="false", aria-controls="tblAwardRes")
-							h3.card-title Resumen
+						.card-header(data-toggle="collapse", role="button", href="#tblSurplusRes", aria-expanded="false", aria-controls="tblSurplusRes")
+							h3.card-title Resumen por Contrato
 						.card-body.p-4
-							.collapse#tblAwardRes
-								table#tbl_award_res(data-show-export="true")
+							.collapse#tblSurplusRes
+								table#tbl_surplus_res(data-show-export="true")
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", href="#tblAwardDet", aria-expanded="false", aria-controls="tblAwardDet")
+						.card-header(data-toggle="collapse", href="#tblSurplusDet", aria-expanded="false", aria-controls="tblSurplusDet")
 							h3.card-title Detalle
 						.card-body.p-4
-							.collapse#tblAwardDet
-								table#tbl_award_det(data-show-export="true")
+							.collapse#tblSurplusDet
+								table#tbl_surplus_det(data-show-export="true")
 
 			.row
 				.col-sm-12.col-md-12.col-lg-12.col-xl-12
 					.card
-						.card-header(data-toggle="collapse", href="#tblAwardDoc", aria-expanded="false", aria-controls="tblAwardDoc")
+						.card-header(data-toggle="collapse", href="#tblSurplusDoc", aria-expanded="false", aria-controls="tblSurplusDoc")
 							h3.card-title Documento
 						.card-body.p-4
-							.collapse#tblAwardDoc
-								table#tbl_award_doc(data-show-export="true")
+							.collapse#tblSurplusDoc
+								table#tbl_surplus_doc(data-show-export="true")
+
+			.row
+				.col-sm-12.col-md-12.col-lg-12.col-xl-12
+					.card
+						.card-header(data-toggle="collapse", href="#tblSurplusAbo", aria-expanded="false", aria-controls="tblSurplusAbo")
+							h3.card-title Abono
+						.card-body.p-4
+							.collapse#tblSurplusAbo
+								table#tbl_surplus_abo(data-show-export="true")
+
 
 	script(src='https://unpkg.com/axios/dist/axios.min.js')
 
@@ -146,8 +152,22 @@ block content
 	//  SIDEBAR JS 
 	script(src='/assets/plugins/sidebar/sidebar.js')
 
+	script(src='/assets/plugins/select2/select2.full.min.js')
+
 	script(src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js')
 
+	//  TIMEPICKER JS 
+	script(src='/assets/plugins/time-picker/jquery.timepicker.js')
+	script(src='/assets/plugins/time-picker/toggles.min.js')
+	//  DATEPICKER JS 
+	script(src='/assets/plugins/date-picker/spectrum.js')
+	script(src='/assets/plugins/date-picker/jquery-ui.js')
+	script(src='/assets/plugins/input-mask/jquery.maskedinput.js')
+	//  MULTI SELECT JS
+	script(src='/assets/plugins/multipleselect/multiple-select.js')
+	script(src='/assets/plugins/multipleselect/multi-select.js')
+
+	//  CUSTOM JS 
 	script(src='/assets/js/custom.js')
 
 	script(src='/assets/js/lib/bootstrap-table.min.js')
@@ -164,4 +184,4 @@ block content
 	script(src='/assets/js/bootstrap-datetimepicker.min.js')
 
 	script(src='/assets/js/lib/rut.js')
-	script(src='/assets/js/app/award.js')
+	script(src='/assets/js/app/surplus.js')

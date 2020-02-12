@@ -77,8 +77,8 @@ const exportOptionsBoostrapTable = {
 	worksheetName: "Otorgamientos"
 };
 
-function urlSp11resTable(rut, date_ini, date_end) {
-	let url = '/award/api/sp_11_res/?';
+function urlSp14resTable(rut, date_ini, date_end) {
+	let url = '/surplus/api/sp_14_res/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -96,8 +96,8 @@ function urlSp11resTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp11detTable(rut, date_ini, date_end) {
-	let url = '/award/api/sp_11_det/?';
+function urlSp14detTable(rut, date_ini, date_end) {
+	let url = '/surplus/api/sp_14_det/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -115,8 +115,27 @@ function urlSp11detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp11docTable(rut, date_ini, date_end) {
-	let url = '/award/api/sp_11_doc/?';
+function urlSp14docTable(rut, date_ini, date_end) {
+	let url = '/surplus/api/sp_14_doc/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(date_ini){
+		url = `${url}&date[gte]=${date_ini}`;
+	} else {
+		url = `${url}&date[gte]=1900-01-01`;
+	}
+	if(date_end) {
+		url = `${url}&date[lte]=${date_end}`;
+	} else {
+		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
+	}
+
+	return url;
+}
+function urlSp14aboTable(rut, date_ini, date_end) {
+	let url = '/surplus/api/sp_14_abo/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -156,13 +175,13 @@ function urlSp11docTable(rut, date_ini, date_end) {
 
     const date_ini = moment().add(-6, 'M');
      
-    $("#ot_date_ini").datetimepicker({
+    $("#sp_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
 		defaultDate: date_ini
     });
     
-	$("#ot_date_end").datetimepicker({
+	$("#sp_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
 		defaultDate: date_end,
@@ -174,76 +193,69 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ot_op1]').filter('[value=ot_opt_res]').prop('checked', true);
-		$('#ot_nro').prop('disabled', true);
-		$('#ot_nro').val(null);
-		$('input:radio[name=ot_op2]').filter('[value=ot_opt_hoy]').prop('checked', true);
-		$('#ot_date_ini_txt').prop('readonly', true);
-		$('#ot_date_end_txt').prop('readonly', true);
+		$('input:radio[name=sp_op1]').filter('[value=sp_opt_res]').prop('checked', true);
+		$('input:radio[name=sp_op2]').filter('[value=sp_opt_hoy]').prop('checked', true);
+		$('#sp_date_ini_txt').prop('readonly', true);
+		$('#sp_date_end_txt').prop('readonly', true);
 
 		// buscador queda modo default
-		$("#ot_date_ini").datetimepicker({
+		$("#sp_date_ini").datetimepicker({
 			defaultDate: date_ini
 		});
-		$("#ot_date_end").datetimepicker({
+		$("#sp_date_end").datetimepicker({
 			defaultDate: date_end
 		});
 
 		// limpiar tablas
-		$('#tblAwardRes').collapse('hide');
-		$("#tbl_award_res").bootstrapTable("refresh", {
+		$('#tblSurplusRes').collapse('hide');
+		$("#tbl_surplus_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblAwardDet').collapse('hide');
-		$("#tbl_award_det").bootstrapTable("refresh", {
+		$('#tblSurplusDet').collapse('hide');
+		$("#tbl_surplus_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblAwardDoc').collapse('hide');
-		$("#tbl_award_doc").bootstrapTable("refresh", {
+		$('#tblSurplusDoc').collapse('hide');
+		$("#tbl_surplus_doc").bootstrapTable("refresh", {
+            url: [],
+		});
+		$('#tblSurplusAbo').collapse('hide');
+		$("#tbl_surplus_abo").bootstrapTable("refresh", {
             url: [],
         });
 	});
 
-	$('#btn_ot_date_ini').click(function(e){
-		$('#ot_date_ini').data("DateTimePicker").toggle();
+	$('#btn_sp_date_ini').click(function(e){
+		$('#sp_date_ini').data("DateTimePicker").toggle();
 	});
 
-	$('#btn_ot_date_end').click(function(e){
-		$('#ot_date_end').data("DateTimePicker").toggle();
+	$('#btn_sp_date_end').click(function(e){
+		$('#sp_date_end').data("DateTimePicker").toggle();
 	});
     
-    $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ot_date_end").datetimepicker({
-			minDate: $("#ot_date_ini").data("DateTimePicker").date()
+    $("#sp_date_ini").datetimepicker().on("dp.change", function(e) {
+		$("#sp_date_end").datetimepicker({
+			minDate: $("#sp_date_ini").data("DateTimePicker").date()
         });
     });
-    $("#ot_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ot_date_ini").datetimepicker({
-			maxDate: $("#ot_date_end").data("DateTimePicker").date()
+    $("#sp_date_end").datetimepicker().on("dp.change", function(e) {
+		$("#sp_date_ini").datetimepicker({
+			maxDate: $("#sp_date_end").data("DateTimePicker").date()
         });
     });
 
 
-    $('input:radio[name=ot_op2]').click(function(e){
-        if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {
-			$('#ot_date_ini_txt').prop('readonly', false);
-			$('#ot_date_end_txt').prop('readonly', false);
+    $('input:radio[name=sp_op2]').click(function(e){
+        if($('input:radio[name=sp_op2]:checked').val() === 'sp_opt_per') {
+			$('#sp_date_ini_txt').prop('readonly', false);
+			$('#sp_date_end_txt').prop('readonly', false);
         } else {
-			$('#ot_date_ini_txt').prop('readonly', true);
-			$('#ot_date_end_txt').prop('readonly', true);
+			$('#sp_date_ini_txt').prop('readonly', true);
+			$('#sp_date_end_txt').prop('readonly', true);
         }
     });
 
-    $('input:radio[name=ot_op1]').click(function(e){
-        if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_ind') {
-            $('#ot_nro').attr('disabled', false);
-        } else {
-            $('#ot_nro').attr('disabled', true);
-        }
-    });
-    
-
-    $("#tbl_award_res").bootstrapTable({
+    $("#tbl_surplus_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -269,20 +281,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "tasa_min",
-				title: "Tasa Min.",
-				align: 'center',
-				searchable: true,
-            },
-            {
-				field: "tasa_max",
-				title: "Tasa Max",
-				align: 'center',
-				sortable: true,
-				searchable: true,
-			},
-			{
-				field: "mon_doc",
+				field: "mondoc",
 				title: "Mon Doc",
 				align: 'right',
 				sortable: true,
@@ -292,7 +291,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "mont_ant",
+				field: "monant",
 				title: "Mon Ant",
 				align: 'right',
 				sortable: true,
@@ -302,8 +301,8 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "dif_precio",
-				title: "Dif Precio",
+				field: "noant",
+				title: "No Ant.",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -312,8 +311,8 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "comision",
-				title: "Comision",
+				field: "monrec",
+				title: "Mon Rec",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -322,8 +321,8 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "iva",
-				title: "IVA",
+				field: "excendete",
+				title: "Exedente",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -332,54 +331,27 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "gastos",
-				title: "Gastos",
+				field: "egresos",
+				title: "Egresos",
 				align: 'right',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
-                },
+                }
             },
             {
-				field: "impto",
-				title: "Impto",
+				field: "saldo",
+				title: "Saldo",
 				align: 'right',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "mon_oper",
-				title: "Mon Oper",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "apl",
-				title: "Aplic",
-				align: 'right',
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+                }
 			}
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -396,7 +368,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_award_det").bootstrapTable({
+	$("#tbl_surplus_det").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -563,7 +535,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
                 searchable: true,
             },
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -580,11 +552,11 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_award_doc").bootstrapTable({
+	$("#tbl_surplus_doc").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T. Cliente",
+				title: "R.U.T.",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
@@ -595,157 +567,247 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre Cliente",
+				title: "Nombre",
 				searchable: true,
 			},
 			{
-				field: "contrato",
-				title: "Contrato",
+				field: "contratos",
+				title: "Contratos",
 				searchable: true,
 			},
 			{
-				field: "iddeudor",
-				title: "R.U.T. Deudor",
+				field: "tasa_min",
+				title: "Tasa Min.",
+				searchable: true,
+            },
+            {
+				field: "tasa_max",
+				title: "Tasa Max",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "mon_doc",
+				title: "Mon Doc",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "mont_ant",
+				title: "Mon Ant",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "dif_precio",
+				title: "Dif Precio",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "comision",
+				title: "Comision",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "iva",
+				title: "IVA",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "gastos",
+				title: "Gastos",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "impto",
+				title: "Impto",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "mon_oper",
+				title: "Mon Oper",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "apl",
+				title: "Aplic",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "agirar",
+				title: "A Giro",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+			}
+		],
+		url: [],
+		locale: "es-SP",
+		clickToSelect: false,
+		showRefresh: false,
+		showColumns: true,
+		exportDataType: "all",
+		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportOptions: exportOptionsBoostrapTable,
+		search: true,
+		searchAlign: "right",
+		striped: true,
+		pagination: true,
+		pageNumber: 1,
+		pageSize: 10,
+		pageList: [20, 30, 40, 50],
+	});
+
+	$("#tbl_surplus_abo").bootstrapTable({
+		columns: [
+			{
+				field: "idcliente",
+				title: "R.U.T.",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
 
                     return rut_client;
                 },
 			},
 			{
-				field: "nomdeudor",
-				title: "Nombre Deudor",
+				field: "nomcliente",
+				title: "Nombre",
 				searchable: true,
 			},
 			{
-				field: "fotorgam",
-				title: "Fecha",
-				align: 'center',
-				class: 'text-nowrap',
-				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value);
-
-                    return fecha.format('DD-MM-YYYY');
-                },
-			},
-			{
-				field: "fvcmto",
-				title: "Fvcmto",
-				align: 'center',
-				class: 'text-nowrap',
-				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value);
-
-                    return fecha.format('DD-MM-YYYY');
-                },
-			},
-			{
-				field: "tasa_doc",
-				title: "Tasa",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "tipo",
-				title: "Tipo",
+				field: "contratos",
+				title: "Contratos",
 				searchable: true,
 			},
 			{
-				field: "docto",
-				title: "Docto",
+				field: "tasa_min",
+				title: "Tasa Min.",
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+            },
+            {
+				field: "tasa_max",
+				title: "Tasa Max",
+				sortable: true,
+				searchable: true,
 			},
 			{
-				field: "operacion",
-				title: "Operacion",
+				field: "mon_doc",
+				title: "Mon Doc",
+				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
 			},
 			{
-				field: "dias_cob",
-				title: "235",
+				field: "mont_ant",
+				title: "Mon Ant",
+				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
 			},
 			{
-				field: "mondcto",
-				title: "Mondcto",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "monant",
-				title: "Monant",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "difprecio",
-				title: "Difprecio",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
+				field: "dif_precio",
+				title: "Dif Precio",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
 				field: "comision",
 				title: "Comision",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "ivacom",
-				title: "Ivacom",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "iva",
+				title: "IVA",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
 				field: "gastos",
 				title: "Gastos",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
 				field: "impto",
 				title: "Impto",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "montoagirar",
-				title: "Monto a Girar",
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "mon_oper",
+				title: "Mon Oper",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "apl",
+				title: "Aplic",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "agirar",
+				title: "A Giro",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+			}
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -765,85 +827,93 @@ function urlSp11docTable(rut, date_ini, date_end) {
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
 		
-		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {
-			$('#tblAwardRes').collapse('show');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('hide');
+		if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_res') {
+			$('#tblSurplusRes').collapse('show');
+			$('#tblSurplusDet').collapse('hide');
+			$('#tblSurplusDoc').collapse('hide');
+			$('#tblSurplusAbo').collapse('hide');
 
-			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
-			const nro_client = rut.substring(0, rut.length -2 );
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_award_res").bootstrapTable("refresh", {
-				url: urlSp11resTable(nro_client, dt_ini, dt_end),
+			$("#tbl_surplus_res").bootstrapTable("refresh", {
+				url: urlSp14resTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_det') {
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('show');
-			$('#tblAwardDoc').collapse('hide');
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_det') {
+			$('#tblSurplusRes').collapse('hide');
+			$('#tblSurplusDet').collapse('show');
+			$('#tblSurplusDoc').collapse('hide');
+			$('#tblSurplusAbo').collapse('hide');
 
-			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = rut.substring(0, rut.length -2 );
 
-			$("#tbl_award_det").bootstrapTable("refresh", {
-				url: urlSp11detTable(nro_client, dt_ini, dt_end),
+			$("#tbl_surplus_det").bootstrapTable("refresh", {
+				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_doc') {
-			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
-			const nro_client = rut.substring(0, rut.length -2 );
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_doc') {
+			$('#tblSurplusRes').collapse('hide');
+			$('#tblSurplusDet').collapse('hide');
+			$('#tblSurplusDoc').collapse('show');
+			$('#tblSurplusAbo').collapse('hide');
 
-			$("#tbl_award_doc").bootstrapTable("refresh", {
-				url: urlSp11docTable(nro_client, dt_ini, dt_end),
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'ot_opt_abo'){
+			$('#tblSurplusRes').collapse('hide');
+			$('#tblSurplusDet').collapse('hide');
+			$('#tblSurplusDoc').collapse('hide');
+			$('#tblSurplusAbo').collapse('show');
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('show');
-		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_ind'){
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('hide');
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+				url: urlSp14aboTable(0, dt_ini, dt_end),
+			});
 		}
 	});
 
-	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_surplus_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
-			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_award_det").bootstrapTable("refresh", {
-				url: urlSp11detTable(nro_client, dt_ini, dt_end),
+			$("#tbl_surplus_det").bootstrapTable("refresh", {
+				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('show');
-			$('#tblAwardDoc').collapse('hide');
+			$('#tblSurplusRes').collapse('hide');
+			$('#tblSurplusDet').collapse('show');
+			$('#tblSurplusDoc').collapse('hide');
+			$('#tblSurplusAbo').collapse('hide');
 		}
 	});
 
-	$("#tbl_award_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_surplus_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 			console.log('doc.field', field);
 			console.log('doc.row', row);
 
-			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const rut = $.formatRut($("#ot_nro").val(), false);
 			const nro_client = row.idcliente;
 
-			$("#tbl_award_doc").bootstrapTable("refresh", {
+			$("#tbl_surplus_doc").bootstrapTable("refresh", {
 				url: urlSp11docTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblAwardRes').collapse('hide');
-			$('#tblAwardDet').collapse('hide');
-			$('#tblAwardDoc').collapse('show');
+			$('#tblSurplusRes').collapse('hide');
+			$('#tblSurplusDet').collapse('hide');
+			$('#tblSurplusDoc').collapse('show');
+			$('#tblSurplusAbo').collapse('hide');
 		}
 	});
 })(jQuery);

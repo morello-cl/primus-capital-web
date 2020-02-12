@@ -45,7 +45,7 @@ router.get('/wallet-staft', isLoggedIn, function(req, res, next){
 });
 
 router.get('/surplus', isLoggedIn, function(req, res, next){
-  res.render('excedentes', { user: req.user });
+  res.render('surplus_page', { user: req.user });
 });
 
 router.get('/protests', isLoggedIn, function(req, res, next){
