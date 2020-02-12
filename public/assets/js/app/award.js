@@ -584,7 +584,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
@@ -595,109 +595,155 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				searchable: true,
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "contrato",
+				title: "Contrato",
 				searchable: true,
 			},
 			{
-				field: "tasa_min",
-				title: "Tasa Min.",
+				field: "iddeudor",
+				title: "R.U.T. Deudor",
 				searchable: true,
-            },
-            {
-				field: "tasa_max",
-				title: "Tasa Max",
-				sortable: true,
+				class: 'text-nowrap',
+				formatter: function(value, row, index) {
+					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
+
+                    return rut_client;
+                },
+			},
+			{
+				field: "nomdeudor",
+				title: "Nombre Deudor",
 				searchable: true,
 			},
 			{
-				field: "mon_doc",
-				title: "Mon Doc",
-				sortable: true,
+				field: "fotorgam",
+				title: "Fecha",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+				formatter: function(value, row, index) {
+					const fecha = moment(value);
+
+                    return fecha.format('DD-MM-YYYY');
+                },
+			},
+			{
+				field: "fvcmto",
+				title: "Fvcmto",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+				formatter: function(value, row, index) {
+					const fecha = moment(value);
+
+                    return fecha.format('DD-MM-YYYY');
+                },
+			},
+			{
+				field: "tasa_doc",
+				title: "Tasa",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "tipo",
+				title: "Tipo",
 				searchable: true,
 			},
 			{
-				field: "mont_ant",
-				title: "Mon Ant",
-				sortable: true,
+				field: "docto",
+				title: "Docto",
 				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
 			},
 			{
-				field: "dif_precio",
-				title: "Dif Precio",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
+				field: "operacion",
+				title: "Operacion",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "dias_cob",
+				title: "235",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "mondcto",
+				title: "Mondcto",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "monant",
+				title: "Monant",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "difprecio",
+				title: "Difprecio",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
 				field: "comision",
 				title: "Comision",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "iva",
-				title: "IVA",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "ivacom",
+				title: "Ivacom",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
 				field: "gastos",
 				title: "Gastos",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
 				field: "impto",
 				title: "Impto",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "mon_oper",
-				title: "Mon Oper",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "apl",
-				title: "Aplic",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-			}
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "montoagirar",
+				title: "Monto a Girar",
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
 		],
 		url: null,
 		locale: "es-SP",
