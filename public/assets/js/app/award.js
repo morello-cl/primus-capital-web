@@ -134,8 +134,20 @@ function urlSp11docTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp11DeC(rut, contrato) {
+function urlSp11Ind1(rut, contrato) {
 	let url = '/award/api/sp_11_ind1/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
+function urlSp11Ind2(rut, contrato) {
+	let url = '/award/api/sp_11_ind2/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -166,7 +178,7 @@ function urlSp11IndApl(rut, contrato) {
 	$('#tblAwardRes').hide('slow');
 	$('#tblAwardDet').hide('slow');
 	$('#tblAwardDoc').hide('slow');
-	$('#tblAwardDeC').hide('slow');
+	$('#tblAwardDeC').show('slow');
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -375,7 +387,7 @@ function urlSp11IndApl(rut, contrato) {
                 },
 			}
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -559,7 +571,7 @@ function urlSp11IndApl(rut, contrato) {
                 searchable: true,
             },
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -757,10 +769,140 @@ function urlSp11IndApl(rut, contrato) {
                 },
 			},
 		],
-		url: null,
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
+		showColumns: true,
+		exportDataType: "all",
+		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportOptions: exportOptionsBoostrapTable,
+		search: true,
+		searchAlign: "right",
+		striped: true,
+		pagination: true,
+		pageNumber: 1,
+		pageSize: 10,
+		pageList: [20, 30, 40, 50],
+	});
+	
+	$("#tbl_award_ind2").bootstrapTable({
+		columns: [
+			{
+				field: "iddeudor",
+				title: "Deudor",
+				searchable: true,
+				class: 'text-nowrap'
+			},
+			{
+				field: "nomdeudor",
+				title: "Nombre Deudor",
+				class: 'text-nowrap',
+				searchable: true,
+			},
+			{
+				field: "docto",
+				title: "Docto",
+				align: 'center',
+				searchable: true,
+			},
+			{
+				field: "fvcmto",
+				title: "fvcmto",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+				formatter: function(value, row, index) {
+					const fecha = moment(value);
+
+                    return fecha.format('DD-MM-YYYY');
+                },
+            },
+            {
+				field: "mondcto",
+				title: "mondcto",
+				align: 'center',
+				sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "monant",
+				title: "monant",
+				align: 'right',
+				sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "saldoPrecio",
+				title: "saldoPrecio",
+				align: 'right',
+				sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
+				field: "difpecio",
+				title: "difpecio",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            },
+            {
+				field: "comision",
+				title: "Comision",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            },
+            {
+				field: "dias_cob",
+				title: "dias_cob",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            },
+            {
+				field: "actpago",
+				title: "actpago",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            },
+            {
+				field: "operacion",
+				title: "operacion",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            }
+		],
+		url: [],
+		locale: "es-SP",
+		clickToSelect: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
 		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
@@ -900,7 +1042,7 @@ function urlSp11IndApl(rut, contrato) {
 
 	$("#tbl_award_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
-			const url = urlSp11DeC(row.idcliente, row.contrato);
+			const url = urlSp11Ind1(row.idcliente, row.contrato);
 
 			console.log('url', url);
 			axios.get(url)
@@ -948,7 +1090,7 @@ function urlSp11IndApl(rut, contrato) {
 			console.log('url_ind_apl', url_ind_apl);
 			axios.get(url_ind_apl)
 				.then(function(r) {
-					console.log('r.data', r.data);
+					console.log('indpal', r.data);
 
 					/*
 
@@ -964,6 +1106,10 @@ function urlSp11IndApl(rut, contrato) {
 					console.log('err.message', err.message);
 					console.log('err.stack', err.stack);
 		
+			});
+
+			$("#tbl_award_ind2").bootstrapTable("refresh", {
+				url: urlSp11Ind2(row.idcliente, row.contrato),
 			});
 
 			$('#tblAwardRes').hide('slow');
