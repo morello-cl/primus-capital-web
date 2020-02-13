@@ -134,6 +134,31 @@ function urlSp11docTable(rut, date_ini, date_end) {
 
 	return url;
 }
+function urlSp11DeC(rut, contrato) {
+	let url = '/award/api/sp_11_ind1/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
+
+function urlSp11IndApl(rut, contrato) {
+	let url = '/award/api/sp_11_indapl/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
 
 (function($) {
 	"use strict";
@@ -141,6 +166,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 	$('#tblAwardRes').hide('slow');
 	$('#tblAwardDet').hide('slow');
 	$('#tblAwardDoc').hide('slow');
+	$('#tblAwardDeC').hide('slow');
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -755,6 +781,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			$('#tblAwardRes').show('slow');
 			$('#tblAwardDet').hide('slow');
 			$('#tblAwardDoc').hide('slow');
+			$('#tblAwardDeC').hide('slow');
 
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -768,6 +795,7 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			$('#tblAwardRes').hide('slow');
 			$('#tblAwardDet').show('slow');
 			$('#tblAwardDoc').hide('slow');
+			$('#tblAwardDeC').hide('slow');
 
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -778,6 +806,11 @@ function urlSp11docTable(rut, date_ini, date_end) {
 				url: urlSp11detTable(nro_client, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_doc') {
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').show('slow');
+			$('#tblAwardDeC').hide('slow');
+
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const rut = $.formatRut($("#ot_nro").val(), false);
@@ -786,14 +819,11 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			$("#tbl_award_doc").bootstrapTable("refresh", {
 				url: urlSp11docTable(nro_client, dt_ini, dt_end),
 			});
-
-			$('#tblAwardRes').hide('slow');
-			$('#tblAwardDet').hide('slow');
-			$('#tblAwardDoc').show('slow');
 		} else if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_ind'){
 			$('#tblAwardRes').hide('slow');
 			$('#tblAwardDet').hide('slow');
 			$('#tblAwardDoc').hide('slow');
+			$('#tblAwardDeC').hide('slow');
 		}
 	});
 
@@ -828,7 +858,8 @@ function urlSp11docTable(rut, date_ini, date_end) {
 		$('#tblAwardDoc').hide('slow');
 		$("#tbl_award_doc").bootstrapTable("refresh", {
             url: [],
-        });
+		});
+		$('#tblAwardDeC').hide('slow');
 	});
 
 	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
@@ -864,6 +895,81 @@ function urlSp11docTable(rut, date_ini, date_end) {
 			$('#tblAwardRes').hide('slow');
 			$('#tblAwardDet').hide('slow');
 			$('#tblAwardDoc').show('slow');
+		}
+	});
+
+	$("#tbl_award_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		if(field === 'contrato') {
+			const url = urlSp11DeC(row.idcliente, row.contrato);
+
+			console.log('url', url);
+			axios.get(url)
+				.then(function(r) {
+					console.log('r.data', r.data);
+
+					$('#ot_client_name').text(r.data[0].nomcliente);
+
+					$('#ot_ejecutivo').val(r.data[0].ejecutivo);
+					$('#ot_producto').val(r.data[0].tipo);
+					$('#ot_contrato').val(r.data[0].nroContrato + ' / ' + r.data[0].ndocs);
+					$('#ot_fecha_c').val(moment(r.data[0].fecha).format('DD-MM-YYYY'));
+					$('#ot_tasa_o').val(r.data[0].tasa_op);
+
+					$('#ot_mon_doc').val(r.data[0].mon_doc);
+					$('#ot_mon_ant').val(r.data[0].mon_ant);
+					$('#ot_dif_precio').val(r.data[0].dif_precio);
+					$('#ot_comision').val(r.data[0].comision);
+					$('#ot_iva').val('');
+
+					$('#ot_impto').val(r.data[0].impto);
+					$('#ot_gastos').val(r.data[0].gastos);
+					$('#ot_mon_oper').val('');
+					$('#ot_aplicacion').val(r.data[0].aplicacion);
+					$('#ot_mon_gir').val(r.data[0].mon_gir);
+
+					/*
+
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					*/
+				})
+				.catch(function(err) {
+					console.log('err.code', err.code);
+					console.log('err.message', err.message);
+					console.log('err.stack', err.stack);
+		
+			});
+
+			const url_ind_apl = urlSp11IndApl(row.idcliente, row.contrato);
+
+			console.log('url_ind_apl', url_ind_apl);
+			axios.get(url_ind_apl)
+				.then(function(r) {
+					console.log('r.data', r.data);
+
+					/*
+
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					$('#ot_ejecutivo').val();
+					*/
+				})
+				.catch(function(err) {
+					console.log('err.code', err.code);
+					console.log('err.message', err.message);
+					console.log('err.stack', err.stack);
+		
+			});
+
+			$('#tblAwardRes').hide('slow');
+			$('#tblAwardDet').hide('slow');
+			$('#tblAwardDoc').hide('slow');
+			$('#tblAwardDeC').show('slow');
 		}
 	});
 })(jQuery);
