@@ -257,7 +257,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -410,7 +410,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -594,7 +594,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
