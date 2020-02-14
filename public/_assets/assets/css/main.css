@@ -250,6 +250,28 @@ a.text-primary:hover, a.text-primary:focus {
     padding-left: 30px;
 }
 
+
+/*--------------------------------------------------------------
+>>> CARD HEADER
+----------------------------------------------------------------*/
+
+.card-header[data-toggle="collapse"]:after {
+    content: "\f102";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 1.5em;
+    color: #25c8cf;
+}
+.card-header.collapsed[data-toggle="collapse"]:after {
+    content: "\f103";
+}
+
 /*--------------------------------------------------------------
 >>> COLORS
 ----------------------------------------------------------------*/
