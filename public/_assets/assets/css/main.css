@@ -114,6 +114,10 @@ ul.side-menu {
     transform: translateY(0px);
     box-shadow: 0 8px 24px #e5e4e6;
 }
+.cards-home .card {
+    min-height: 210px;
+}
+
 .card>img:first-child, .card>.list-group>.list-group-item:first-child, :not(.accordion)>.card>.card-header:first-child, .accordion>.card:first-child>.card-header, .list-group>.list-group-item:first-child {
     border-radius: 5px 5px 0px 0px!important;
 }
