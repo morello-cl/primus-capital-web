@@ -1,0 +1,98 @@
+.app-sidebar__overlay(data-toggle='sidebar')
+
+aside.app-sidebar
+	.side-header
+		a.header-brand1(href='/')
+			img.header-brand-img.desktop-logo(src='_assets/assets/img/logo.png' alt='Primus Capital')
+
+		//a.app-sidebar__toggle.ml-auto(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+			
+	.app-sidebar__user
+		.dropdown.user-pro-body.text-center
+			.user-info
+				h6.mb-0.text-dark R.U.T. 
+				if user
+					| #{user.rut}
+				br
+				span.text-muted.app-sidebar__user-name.text-sm 
+					| Su Ejecutivo de Cuenta es 
+					br
+					if user
+						| #{user.ejecutivo}
+					br
+					if user
+						| Telefono: #{user.fono}
+					br
+					if user
+						| Email: #{user.email}
+
+	.sidebar-navs
+		ul.nav.nav-pills-circle
+			li.nav-item(data-toggle='tooltip' data-placement='top' title='Buscar Documento')
+				a.nav-link.text-center.m-2(href='/search-doc')
+					i.fe.fe-search
+
+			li.nav-item(data-toggle='tooltip' data-placement='top' title='Home')
+				a.nav-link.text-center.m-2(href='/')
+					i.fe.fe-home
+
+			li.nav-item(data-toggle='tooltip' data-placement='top' title='Email')
+				a.nav-link.text-center.m-2
+					i.fe.fe-mail
+
+			li.nav-item(data-toggle='tooltip' data-placement='top' title='Cerrar Sesión')
+				a.nav-link.text-center.m-2(href='/logout')
+					i.fe.fe-power
+
+	ul.side-menu
+		li
+			h3 Reportes
+
+		li
+			a.side-menu__item(href='/award')
+				i.side-menu__icon.ti-clipboard
+				span.side-menu__label Otorgamientos
+
+		li
+			a.side-menu__item(href='/cancellations')
+				i.side-menu__icon.ti-notepad
+				span.side-menu__label Cancelaciones
+
+		li
+			a.side-menu__item(href='/wallet-staft')
+				i.side-menu__icon.ti-book
+				span.side-menu__label Cartera Vigente
+
+		li
+			a.side-menu__item(href='/surplus')
+				i.side-menu__icon.ti-envelope
+				span.side-menu__label Excedentes
+		
+		li
+			a.side-menu__item(href='/protests')
+				i.side-menu__icon.ti-stats-down
+				span.side-menu__label Protestos
+
+		li
+			a.side-menu__item(href='/extensions')
+				i.side-menu__icon.ti-stamp
+				span.side-menu__label Prorrogas
+
+		li
+			h3 Pagos
+
+		li
+			a.side-menu__item(href='#')
+				i.side-menu__icon.ti-credit-card
+				span.side-menu__label Pago en Linea
+			li
+			a.side-menu__item(href='#')
+				i.side-menu__icon.ti-receipt
+				span.side-menu__label Mis Pagos
+
+.mobile-header.mobile-header.d-block.d-sm-none
+	.container-fluid
+		.d-flex
+			a.app-sidebar__toggle(aria-label='Hide Sidebar' data-toggle='sidebar' href='#')
+			a.header-brand(href='/')
+				img.header-brand-img.desktop-logo(src='_assets/assets/img/logo.png' alt='Primus Capital')

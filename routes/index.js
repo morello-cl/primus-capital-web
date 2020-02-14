@@ -15,11 +15,11 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('index', { user: req.user });
+  res.render('_index', { user: req.user });
 });
 
 router.get('/login', function(req, res, next){
-  res.render('login');
+  res.render('_login');
 });
 router.post('/login', passport.authenticate("local", { successRedirect: "/", failureRedirect: "/login" }));
 
@@ -33,7 +33,7 @@ router.get('/search-doc', isLoggedIn, function(req, res, next){
 });
 
 router.get('/award', isLoggedIn, function(req, res, next){
-  res.render('award_page', { user: req.user });
+  res.render('_award', { user: req.user });
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){

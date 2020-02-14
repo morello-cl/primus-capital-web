@@ -1,0 +1,125 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Primus Capital
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Main
+
+                    .row
+                        .col-xs-12.col-sm-12.col-lg-12
+                            .card.cards-container.cards-home
+                                .card-header
+                                    h3.card-title Reportes que ud. puede encontrar en este sitio web
+                                
+                                .card-body
+                                    .row
+                                        .col-lg-6
+                                            a(href='/award')
+                                                .card
+                                                    .card-body.color-first.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-clipboard.text-white
+
+                                                            .col-9
+                                                                a(href='/award')
+                                                                    h4 Otorgamientos
+
+                                                                p Esta opción permite a ud. conocer todos sus contratos, con el detalle de documentos cedidos por contrato, incluyendo datos tales como monto documento, monto anticipado, diferencia de precio, comision, gastos, etc.
+
+                                        .col-lg-6
+                                            a(href='#')
+                                                .card
+                                                    .card-body.color-second.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-notepad.text-white
+
+                                                            .col-9
+                                                                a(href='#')
+                                                                    h4 Cancelaciones
+
+                                                                p Esta opción permite a ud. conocer las cancelaciones de documentos cedidos, fechas de pago y cobros de mora.
+
+                                        .col-lg-6
+                                            a(href='#')
+                                                .card
+                                                    .card-body.color-third.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-book.text-white
+
+                                                            .col-9
+                                                                a(href='#')
+                                                                    h4 Cartera Vigente
+
+                                                                p Esta opción permite a ud. conocer los documentos vigentes y morosos a una determinada fecha.
+
+                                        .col-lg-6
+                                            a(href='#')
+                                                .card
+                                                    .card-body.color-fourth.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-envelope.text-white
+
+                                                            .col-9
+                                                                a(href='#')
+                                                                    h4 Excedentes
+
+                                                                p Esta opción permite a ud. conocer los excedentes generados, su procedencia y el destino de estos.
+
+                                        .col-lg-6
+                                            a(href='#')
+                                                .card
+                                                    .card-body.color-first.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-stats-down.text-white
+
+                                                            .col-9
+                                                                a(href='#')
+                                                                    h4 Protestos
+
+                                                                p Esta opción permite a ud. conocer los documentos que han sido protestados históricamente, y los que aún permanecen impagos.
+
+                                        .col-lg-6
+                                            a(href='#')
+                                                .card
+                                                    .card-body.color-second.hvr-underline-from-left
+                                                        .row
+                                                            .col-3
+                                                                .counter-icon
+                                                                    i.side-menu__icon.ti-stamp.text-white
+
+                                                            .col-9
+                                                                a(href='#')
+                                                                    h4 Prorrogas
+                                                                p Esta opción permite a ud.conocer los documentos sobre los cuales se han afectado prorrogas y los costos involucrados en esta transacción.
+                                        
+                                        .col-lg-12
+                                            .card
+                                                .card-body.h-auto
+                                                    p Para cada reporte existen diferentes opciones de consulta, las cuales pueden entregar información con distintos niveles de detalle, desde resumenes por contrato, resumenes por documentos, hasta detalles por abono. Estas consultas pueden realizarse a cualquier fecha deseada.
+
+            include _footer
+
+    include _scripts
+
+    script(src='/assets/js/app/login.js')

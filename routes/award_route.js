@@ -91,4 +91,76 @@ router.get('/sp_11_doc', isLoggedIn, function(req, res, next){
     
 });
 
+router.get('/sp_11_ind1', isLoggedIn, function(req, res, next){
+    let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_ind1', {
+        Rut: _rut,
+        Contrato: _contrato
+    }, {
+        headers: { Authorization: `Bearer ${req.user.access_token}` }
+    })
+        .then(function(r){
+            console.log('sp_11_ind1', r.data);
+
+            res.json(r.data);
+        })
+        .catch(function(err){
+            console.log('err', err);
+
+            res.status(400).json({
+            });
+        });
+    
+});
+
+router.get('/sp_11_ind2', isLoggedIn, function(req, res, next){
+    let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_ind2', {
+        Rut: _rut,
+        Contrato: _contrato
+    }, {
+        headers: { Authorization: `Bearer ${req.user.access_token}` }
+    })
+        .then(function(r){
+            console.log('sp_11_ind2', r.data);
+
+            res.json(r.data);
+        })
+        .catch(function(err){
+            console.log('err', err);
+
+            res.status(400).json({
+            });
+        });
+    
+});
+
+router.get('/sp_11_indapl', isLoggedIn, function(req, res, next){
+    let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_indapl', {
+        Rut: _rut,
+        Contrato: _contrato
+    }, {
+        headers: { Authorization: `Bearer ${req.user.access_token}` }
+    })
+        .then(function(r){
+            console.log('sp_11_indapl', r.data);
+
+            res.json(r.data);
+        })
+        .catch(function(err){
+            console.log('err', err);
+
+            res.status(400).json({
+            });
+        });
+    
+});
+
 module.exports = router;

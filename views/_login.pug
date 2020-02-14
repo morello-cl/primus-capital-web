@@ -1,0 +1,54 @@
+extends _layout
+
+block content
+    body
+
+        section#login.d-flex.justify-content-center.align-items-center
+            .container
+                .row
+                    .col-10.offset-1.col-lg-6.offset-lg-3.col-xl-4.offset-xl-4
+                        form.validate-form.card#form-login(action='/login', method='post')
+                            .row
+                                .col.text-center
+                                    img.img-fluid(src='_assets/assets/img/logo-primus.png', alt='Primus Capital')
+                            .row.my-3
+                                .col.text-center
+                                    span.form-title Ingreso a Primus Capital
+                                    .text-center.pt-3
+                                        p.text-dark.mb-0
+                                            | Para ingresar a los servicios en línea, en 
+                                            strong Primus Capital SpA.
+                                            |  favor ingrese su R.U.T. de Cliente, luego ingrese su clave.
+
+                            .form-group
+                                input.form-control#rut(type='text' name='rut' placeholder='R.U.T.')
+                                span.symbol-form
+                                    i.mdi.mdi-account-card-details(aria-hidden='true')
+                            .form-group
+                                input.form-control#password(type='password' name='password' placeholder='Password')
+                                span.symbol-form
+                                    i.zmdi.zmdi-lock(aria-hidden='true')
+                            .row.my-3
+                                .col.text-right
+                                    a.text-primary.ml-1(href='#')
+                                        | ¿Olvidó su Contraseña?
+                                    
+                            .row.d-none
+                                .col.text-center.my-3
+                                span.alert.alert-danger
+                                    span.alert-inner--icon
+                                        i.fe.fe-slash
+                                    strong Error!
+                                    |  No es posible validar Cliente!
+
+                            .form-group
+                                button.btn.form-btn.btn-pc#btn-login(type='submit') Ingresar
+                            .row
+                                .col.my-3.text-center
+                                    p.text-dark.mb-0
+                                        | Por su seguridad, una vez concluída su sesión, presione en el menú el botón 
+                                        strong SALIR
+
+    include _scripts
+
+    script(src='/assets/js/app/login.js')
