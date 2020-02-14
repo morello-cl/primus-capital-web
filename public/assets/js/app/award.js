@@ -1008,6 +1008,8 @@ function urlSp11IndApl(rut, contrato) {
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
+			$('input:radio[name=ot_op1]').filter('[value=ot_opt_det]').prop('checked', true);
+
 			$("#tbl_award_det").bootstrapTable("refresh", {
 				url: urlSp11detTable(nro_client, dt_ini, dt_end),
 			});
