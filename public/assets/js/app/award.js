@@ -253,18 +253,18 @@ function urlSp11IndApl(rut, contrato) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
 			},
@@ -276,7 +276,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "tasa_min",
-				title: "Tasa Min.",
+				title: "Tasa Min",
 				align: 'center',
 				searchable: true,
             },
@@ -319,7 +319,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "comision",
-				title: "Comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -329,7 +329,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "iva",
-				title: "IVA",
+				title: "I.V.A.",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -406,11 +406,11 @@ function urlSp11IndApl(rut, contrato) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -456,14 +456,14 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "dias_cob",
-				title: "Días Prom.",
+				title: "Días Prom",
 				align: 'center',
 				sortable: true,
 				searchable: true,
 			},
 			{
 				field: "mon_doc",
-				title: "Mon Doc.",
+				title: "Mon Doc",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -473,7 +473,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "mon_ant",
-				title: "Mon Ant.",
+				title: "Mon Ant",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -503,7 +503,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "iva",
-				title: "IVA",
+				title: "I.V.A.",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -563,7 +563,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "diaspond",
-				title: "Días Pond.",
+				title: "Días Pond",
 				align: 'center',
                 sortable: true,
                 searchable: true,
@@ -594,7 +594,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -630,7 +630,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "fotorgam",
-				title: "Fecha",
+				title: "Fch Ot",
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
@@ -642,7 +642,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "fvcmto",
-				title: "Fvcmto",
+				title: "Fch Vcto",
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
@@ -687,7 +687,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "dias_cob",
-				title: "Días Cob.",
+				title: "Días Prom",
 				align: 'right',
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -732,7 +732,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "ivacom",
-				title: "Iva Com",
+				title: "I.V.A.",
 				align: 'right',
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -759,7 +759,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "montoagirar",
-				title: "Monto a Girar",
+				title: "A Girar",
 				align: 'right',
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -788,7 +788,7 @@ function urlSp11IndApl(rut, contrato) {
 		columns: [
 			{
 				field: "iddeudor",
-				title: "Deudor",
+				title: "R.U.T. Deudor",
 				searchable: true,
 				class: 'text-nowrap'
 			},
@@ -800,13 +800,13 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "docto",
-				title: "Docto",
+				title: "Nro Docto",
 				align: 'center',
 				searchable: true,
 			},
 			{
 				field: "fvcmto",
-				title: "fvcmto",
+				title: "Vencimiento",
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
@@ -818,7 +818,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "mondcto",
-				title: "mondcto",
+				title: "Monto Docto",
 				align: 'center',
 				sortable: true,
 				searchable: true,
@@ -828,7 +828,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "monant",
-				title: "monant",
+				title: "Anticipado",
 				align: 'right',
 				sortable: true,
 				searchable: true,
@@ -838,8 +838,9 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "saldoPrecio",
-				title: "saldoPrecio",
+				title: "Saldo Precio",
 				align: 'right',
+				visible: false,
 				sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
@@ -848,7 +849,7 @@ function urlSp11IndApl(rut, contrato) {
 			},
 			{
 				field: "difpecio",
-				title: "difpecio",
+				title: "Dif Precio",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -858,7 +859,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "comision",
-				title: "Comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -868,7 +869,7 @@ function urlSp11IndApl(rut, contrato) {
             },
             {
 				field: "dias_cob",
-				title: "dias_cob",
+				title: "Días Cob",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -879,6 +880,7 @@ function urlSp11IndApl(rut, contrato) {
             {
 				field: "actpago",
 				title: "actpago",
+				visible: false,
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -889,6 +891,7 @@ function urlSp11IndApl(rut, contrato) {
             {
 				field: "operacion",
 				title: "operacion",
+				visible: false,
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -1007,6 +1010,8 @@ function urlSp11IndApl(rut, contrato) {
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
+
+			$('input:radio[name=ot_op1]').filter('[value=ot_opt_det]').prop('checked', true);
 
 			$("#tbl_award_det").bootstrapTable("refresh", {
 				url: urlSp11detTable(nro_client, dt_ini, dt_end),
