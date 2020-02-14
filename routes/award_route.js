@@ -67,9 +67,11 @@ router.get('/sp_11_det', isLoggedIn, function(req, res, next){
 
 router.get('/sp_11_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_doc', {
         Rut: _rut,
+        Contrato: _contrato,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
@@ -78,15 +80,28 @@ router.get('/sp_11_doc', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            let _sp11doc = {};
+            
+            console.log('sp_11_doc', r.data);
 
-            res.json(r.data);
+            // filtramos por contrato
+            if(_contrato !== 0) {
+                _sp11doc = r.data.filter(function(item){
+                    console.log('item.contrato', item.contrato, _contrato);
+                    return item.contrato == _contrato;
+                });
+            } else {
+                _sp11doc = r.data;
+            }
+
+            console.log('_sp11doc', _sp11doc);
+
+            res.json(_sp11doc);
         })
         .catch(function(err){
             console.log('err', err);
 
-            res.status(400).json({
-            });
+            res.status(400).json({});
         });
     
 });

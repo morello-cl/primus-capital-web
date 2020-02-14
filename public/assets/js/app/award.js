@@ -1,3 +1,4 @@
+const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
 const exportOptionsBoostrapTable = {
 	consoleLog: false,
 	csvEnclosure: '"',
@@ -115,11 +116,14 @@ function urlSp11detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp11docTable(rut, date_ini, date_end) {
+function urlSp11docTable(rut, contrato, date_ini, date_end) {
 	let url = '/award/api/sp_11_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
@@ -158,7 +162,6 @@ function urlSp11Ind2(rut, contrato) {
 
 	return url;
 }
-
 function urlSp11IndApl(rut, contrato) {
 	let url = '/award/api/sp_11_indapl/?';
 
@@ -174,11 +177,6 @@ function urlSp11IndApl(rut, contrato) {
 
 (function($) {
 	"use strict";
-
-	$('#tblAwardRes').hide('slow');
-	$('#tblAwardDet').hide('slow');
-	$('#tblAwardDoc').hide('slow');
-	$('#tblAwardDeC').hide('slow');
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -393,7 +391,7 @@ function urlSp11IndApl(rut, contrato) {
 		showRefresh: false,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -577,7 +575,7 @@ function urlSp11IndApl(rut, contrato) {
 		showRefresh: false,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -775,7 +773,7 @@ function urlSp11IndApl(rut, contrato) {
 		showRefresh: false,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -905,7 +903,7 @@ function urlSp11IndApl(rut, contrato) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -1027,11 +1025,11 @@ function urlSp11IndApl(rut, contrato) {
 
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
 			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
 
 			$("#tbl_award_doc").bootstrapTable("refresh", {
-				url: urlSp11docTable(nro_client, dt_ini, dt_end),
+				url: urlSp11docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
 			$('#tblAwardRes').hide('slow');
