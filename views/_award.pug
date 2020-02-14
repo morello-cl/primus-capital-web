@@ -129,7 +129,8 @@ block content
                                 .card-body.p-4
                                     table#tbl_award_doc(data-show-export="true")
 
-                    .row#tblAwardDeC(style="display:none")
+                    .row#tblAwardDeC
+                        //(style="display:none")
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
@@ -150,27 +151,27 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_ejecutivo') Ejecutivo Curse
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', placeholder='Ejecutivo Curse', readonly)
+                                                                        input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_producto') Producto
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_producto(type='text', name='ot_producto', placeholder='Producto', readonly)
+                                                                        input.form-control.form-control-sm#ot_producto(type='text', name='ot_producto', readonly)
                                                                 
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_contrato') Nro. Contrato/Doc
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_contrato(type='text', name='ot_contrato', placeholder='Nro. Contrato/Doc', readonly)
+                                                                        input.form-control.form-control-sm#ot_contrato(type='text', name='ot_contrato', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_fecha_c') Fecha Contrato
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_fecha_c(type='text', name='ot_fecha_c', placeholder='Fecha Contrato', readonly)
+                                                                        input.form-control.form-control-sm#ot_fecha_c(type='text', name='ot_fecha_c', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_tasa_o') Tasa Operación
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_tasa_o(type='text', name='ot_tasa_o', placeholder='Tasa Operación', readonly)
+                                                                        input.form-control.form-control-sm#ot_tasa_o(type='text', name='ot_tasa_o', readonly)
 
                                                     .col-xl-4
                                                         .card
@@ -178,23 +179,23 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_doc') Monto Doctos.
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_doc(type='text', name='ot_mon_doc', placeholder='Monto Doctos.', readonly)
+                                                                        input.form-control.form-control-sm#ot_mon_doc(type='text', name='ot_mon_doc', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_ant') Monto Anticipo
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_ant(type='text', name='ot_mon_ant', placeholder='Monto Anticipo', readonly)
+                                                                        input.form-control.form-control-sm#ot_mon_ant(type='text', name='ot_mon_ant', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_dif_precio') Dif. Precio
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_dif_precio(type='text', name='ot_dif_precio', placeholder='Dif. Precio', readonly)
+                                                                        input.form-control.form-control-sm#ot_dif_precio(type='text', name='ot_dif_precio', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_comision') Comisión
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_comision(type='text', name='ot_comision', placeholder='Comisión', readonly)
+                                                                        input.form-control.form-control-sm#ot_comision(type='text', name='ot_comision', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_iva') I.V.A.
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_iva(type='text', name='ot_iva', placeholder='I.V.A.', readonly)
+                                                                        input.form-control.form-control-sm#ot_iva(type='text', name='ot_iva', readonly)
 
 
                                                     .col-xl-4
@@ -203,23 +204,23 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_impto') Impuestos
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_impto(type='text', name='ot_impto', placeholder='Impuestos', readonly)
+                                                                        input.form-control.form-control-sm#ot_impto(type='text', name='ot_impto', readonly)
                                                                 .form-group.row  
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_gastos') Gastos
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_gastos(type='text', name='ot_gastos', placeholder='Gastos', readonly)
+                                                                        input.form-control.form-control-sm#ot_gastos(type='text', name='ot_gastos', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_oper') Monto Operación
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_oper(type='text', name='ot_mon_oper', placeholder='Monto Operación', readonly)
+                                                                        input.form-control.form-control-sm#ot_mon_oper(type='text', name='ot_mon_oper', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_aplicacion') Aplicaciones
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_aplicacion(type='text', name='ot_aplicacion', placeholder='Aplicaciones', readonly)
+                                                                        input.form-control.form-control-sm#ot_aplicacion(type='text', name='ot_aplicacion', readonly)
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_gir') A Girar
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_gir(type='text', name='ot_mon_gir', placeholder='A Girar', readonly)
+                                                                        input.form-control.form-control-sm#ot_mon_gir(type='text', name='ot_mon_gir', readonly)
                                                     
 
                                                 .row

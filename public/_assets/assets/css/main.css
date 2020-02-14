@@ -443,7 +443,7 @@ a.text-primary:hover, a.text-primary:focus {
 }
 .form-control:disabled, .form-control[readonly] {
     background-color: transparent;
-    opacity: .3;
+    opacity: .8;
 }
 .btn-outline-warning {
     color: #ecb403;
