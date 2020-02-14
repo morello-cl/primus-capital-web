@@ -40,12 +40,14 @@ block content
                                                                         label.custom-control.custom-radio
                                                                             input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_det')
                                                                             span.custom-control-label Detalle
-                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                    // invisble mientras no se utiliza
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4(style="display:none")
                                                                         label.custom-control.custom-radio
                                                                             input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_doc')
                                                                             span.custom-control-label Documento
+                                                                // invisible mientras no se utiliza
                                                                 p
-                                                                .row
+                                                                .row(style="display:none")
                                                                     .col-sm-12.col-md-12.col-lg-12.col-xl-4
                                                                         label.custom-control.custom-radio
                                                                             input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind' disabled)
@@ -103,7 +105,7 @@ block content
                                                 span.text-muted.text-right
                                                     | Estado: favor seleccione preferencias de consulta.
 
-                    .row#tblAwardRes
+                    .row#tblAwardRes(style="display:none")
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
@@ -111,7 +113,7 @@ block content
                                 .card-body.p-4
                                     table#tbl_award_res(data-show-export="true")
 
-                    .row#tblAwardDet
+                    .row#tblAwardDet(style="display:none")
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
@@ -119,7 +121,7 @@ block content
                                 .card-body.p-4
                                     table#tbl_award_det(data-show-export="true")
 
-                    .row#tblAwardDoc
+                    .row#tblAwardDoc(style="display:none")
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
@@ -127,7 +129,7 @@ block content
                                 .card-body.p-4
                                     table#tbl_award_doc(data-show-export="true")
 
-                    .row#tblAwardDeC
+                    .row#tblAwardDeC(style="display:none")
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
@@ -146,9 +148,9 @@ block content
                                                         .card
                                                             .card-body
                                                                 .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_ejecutivo') Ejecutivo Curso
+                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_ejecutivo') Ejecutivo Curse
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', placeholder='Ejecutivo Curso', readonly)
+                                                                        input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', placeholder='Ejecutivo Curse', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_producto') Producto
