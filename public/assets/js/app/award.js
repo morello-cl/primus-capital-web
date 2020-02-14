@@ -178,7 +178,7 @@ function urlSp11IndApl(rut, contrato) {
 	$('#tblAwardRes').hide('slow');
 	$('#tblAwardDet').hide('slow');
 	$('#tblAwardDoc').hide('slow');
-	$('#tblAwardDeC').show('slow');
+	$('#tblAwardDeC').hide('slow');
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -1068,15 +1068,6 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
 					$('#ot_mon_gir').val(r.data[0].mon_gir);
-
-					/*
-
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					*/
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
@@ -1092,14 +1083,11 @@ function urlSp11IndApl(rut, contrato) {
 				.then(function(r) {
 					console.log('indpal', r.data);
 
-					/*
-
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					$('#ot_ejecutivo').val();
-					*/
+					$('#ot_apli_doc').val();
+					$('#ot_apli_pro').val();
+					$('#ot_apli_cta').val();
+					$('#ot_apli_cta').val();
+					$('#ot_apli_prote').val();
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);

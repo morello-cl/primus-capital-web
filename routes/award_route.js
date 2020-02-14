@@ -102,7 +102,7 @@ router.get('/sp_11_ind1', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_11_ind1', r.data);
 
             res.json(r.data);
         })
@@ -150,7 +150,7 @@ router.get('/sp_11_indapl', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_11_indapl', r.data);
 
             res.json(r.data);
         })
