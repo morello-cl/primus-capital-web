@@ -134,7 +134,7 @@ function urlSp12docTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp12docTable(rut, date_ini, date_end) {
+function urlSp12aboTable(rut, date_ini, date_end) {
 	let url = '/cancellations/api/sp_12_abo/?';
 
 	if(rut) {
@@ -175,42 +175,6 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		defaultDate: date_end,
 		minDate: date_ini,
 		maxDate: date_end
-	});
-
-	$('#btn-ca-clear').click(function(e){
-		e.preventDefault();
-
-		// opciones activas por defecto
-		$('input:radio[name=ca_op1]').filter('[value=ca_opt_det]').prop('checked', true);
-		$('input:radio[name=ca_op2]').filter('[value=ca_opt_hoy]').prop('checked', true);
-		$('#ca_date_ini_txt').prop('readonly', true);
-		$('#ca_date_end_txt').prop('readonly', true);
-
-		// buscador queda modo default
-		$("#ca_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#ca_date_end").datetimepicker({
-			defaultDate: date_end
-		});
-
-		// limpiar tablas
-		$('#tblCancelRes').collapse('hide');
-		$("#tbl_cancel_res").bootstrapTable("refresh", {
-            url: urlSp12resTable(null, null, null),
-        });
-		$('#tblAwardRes').collapse('hide');
-		$("#tbl_award_res").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblAwardDet').collapse('hide');
-		$("#tbl_award_det").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblAwardDoc').collapse('hide');
-		$("#tbl_award_doc").bootstrapTable("refresh", {
-            url: [],
-        });
 	});
 
 	$('#btn_ca_date_ini').click(function(e){
@@ -255,18 +219,18 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
 			},
@@ -308,7 +272,7 @@ function urlSp12docTable(rut, date_ini, date_end) {
 			},
 			{
 				field: "capamort",
-				title: "Capa Mort",
+				title: "Cap Amort",
 				align: 'right',
 				sortable: true,
 				searchable: true,
@@ -316,16 +280,6 @@ function urlSp12docTable(rut, date_ini, date_end) {
                     return numeral(value).format("0,000[.]0");
                 },
 			},
-			{
-				field: "dif_precio",
-				title: "Dif Precio",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
             {
 				field: "int_mora",
 				title: "Int. Mora",
@@ -377,7 +331,7 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             }
 		],
-		url: urlSp12resTable(null, null, null),
+		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
 		showRefresh: false,
@@ -399,18 +353,18 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
 			},
@@ -421,20 +375,27 @@ function urlSp12docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "tasa_min",
-				title: "Tasa Min.",
+				field: "f_otorg",
+				title: "Fch Ot",
 				align: 'center',
 				searchable: true,
+				class: 'text-nowrap',
+				formatter: function(value, row, index) {
+					const fecha = moment(value);
+
+                    return fecha.format('DD-MM-YYYY');
+                },
             },
             {
-				field: "tasa_max",
-				title: "Tasa Max",
+				field: "tipo",
+				title: "Tipo",
 				align: 'center',
+				class: 'text-nowrap',
 				sortable: true,
 				searchable: true,
 			},
 			{
-				field: "mon_doc",
+				field: "mondoc",
 				title: "Mon Doc",
 				align: 'right',
 				sortable: true,
@@ -444,7 +405,7 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "mont_ant",
+				field: "monant",
 				title: "Mon Ant",
 				align: 'right',
 				sortable: true,
@@ -454,8 +415,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "dif_precio",
-				title: "Dif Precio",
+				field: "monrec",
+				title: "Mon Rec",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -464,8 +425,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "comision",
-				title: "Comision",
+				field: "capamort",
+				title: "Cap Amort",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -474,8 +435,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "iva",
-				title: "IVA",
+				field: "intmora",
+				title: "Int Mora",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -484,8 +445,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "gastos",
-				title: "Gastos",
+				field: "intdev",
+				title: "Int Dev",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -494,8 +455,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "impto",
-				title: "Impto",
+				field: "reajuste",
+				title: "Reajuste",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -504,8 +465,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "mon_oper",
-				title: "Mon Oper",
+				field: "saldo",
+				title: "Saldo",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -514,15 +475,8 @@ function urlSp12docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "apl",
-				title: "Aplic",
-				align: 'right',
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
+				field: "excedente",
+				title: "Excedente",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -872,10 +826,10 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_res') {
-			$('#tblCancelRes').collapse('show');
-			$('#tblCancelDet').collapse('hide');
-			$('#tblCancelDoc').collapse('hide');
-			$('#tblCancelAbo').collapse('hide');
+			$('#tblCancelRes').show('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').hide('slow');
 
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -883,23 +837,12 @@ function urlSp12docTable(rut, date_ini, date_end) {
 			$("#tbl_cancel_res").bootstrapTable("refresh", {
 				url: urlSp12resTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_det') {
-			$('#tblCancelRes').collapse('hide');
-			$('#tblCancelDet').collapse('show');
-			$('#tblCancelDoc').collapse('hide');
-			$('#tblCancelAbo').collapse('hide');
 
-			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-
-			$("#tbl_award_det").bootstrapTable("refresh", {
-				url: urlSp12detTable(0, dt_ini, dt_end),
-			});
 		} else if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_doc') {
-			$('#tblCancelRes').collapse('hide');
-			$('#tblCancelDet').collapse('hide');
-			$('#tblCancelDoc').collapse('show');
-			$('#tblCancelAbo').collapse('hide');
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').show('slow');
+			$('#tblCancelAbo').hide('slow');
 
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -908,10 +851,10 @@ function urlSp12docTable(rut, date_ini, date_end) {
 				url: urlSp12docTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_abo') {
-			$('#tblCancelRes').collapse('hide');
-			$('#tblCancelDet').collapse('hide');
-			$('#tblCancelDoc').collapse('hide');
-			$('#tblCancelAbo').collapse('show');
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').show('slow');
 
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -922,20 +865,56 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		}
 	});
 
+	$('#btn-ca-clear').click(function(e){
+		e.preventDefault();
+
+		// opciones activas por defecto
+		$('input:radio[name=ca_op1]').filter('[value=ca_opt_res]').prop('checked', true);
+		$('input:radio[name=ca_op2]').filter('[value=ca_opt_hoy]').prop('checked', true);
+		$('#ca_date_ini_txt').prop('readonly', true);
+		$('#ca_date_end_txt').prop('readonly', true);
+
+		// buscador queda modo default
+		$("#ca_date_ini").datetimepicker({
+			defaultDate: date_ini
+		});
+		$("#ca_date_end").datetimepicker({
+			defaultDate: date_end
+		});
+
+		// limpiar tablas
+		$('#tblCancelRes').hide('slow');
+		$("#tbl_cancel_res").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblCancelDet').hide('slow');
+		$("#tbl_cancel_det").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblCancelDoc').hide('slow');
+		$("#tbl_cancel_doc").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblCancelAbo').hide('slow');
+		$("#tbl_cancel_abo").bootstrapTable("refresh", {
+            url: [],
+        });
+	});
+
 	$("#tbl_cancel_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_award_det").bootstrapTable("refresh", {
+			$("#tbl_cancel_det").bootstrapTable("refresh", {
 				url: urlSp12detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblCancelRes').collapse('hide');
-			$('#tblCancelDet').collapse('show');
-			$('#tblCancelDoc').collapse('hide');
-			$('#tblCancelAbo').collapse('hide');
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').show('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').hide('slow');
 		}
 	});
 
@@ -943,17 +922,16 @@ function urlSp12docTable(rut, date_ini, date_end) {
 		if(field === 'contrato') {
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ca_nro").val(), false);
 			const nro_client = row.idcliente;
 
 			$("#tbl_cancel_doc").bootstrapTable("refresh", {
 				url: urlSp12docTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblCancelRes').collapse('hide');
-			$('#tblCancelDet').collapse('hide');
-			$('#tblCancelDoc').collapse('show');
-			$('#tblCancelAbo').collapse('hide');
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').show('slow');
+			$('#tblCancelAbo').hide('slow');
 		}
 	});
 })(jQuery);

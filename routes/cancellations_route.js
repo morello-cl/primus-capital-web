@@ -48,7 +48,7 @@ router.get('/sp_12_det', isLoggedIn, function(req, res, next) {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_12_det', r.data);
 
             res.json(r.data);
         })
