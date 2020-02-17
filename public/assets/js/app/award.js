@@ -272,7 +272,7 @@ function urlSp11IndApl(rut, contrato) {
 				field: "contratos",
 				title: "Contratos",
 				align: 'center',
-				searchable: true,
+				searchable: true
 			},
 			{
 				field: "tasa_min",
