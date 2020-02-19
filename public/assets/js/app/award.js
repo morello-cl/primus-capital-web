@@ -938,6 +938,28 @@ function urlSp11IndApl(rut, contrato) {
 		$('#tblAwardRes').show('slow');
 	});
 
+	$("#btn_aw_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardDoc').hide('slow');
+		$('#tblAwardDet').show('slow');
+	});
+
+	$("#btn_aw_bk_dec").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardDeC').hide('slow');
+		$('#tblAwardDoc').show('slow');
+	});
+
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
 		
