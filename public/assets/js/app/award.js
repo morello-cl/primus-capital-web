@@ -593,6 +593,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_award_doc").bootstrapTable({
@@ -794,6 +795,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 	
 	$("#tbl_award_ind2").bootstrapTable({
@@ -927,6 +929,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#btn_aw_bk_res").click(function(e){
