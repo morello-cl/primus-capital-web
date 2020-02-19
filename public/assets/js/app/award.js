@@ -1144,7 +1144,7 @@ function urlSp11IndDep(rut, contrato) {
 					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
-					$('#ot_mon_gir').val(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
+					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
