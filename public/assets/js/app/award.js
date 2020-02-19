@@ -935,7 +935,10 @@ function urlSp11IndApl(rut, contrato) {
 		});
 
 		$('#tblAwardDet').hide('slow');
-		$('#tblAwardRes').show('slow');
+
+		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {			
+			$('#tblAwardRes').show('slow');
+		}
 	});
 
 	$("#btn_aw_bk_doc").click(function(e){
