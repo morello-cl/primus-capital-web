@@ -274,7 +274,10 @@ function urlSp11IndApl(rut, contrato) {
 				field: "contratos",
 				title: "Contratos",
 				align: 'center',
-				searchable: true
+				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-primary">${value}</a>`;
+				}
 			},
 			{
 				field: "tasa_min",
