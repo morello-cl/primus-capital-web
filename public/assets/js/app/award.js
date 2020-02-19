@@ -938,7 +938,7 @@ function urlSp11IndApl(rut, contrato) {
 
 		$('#tblAwardDet').hide('slow');
 
-		if($(_originalOption === 'ot_opt_res') {			
+		if(_originalOption === 'ot_opt_res') {			
 			$('#tblAwardRes').show('slow');
 		}
 	});
