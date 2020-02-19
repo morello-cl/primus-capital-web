@@ -966,10 +966,6 @@ function urlSp11IndApl(rut, contrato) {
 	$("#btn_aw_bk_dec").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_award_det").bootstrapTable("refresh", {
-			url: [],
-		});
-
 		$('#tblAwardDeC').hide('slow');
 		$('#tblAwardDoc').show('slow');
 	});
