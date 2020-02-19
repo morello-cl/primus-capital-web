@@ -405,11 +405,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
-		headerStyle: function(column) {
-			return {
-				css: {background: 'yellow'}
-			}
-		}
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_award_det").bootstrapTable({
