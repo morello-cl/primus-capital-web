@@ -1119,24 +1119,23 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_fecha_c').val(moment(r.data[0].fecha).format('DD-MM-YYYY'));
 					$('#ot_tasa_o').val(r.data[0].tasa_op);
 
-					$('#ot_mon_doc').val(r.data[0].mon_doc);
-					$('#ot_mon_ant').val(r.data[0].mon_ant);
-					$('#ot_dif_precio').val(r.data[0].dif_precio);
-					$('#ot_comision').val(r.data[0].comision);
+					$('#ot_mon_doc').val(numeral(r.data[0].mon_doc).format("$ 0,000[.]0"));
+					$('#ot_mon_ant').val(numeral(r.data[0].mon_ant).format("$ 0,000[.]0"));
+					$('#ot_dif_precio').val(numeral(r.data[0].dif_precio).format("$ 0,000[.]0"));
+					$('#ot_comision').val(numeral(r.data[0].comision).format("$ 0,000[.]0"));
 					$('#ot_iva').val('');
 
-					$('#ot_impto').val(r.data[0].impto);
-					$('#ot_gastos').val(r.data[0].gastos);
+					$('#ot_impto').val(numeral(r.data[0].impto).format("0,000[.]0"));
+					$('#ot_gastos').val(numeral(r.data[0].gastos).format("0,000[.]0"));
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
-					$('#ot_mon_gir').val(r.data[0].mon_gir);
+					$('#ot_mon_gir').val(numeral(r.data[0].mon_gir).format("0,000[.]0"));
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
 					console.log('err.message', err.message);
 					console.log('err.stack', err.stack);
-		
-			});
+				});
 
 			const url_ind_apl = urlSp11IndApl(row.idcliente, row.contrato);
 
