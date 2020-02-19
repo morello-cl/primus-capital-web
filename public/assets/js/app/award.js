@@ -917,6 +917,16 @@ function urlSp11IndApl(rut, contrato) {
 		pageList: [20, 30, 40, 50],
 	});
 
+	$("#btn_aw_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardRes').hide('slow');
+	});
+
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
 		
