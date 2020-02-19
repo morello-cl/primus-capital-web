@@ -231,8 +231,8 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_gir') A Girar
                                                                     .col-sm-7
-                                                                        a(href='#')
-                                                                            input.form-control-plaintext.form-control-sm#ot_mon_gir(type='text', name='ot_mon_gir', readonly)
+                                                                        a#btn_aw_agirar(href='#', data-togle='modal', data-targer='#modalDeposito')
+                                                                            input.form-control-plaintext#ot_mon_gir(type='text', name='ot_mon_gir', readonly)
                                                     
 
                                                 .row
@@ -269,8 +269,20 @@ block content
                                                 | Detalle de Liquidación
                                         .card-body.p4
                                             table.table-striped#tbl_award_ind2(data-show-export="false")                
-
+            
             include _footer
+
+            .modal.fade#modalDeposito(tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true')
+                .modal-dialog(role='document')
+                    .modal-content
+                        .modal-header
+                            h5.modal-title#exampleModalLabel Modal title
+                            button.close(type='button' data-dismiss='modal' aria-label='Close')
+                                span(aria-hidden='true') ×
+                        .modal-body
+                        .modal-footer
+                            button.btn.btn-primary(type='button') Imprimir
+                            button.btn.btn-secondary(type='button' data-dismiss='modal') Cerrar
 
     include _scripts
 
