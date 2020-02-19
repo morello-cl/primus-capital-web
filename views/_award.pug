@@ -273,7 +273,7 @@ block content
             include _footer
 
             .modal.fade#modalDeposito(tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true')
-                .modal-dialog(role='document')
+                .modal-dialog.modal-dialog-centered(role='document')
                     .modal-content
                         .modal-header
                             h5.modal-title#exampleModalLabel Modal title
@@ -312,9 +312,9 @@ block content
 
                         .modal-footer
                             .row
-                                .col-md-4
+                                .col-md-6
                                     button.btn.btn-primary.btn-block(type='button') Imprimir
-                                .col-md-4
+                                .col-md-6
                                     button.btn.btn-secondary.btn-block(type='button', data-dismiss='modal') Cerrar
 
     include _scripts

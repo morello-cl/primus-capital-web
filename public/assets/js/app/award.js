@@ -174,11 +174,25 @@ function urlSp11IndApl(rut, contrato) {
 
 	return url;
 }
+function urlSp11IndDep(rut, contrato) {
+	let url = '/award/api/sp_11_inddep/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
 
 (function($) {
 	"use strict";
 
 	let _originalOption = '';
+	let _awardCliente = '';
+	let _awardContrato = '';
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -215,11 +229,9 @@ function urlSp11IndApl(rut, contrato) {
 	$('#btn_ot_date_ini').click(function(e){
 		$('#ot_date_ini').data("DateTimePicker").toggle();
 	});
-
 	$('#btn_ot_date_end').click(function(e){
 		$('#ot_date_end').data("DateTimePicker").toggle();
-	});
-    
+	});   
     $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
 		$("#ot_date_end").datetimepicker({
 			minDate: $("#ot_date_ini").data("DateTimePicker").date()
@@ -1106,6 +1118,9 @@ function urlSp11IndApl(rut, contrato) {
 		if(field === 'contrato') {
 			const url = urlSp11Ind1(row.idcliente, row.contrato);
 
+			_awardCliente = row.idcliente;
+			_awardContrato = row.contrato;
+
 			console.log('url', url);
 			axios.get(url)
 				.then(function(r) {
@@ -1174,5 +1189,21 @@ function urlSp11IndApl(rut, contrato) {
 			$('#tblAwardDoc').hide('slow');
 			$('#tblAwardDeC').show('slow');
 		}
+	});
+
+	$("#modalDeposito").on('shown.bs.modal', function(e){
+		const url = urlSp11IndDep(_awardCliente, _awardContrato);
+
+		console.log('url', url);
+
+		axios.get(url)
+			.then(function(r) {
+				console.log('urlSp11IndDep', r.data);
+			})
+			.catch(function(err) {
+				console.log('err.code', err.code);
+				console.log('err.message', err.message);
+				console.log('err.stack', err.stack);
+			});
 	});
 })(jQuery);
