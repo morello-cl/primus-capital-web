@@ -1125,11 +1125,11 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_comision').val(numeral(r.data[0].comision).format("$ 0,000[.]0"));
 					$('#ot_iva').val('');
 
-					$('#ot_impto').val(numeral(r.data[0].impto).format("0,000[.]0"));
-					$('#ot_gastos').val(numeral(r.data[0].gastos).format("0,000[.]0"));
+					$('#ot_impto').val(numeral(r.data[0].impto).format("$ 0,000[.]0"));
+					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
-					$('#ot_mon_gir').val(numeral(r.data[0].mon_gir).format("0,000[.]0"));
+					$('#ot_mon_gir').val(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
@@ -1144,11 +1144,19 @@ function urlSp11IndApl(rut, contrato) {
 				.then(function(r) {
 					console.log('indpal', r.data);
 
-					$('#ot_apli_doc').val();
-					$('#ot_apli_pro').val();
-					$('#ot_apli_cta').val();
-					$('#ot_apli_cta').val();
-					$('#ot_apli_prote').val();
+					if(Array.isArray(emptyArray) && emptyArray.length) {
+						$('#ot_apli_doc').val(0);
+						$('#ot_apli_pro').val(0);
+						$('#ot_apli_cta').val(0);
+						$('#ot_apli_cta').val(0);
+						$('#ot_apli_prote').val(0);
+					} else {
+						$('#ot_apli_doc').val('');
+						$('#ot_apli_pro').val('');
+						$('#ot_apli_cta').val('');
+						$('#ot_apli_cta').val('');
+						$('#ot_apli_prote').val('');
+					}
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
