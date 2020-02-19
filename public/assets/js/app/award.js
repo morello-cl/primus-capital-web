@@ -431,6 +431,9 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "fotorgam",
@@ -615,6 +618,9 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "iddeudor",
