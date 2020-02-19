@@ -174,9 +174,25 @@ function urlSp11IndApl(rut, contrato) {
 
 	return url;
 }
+function urlSp11IndDep(rut, contrato) {
+	let url = '/award/api/sp_11_inddep/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
 
 (function($) {
 	"use strict";
+
+	let _originalOption = '';
+	let _awardCliente = '';
+	let _awardContrato = '';
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -213,11 +229,9 @@ function urlSp11IndApl(rut, contrato) {
 	$('#btn_ot_date_ini').click(function(e){
 		$('#ot_date_ini').data("DateTimePicker").toggle();
 	});
-
 	$('#btn_ot_date_end').click(function(e){
 		$('#ot_date_end').data("DateTimePicker").toggle();
-	});
-    
+	});   
     $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
 		$("#ot_date_end").datetimepicker({
 			minDate: $("#ot_date_ini").data("DateTimePicker").date()
@@ -273,6 +287,9 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "tasa_min",
@@ -400,6 +417,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_award_det").bootstrapTable({
@@ -426,6 +444,9 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "fotorgam",
@@ -584,6 +605,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_award_doc").bootstrapTable({
@@ -610,6 +632,9 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "iddeudor",
@@ -782,6 +807,7 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 	
 	$("#tbl_award_ind2").bootstrapTable({
@@ -915,10 +941,55 @@ function urlSp11IndApl(rut, contrato) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
+	});
+
+	$("#btn_aw_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardRes').hide('slow');
+	});
+
+	$("#btn_aw_bk_det").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardDet').hide('slow');
+
+		if(_originalOption === 'ot_opt_res') {			
+			$('#tblAwardRes').show('slow');
+		}
+	});
+
+	$("#btn_aw_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_award_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblAwardDoc').hide('slow');
+		$('#tblAwardDet').show('slow');
+	});
+
+	$("#btn_aw_bk_dec").click(function(e){
+		e.preventDefault();
+
+		$('#tblAwardDeC').hide('slow');
+		$('#tblAwardDoc').show('slow');
 	});
 
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
+
+		_originalOption = $('input:radio[name=ot_op1]:checked').val();
 		
 		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {
 			$('#tblAwardRes').show('slow');
@@ -1047,6 +1118,9 @@ function urlSp11IndApl(rut, contrato) {
 		if(field === 'contrato') {
 			const url = urlSp11Ind1(row.idcliente, row.contrato);
 
+			_awardCliente = row.idcliente;
+			_awardContrato = row.contrato;
+
 			console.log('url', url);
 			axios.get(url)
 				.then(function(r) {
@@ -1060,24 +1134,23 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_fecha_c').val(moment(r.data[0].fecha).format('DD-MM-YYYY'));
 					$('#ot_tasa_o').val(r.data[0].tasa_op);
 
-					$('#ot_mon_doc').val(r.data[0].mon_doc);
-					$('#ot_mon_ant').val(r.data[0].mon_ant);
-					$('#ot_dif_precio').val(r.data[0].dif_precio);
-					$('#ot_comision').val(r.data[0].comision);
+					$('#ot_mon_doc').val(numeral(r.data[0].mon_doc).format("$ 0,000[.]0"));
+					$('#ot_mon_ant').val(numeral(r.data[0].mon_ant).format("$ 0,000[.]0"));
+					$('#ot_dif_precio').val(numeral(r.data[0].dif_precio).format("$ 0,000[.]0"));
+					$('#ot_comision').val(numeral(r.data[0].comision).format("$ 0,000[.]0"));
 					$('#ot_iva').val('');
 
-					$('#ot_impto').val(r.data[0].impto);
-					$('#ot_gastos').val(r.data[0].gastos);
+					$('#ot_impto').val(numeral(r.data[0].impto).format("$ 0,000[.]0"));
+					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
-					$('#ot_mon_gir').val(r.data[0].mon_gir);
+					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
 					console.log('err.message', err.message);
 					console.log('err.stack', err.stack);
-		
-			});
+				});
 
 			const url_ind_apl = urlSp11IndApl(row.idcliente, row.contrato);
 
@@ -1086,11 +1159,19 @@ function urlSp11IndApl(rut, contrato) {
 				.then(function(r) {
 					console.log('indpal', r.data);
 
-					$('#ot_apli_doc').val();
-					$('#ot_apli_pro').val();
-					$('#ot_apli_cta').val();
-					$('#ot_apli_cta').val();
-					$('#ot_apli_prote').val();
+					if(Array.isArray(emptyArray) && emptyArray.length) {
+						$('#ot_apli_doc').val(0);
+						$('#ot_apli_pro').val(0);
+						$('#ot_apli_cta').val(0);
+						$('#ot_apli_cta').val(0);
+						$('#ot_apli_prote').val(0);
+					} else {
+						$('#ot_apli_doc').val('');
+						$('#ot_apli_pro').val('');
+						$('#ot_apli_cta').val('');
+						$('#ot_apli_cta').val('');
+						$('#ot_apli_prote').val('');
+					}
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
@@ -1108,5 +1189,21 @@ function urlSp11IndApl(rut, contrato) {
 			$('#tblAwardDoc').hide('slow');
 			$('#tblAwardDeC').show('slow');
 		}
+	});
+
+	$("#modalDeposito").on('shown.bs.modal', function(e){
+		const url = urlSp11IndDep(_awardCliente, _awardContrato);
+
+		console.log('url', url);
+
+		axios.get(url)
+			.then(function(r) {
+				console.log('urlSp11IndDep', r.data);
+			})
+			.catch(function(err) {
+				console.log('err.code', err.code);
+				console.log('err.message', err.message);
+				console.log('err.stack', err.stack);
+			});
 	});
 })(jQuery);

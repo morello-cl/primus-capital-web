@@ -44,7 +44,7 @@ app.set("trust proxy", 1);
 //app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+	extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -54,64 +54,63 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  console.log("serializeUser", user);
+	console.log("serializeUser", user);
 
-  done(null, user);
+	done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
-  //console.log('deserializeUser', user);
+	//console.log('deserializeUser', user);
 
-  let expirationDate= moment(user.token_expires_in);
-  console.log('expirationDate', expirationDate.format(), user.token_expires_in);
+	let expirationDate= moment(user.token_expires_in);
+	console.log('expirationDate', expirationDate.format(), user.token_expires_in);
 
 
-  if(moment().diff(expirationDate, 'second') > 0) {
-    console.log('token vencido...');
-    done(null, false);
-  } else {
-    done(null, user);
-  }
+	if(moment().diff(expirationDate, 'second') > 0) {
+		console.log('token vencido...');
+		done(null, false);
+	} else {
+		done(null, user);
+	}
 });
 
 passport.use(new LocalStrategy({
-    usernameField     : 'rut',
-    passwordField     : 'password',
-    passReqToCallback : true
-  }, async function(req, username, password, done){
-    console.log('uno', username, password);
-    
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
-        username: username,
-        password: password
-    })
-    .then(function(r) {
+		usernameField     : 'rut',
+		passwordField     : 'password',
+		passReqToCallback : true
+	}, async function(req, username, password, done){
+		
+		axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/login/authenticate', {
+				username: username,
+				password: password
+		})
+		.then(function(r) {
 
-        let user = { 
-          id: 1,
-          rut: username,
-          nombre: '',
-          ejecutivo: '',
-          fono: '',
-          email: '',
-          access_token: r.data.access_token,
-          token_expires_in: r.data.token_expires_in,
-          refresh_token: r.data.refresh_token,
-          refresh_token_expires_in: r.data.refresh_token_expires_in
-      };
+			let user = { 
+				id: 1,
+				rut: username,
+				nombre: '',
+				ejecutivo: '',
+				fono: '',
+				email: '',
+				access_token: r.data.access_token,
+				token_expires_in: r.data.token_expires_in,
+				refresh_token: r.data.refresh_token,
+				refresh_token_expires_in: r.data.refresh_token_expires_in
+			};
 
-      console.log('user', user);
+			console.log('user', user);
 
-      return done(null, user, { message: ''});
-    })
-    .catch(function(err) {
-        console.log('err.code', err.code);
-        console.log('err.message', err.message);
-        console.log('err.stack', err.stack);
+			return done(null, user, { message: ''});
+		})
+		.catch(function(err) {
+				console.log('err.code', err.code);
+				console.log('err.message', err.message);
+				console.log('err.stack', err.stack);
 
-        return done(null, false, { message: 'Usuario o Password no Existen'});
-    });
-  })
+				return done(null, false, { message: 'Usuario o Password no Existen'});
+		});
+	})
 );
 
 app.use('/', indexRouter);
@@ -122,18 +121,18 @@ app.use('/surplus/api', surplusRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 module.exports = app;

@@ -109,7 +109,10 @@ block content
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
-                                    h3.card-title Resumen
+                                    h3.card-title
+                                        a#btn_aw_bk_res(href='#')
+                                            i.far.fa-arrow-alt-circle-left.fa-2x
+                                        | &nbsp;&nbsp;Resumen
                                 .card-body.p-4
                                     table.table-striped#tbl_award_res(data-show-export="true")
 
@@ -117,7 +120,10 @@ block content
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
-                                    h3.card-title Detalle
+                                    h3.card-title 
+                                        a#btn_aw_bk_det(href='#')
+                                            i.far.fa-arrow-alt-circle-left.fa-2x
+                                        | &nbsp;&nbsp;Detalle
                                 .card-body.p-4
                                     table.table-striped#tbl_award_det(data-show-export="true")
 
@@ -125,7 +131,10 @@ block content
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
-                                    h3.card-title Documento
+                                    h3.card-title
+                                        a#btn_aw_bk_doc(href='#')
+                                            i.far.fa-arrow-alt-circle-left.fa-2x
+                                        | &nbsp;&nbsp;Documento
                                 .card-body.p-4
                                     table.table-striped#tbl_award_doc(data-show-export="true")
 
@@ -133,7 +142,10 @@ block content
                         .col-sm-12.col-md-12.col-lg-12.col-xl-12
                             .card
                                 .card-header
-                                    h3.card-title Detalle Del Contrato
+                                    h3.card-title 
+                                        a#btn_aw_bk_dec(href='#')
+                                            i.far.fa-arrow-alt-circle-left.fa-2x
+                                        | &nbsp;&nbsp;Detalle Del Contrato
                                 .card-body.p-4
                                     .card
                                         .card-header
@@ -219,7 +231,8 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_gir') A Girar
                                                                     .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_gir(type='text', name='ot_mon_gir', readonly)
+                                                                        a#btn_aw_agirar(href='#', type='button', data-toggle='modal', data-target='#modalDeposito')
+                                                                            label#ot_mon_gir
                                                     
 
                                                 .row
@@ -232,22 +245,22 @@ block content
                                                                 .form-group.row
                                                                     label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_doc') Aplic.a documento(s)
                                                                     .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_doc(type='text', name='ot_apli_doc', placeholder='Aplic.a documento(s)', readonly)
+                                                                        input.form-control.form-control-sm#ot_apli_doc(type='text', name='ot_apli_doc', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_pro') Aplic.a prorroga(s)
                                                                     .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_pro(type='text', name='ot_apli_pro', placeholder='Aplic.a prorroga(s)', readonly)
+                                                                        input.form-control.form-control-sm#ot_apli_pro(type='text', name='ot_apli_pro', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_cta') Aplic.a ctas. x cobrar
                                                                     .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_cta(type='text', name='ot_apli_cta', placeholder='Aplic.a ctas. x cobrar', readonly)
+                                                                        input.form-control.form-control-sm#ot_apli_cta(type='text', name='ot_apli_cta', readonly)
 
                                                                 .form-group.row
                                                                     label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_prote') Aplic.a protestos
                                                                     .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_prote(type='text', name='ot_apli_prote', placeholder='Aplic.a protestos', readonly)
+                                                                        input.form-control.form-control-sm#ot_apli_prote(type='text', name='ot_apli_prote', readonly)
 
                                     .card
                                         .card-header
@@ -256,8 +269,49 @@ block content
                                                 | Detalle de Liquidación
                                         .card-body.p4
                                             table.table-striped#tbl_award_ind2(data-show-export="false")                
-
+            
             include _footer
+
+            .modal.fade#modalDeposito(tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true')
+                .modal-dialog.modal-dialog-centered(role='document')
+                    .modal-content
+                        .modal-body
+                            .card
+                                .card-header
+                                    .card-title
+                                        | Datos de la Operación
+                                    .card-body
+                                        form
+                                            .form-group.row
+                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='aw_cli') Cliente
+                                                .col-sm-8
+                                                    input.form-control.form-control-sm#aw_cli(type='text', name='aw_cli', readonly)
+                                            .form-group.row
+                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='aw_rut') R.U.T.
+                                                .col-sm-8
+                                                    input.form-control.form-control-sm#aw_rut(type='text', name='aw_rut', readonly)
+                                            .form-group.row
+                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='aw_con') Contrato
+                                                .col-sm-8
+                                                    input.form-control.form-control-sm#aw_con(type='text', name='aw_con', readonly)
+                                            .form-group.row
+                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='aw_fec') Fecha
+                                                .col-sm-8
+                                                    input.form-control.form-control-sm#aw_fec(type='text', name='aw_fec', readonly)
+
+                            .card
+                                .card-header
+                                    .card-title
+                                        | Detalle de Liquidación
+                                    .card-body
+                                        table.table-striped#tbl_award_inddep(data-show-export="false")    
+
+                        .modal-footer
+                            .row
+                                .col-md-6
+                                    button.btn.btn-primary.btn-block(type='button') Imprimir
+                                .col-md-6
+                                    button.btn.btn-secondary.btn-block(type='button', data-dismiss='modal') Cerrar
 
     include _scripts
 
