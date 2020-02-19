@@ -177,6 +177,8 @@ function urlSp11IndApl(rut, contrato) {
 
 (function($) {
 	"use strict";
+
+	let _originalOption = '';
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -936,7 +938,7 @@ function urlSp11IndApl(rut, contrato) {
 
 		$('#tblAwardDet').hide('slow');
 
-		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {			
+		if($(_originalOption === 'ot_opt_res') {			
 			$('#tblAwardRes').show('slow');
 		}
 	});
@@ -965,6 +967,8 @@ function urlSp11IndApl(rut, contrato) {
 
     $("#btn-ot-search").click(function(e) {
 		e.preventDefault();
+
+		_originalOption = $('input:radio[name=ot_op1]:checked').val();
 		
 		if($('input:radio[name=ot_op1]:checked').val() === 'ot_opt_res') {
 			$('#tblAwardRes').show('slow');
