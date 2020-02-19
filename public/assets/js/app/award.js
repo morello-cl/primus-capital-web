@@ -276,7 +276,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				searchable: true,
 				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-primary">${value}</a>`;
+					return `<a href="#" class="badge badge-secondary">${value}</a>`;
 				}
 			},
 			{
