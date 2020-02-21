@@ -1168,11 +1168,10 @@ function urlSp11IndDep(rut, contrato) {
 							console.log('indpal', r.data);
 		
 							if(Array.isArray(emptyArray) && emptyArray.length) {
-								$('#ot_apli_doc').val(0);
-								$('#ot_apli_pro').val(0);
-								$('#ot_apli_cta').val(0);
-								$('#ot_apli_cta').val(0);
-								$('#ot_apli_prote').val(0);
+								$('#ot_apli_doc').val(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));
+								$('#ot_apli_pro').val(numeral(r.data[0].aplprorroga).format("$ 0,000[.]0"));
+								$('#ot_apli_cta').val(numeral(r.data[0].aplcxc).format("$ 0,000[.]0"));
+								$('#ot_apli_prote').val(numeral(r.data[0].aplprotesto).format("$ 0,000[.]0"));
 							} else {
 								$('#ot_apli_doc').val('');
 								$('#ot_apli_pro').val('');
