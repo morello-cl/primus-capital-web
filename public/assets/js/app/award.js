@@ -269,6 +269,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -280,6 +281,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
+				sortable: true,
 				searchable: true,
 			},
 			{
@@ -287,6 +289,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -427,6 +430,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
@@ -438,12 +442,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -614,6 +620,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -626,12 +633,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -640,6 +649,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
@@ -652,6 +662,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "fotorgam",
@@ -816,6 +827,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap'
 			},
 			{
@@ -823,12 +835,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "docto",
 				title: "Nro Docto",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "fvcmto",
