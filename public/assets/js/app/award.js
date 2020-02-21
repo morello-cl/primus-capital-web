@@ -1159,40 +1159,40 @@ function urlSp11IndDep(rut, contrato) {
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
 					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
+
+					const url_ind_apl = urlSp11IndApl(_awardCliente, r.data[0].nroot);
+
+					console.log('url_ind_apl', url_ind_apl);
+					axios.get(url_ind_apl)
+						.then(function(r) {
+							console.log('indpal', r.data);
+		
+							if(Array.isArray(emptyArray) && emptyArray.length) {
+								$('#ot_apli_doc').val(0);
+								$('#ot_apli_pro').val(0);
+								$('#ot_apli_cta').val(0);
+								$('#ot_apli_cta').val(0);
+								$('#ot_apli_prote').val(0);
+							} else {
+								$('#ot_apli_doc').val('');
+								$('#ot_apli_pro').val('');
+								$('#ot_apli_cta').val('');
+								$('#ot_apli_cta').val('');
+								$('#ot_apli_prote').val('');
+							}
+						})
+						.catch(function(err) {
+							console.log('err.code', err.code);
+							console.log('err.message', err.message);
+							console.log('err.stack', err.stack);
+				
+					});
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
 					console.log('err.message', err.message);
 					console.log('err.stack', err.stack);
 				});
-
-			const url_ind_apl = urlSp11IndApl(row.idcliente, row.contrato);
-
-			console.log('url_ind_apl', url_ind_apl);
-			axios.get(url_ind_apl)
-				.then(function(r) {
-					console.log('indpal', r.data);
-
-					if(Array.isArray(emptyArray) && emptyArray.length) {
-						$('#ot_apli_doc').val(0);
-						$('#ot_apli_pro').val(0);
-						$('#ot_apli_cta').val(0);
-						$('#ot_apli_cta').val(0);
-						$('#ot_apli_prote').val(0);
-					} else {
-						$('#ot_apli_doc').val('');
-						$('#ot_apli_pro').val('');
-						$('#ot_apli_cta').val('');
-						$('#ot_apli_cta').val('');
-						$('#ot_apli_prote').val('');
-					}
-				})
-				.catch(function(err) {
-					console.log('err.code', err.code);
-					console.log('err.message', err.message);
-					console.log('err.stack', err.stack);
-		
-			});
 
 			$("#tbl_award_ind2").bootstrapTable("refresh", {
 				url: urlSp11Ind2(row.idcliente, row.contrato),
