@@ -159,7 +159,7 @@ router.get('/sp_11_indapl', isLoggedIn, function(req, res, next){
     let _contrato = req.query.contrato ? req.query.contrato : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_indapl', {
-        Rut: _rut,
+        rut: _rut,
         Contrato: _contrato
     }, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
