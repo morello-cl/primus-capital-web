@@ -269,6 +269,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
