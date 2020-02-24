@@ -1,0 +1,144 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+                
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Excedentes
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Excedentes
+
+                    .row
+                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                            .card
+                                .card-header(data-toggle="collapse", role="button", href="#divBodySearchSurplus", aria-expanded="false", aria-controls="divBodySearchSurplus")
+                                    h3.card-title Opciones de Consulta
+                                .card-body.p-4
+                                    #divBodySearchSurplus
+                                        .row
+                                            .col-sm-12.col-md-12.col-lg-4.col-xl-6
+                                                .card
+                                                    .card-header
+                                                        .card-title Ver Excedentes por
+                                                    .card-body
+                                                        .form-group.form-elements
+                                                            .custom-controls-stacked
+                                                                .row
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_res' checked)
+                                                                            span.custom-control-label Contrato
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='e-sp_op1' value='sp_opt_doc')
+                                                                            span.custom-control-label Documento
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_abo')
+                                                                            span.custom-control-label Abono a Documento
+                                                                p
+                                                                .row
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='sp_op1' value='sp_opt_car')
+                                                                            span.custom-control-label Cartola de Excedente
+
+                                            .col-sm-12.col-md-12.col-lg-8.col-xl-6
+                                                .card
+                                                    .card-header
+                                                        .card-title Fecha
+                                                    .card-body
+                                                        .form-group.form-elements
+                                                            .custom-controls-stacked
+                                                                .row
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='sp_op2' value='sp_opt_hoy' checked)
+                                                                            span.custom-control-label A hoy
+                                                                p
+                                                                .row
+                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                        label.custom-control.custom-radio
+                                                                            input.custom-control-input(type='radio' name='sp_op2' value='sp_opt_per')
+                                                                            span.custom-control-label Periodo
+
+                                                                    .col-sm-12.col-md-12.col-lg-6.col-xl-4
+                                                                        label(for='sp_date_ini') Desde
+                                                                        .form-group
+                                                                            .input-group.date(id='sp_date_ini')
+                                                                                input#sp_date_ini_txt.form-control(type='text', placeholder='', readonly)
+                                                                                span.input-group-addon
+                                                                                    span.fa.fa-calendar
+
+                                                                    .col-sm-12.col-md-12.col-lg-6.col-xl-4
+                                                                        label(for='sp_date_end') Hasta
+                                                                        .form-group
+                                                                            .input-group.date(id='sp_date_end')
+                                                                                input#sp_date_end_txt.form-control(type='text', placeholder='', readonly)
+                                                                                span.input-group-addon
+                                                                                    span.fa.fa-calendar
+
+                                        .row
+                                            .col-md-6
+                                            .col-md-6
+                                                .row
+                                                    .col-lg-6
+                                                        button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
+                                                    .col-lg-6
+                                                        button.btn.btn-outline-secondary.btn-block#btn-ot-search(type="button") Consultar
+
+                                        p
+                                        .row
+                                            .col-md-12
+                                                span.text-muted.text-right
+                                                    | Estado: favor seleccione preferencias de consulta.
+
+                    .row
+                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                            .card
+                                .card-header(data-toggle="collapse", role="button", href="#tblSurplusRes", aria-expanded="false", aria-controls="tblSurplusRes")
+                                    h3.card-title Resumen por Contrato
+                                .card-body.p-4
+                                    .collapse#tblSurplusRes
+                                        table#tbl_surplus_res(data-show-export="true")
+
+                    .row
+                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                            .card
+                                .card-header(data-toggle="collapse", href="#tblSurplusDet", aria-expanded="false", aria-controls="tblSurplusDet")
+                                    h3.card-title Detalle
+                                .card-body.p-4
+                                    .collapse#tblSurplusDet
+                                        table#tbl_surplus_det(data-show-export="true")
+
+                    .row
+                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                            .card
+                                .card-header(data-toggle="collapse", href="#tblSurplusDoc", aria-expanded="false", aria-controls="tblSurplusDoc")
+                                    h3.card-title Documento
+                                .card-body.p-4
+                                    .collapse#tblSurplusDoc
+                                        table#tbl_surplus_doc(data-show-export="true")
+
+                    .row
+                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
+                            .card
+                                .card-header(data-toggle="collapse", href="#tblSurplusAbo", aria-expanded="false", aria-controls="tblSurplusAbo")
+                                    h3.card-title Abono
+                                .card-body.p-4
+                                    .collapse#tblSurplusAbo
+                                        table#tbl_surplus_abo(data-show-export="true")
+
+            include _footer
+
+    include _scripts
+
+    script(src='/assets/js/app/surplus.js')
