@@ -6,7 +6,7 @@ block content
             .page-main
                 include _sidebar
 
-			.app-content
+			//.app-content
 				.side-app
 					.page-header
 						div
@@ -92,7 +92,7 @@ block content
 													| Estado: favor seleccione preferencias de consulta.
 
 
-					//.row
+					.row
 						.col-sm-12.col-md-12.col-lg-12.col-xl-12
 							.card
 								.card-header(data-toggle="collapse", role="button", href="#tblWsRes", aria-expanded="false", aria-controls="tblWsRes")
@@ -101,7 +101,7 @@ block content
 									.collapse#tblWsRes
 										table#tbl_ws_res(data-show-export="true")
 
-					//.row
+					.row
 						.col-sm-12.col-md-12.col-lg-12.col-xl-12
 							.card
 								.card-header(data-toggle="collapse", href="#tblWsDet", aria-expanded="false", aria-controls="tblWsDet")
@@ -110,7 +110,7 @@ block content
 									.collapse#tblWsDet
 										table#tbl_ws_det(data-show-export="true")
 
-					//.row
+					.row
 						.col-sm-12.col-md-12.col-lg-12.col-xl-12
 							.card
 								.card-header(data-toggle="collapse", href="#tblWsDoc", aria-expanded="false", aria-controls="tblWsDoc")
@@ -119,7 +119,7 @@ block content
 									.collapse#tblWsDoc
 										table#tbl_ws_doc(data-show-export="true")
 
-			include _footer
+			//include _footer
 
 	include _scripts
 
