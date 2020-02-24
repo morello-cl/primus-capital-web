@@ -20,9 +20,9 @@ block content
                         .card
                             .card-header
                                 h3.card-title Opciones de Consulta
-                            .card-body.p-4
-                                .mb-5
-                                    .col-lg-12
+                            .card-body
+                                .row
+                                    .col-lg-4.col-xl-6
                                         .card
                                             .card-header
                                                 .card-title Prorrogas por Deudor
@@ -38,24 +38,8 @@ block content
                                                         .input-group
                                                             input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
 
-                                .mb-5
-                                    .col-lg-12
-                                        .card
-                                            .card-header
-                                                .card-title Tipo de Informe
-                                            .card-body
-                                                .form-group.form-elements
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-type' value='option4' checked)
-                                                                span.custom-control-label Vigente
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-type' value='option5')
-                                                                span.custom-control-label Historico
 
-                                .mb-5
-                                    .col-lg-12
+                                    .col-lg-4.col-xl-6
                                         .card
                                             .card-header
                                                 .card-title Fecha
@@ -74,18 +58,19 @@ block content
                                                         i.fa.fa-calendar
                                                     input.form-control.pull-right#reservation(type='text')
 
-                                .mb-5
-                                    .row
-                                        .col-lg-6
-                                            button.btn.btn-outline-warning.btn-block(type="button") Limpiar
-                                        .col-lg-6
-                                            button.btn.btn-primary.btn-block(type="button") Consultar
+                                .row.p-2
+                                    .col-md-6
+                                    .col-md-6
+                                        .row
+                                            .col-lg-6
+                                                button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+                                            .col-lg-6
+                                                button.btn.btn-outline-secondary.btn-block(type="button") Consultar
 
                                 
-                                .mb-5
-                                    p.mb-2
-                                        span.float-right.text-muted
-                                            | Estado: favor seleccione preferencias de consulta.
+                                .row.p-4
+                                    span.float-right.text-muted
+                                        | Estado: favor seleccione preferencias de consulta.
 
             include _footer
 
