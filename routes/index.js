@@ -41,7 +41,7 @@ router.get('/cancellations', isLoggedIn, function(req, res, next){
 });
 
 router.get('/wallet-staft', isLoggedIn, function(req, res, next){
-  res.render('wallet-staft_page', { user: req.user });
+  res.render('_walletstaft', { user: req.user });
 });
 
 router.get('/surplus', isLoggedIn, function(req, res, next){
