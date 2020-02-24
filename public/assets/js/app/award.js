@@ -269,6 +269,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -280,6 +281,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
+				sortable: true,
 				searchable: true,
 			},
 			{
@@ -287,6 +289,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -427,6 +430,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
@@ -438,12 +442,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -614,6 +620,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -626,12 +633,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -640,6 +649,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
@@ -652,6 +662,7 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "fotorgam",
@@ -816,6 +827,7 @@ function urlSp11IndDep(rut, contrato) {
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap'
 			},
 			{
@@ -823,12 +835,14 @@ function urlSp11IndDep(rut, contrato) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "docto",
 				title: "Nro Docto",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "fvcmto",
@@ -1145,40 +1159,39 @@ function urlSp11IndDep(rut, contrato) {
 					$('#ot_mon_oper').val('');
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
 					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
+
+					const url_ind_apl = urlSp11IndApl(_awardCliente, r.data[0].nroot);
+
+					console.log('url_ind_apl', url_ind_apl);
+					axios.get(url_ind_apl)
+						.then(function(r) {
+							console.log('indpal', r.data);
+		
+							if(Array.isArray(r.data) && r.data.length) {
+								$('#ot_apli_doc').val(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));
+								$('#ot_apli_pro').val(numeral(r.data[0].aplprorroga).format("$ 0,000[.]0"));
+								$('#ot_apli_cta').val(numeral(r.data[0].aplcxc).format("$ 0,000[.]0"));
+								$('#ot_apli_prote').val(numeral(r.data[0].aplprotesto).format("$ 0,000[.]0"));
+							} else {
+								$('#ot_apli_doc').val('');
+								$('#ot_apli_pro').val('');
+								$('#ot_apli_cta').val('');
+								$('#ot_apli_cta').val('');
+								$('#ot_apli_prote').val('');
+							}
+						})
+						.catch(function(err) {
+							console.log('err.code', err.code);
+							console.log('err.message', err.message);
+							console.log('err.stack', err.stack);
+				
+					});
 				})
 				.catch(function(err) {
 					console.log('err.code', err.code);
 					console.log('err.message', err.message);
 					console.log('err.stack', err.stack);
 				});
-
-			const url_ind_apl = urlSp11IndApl(row.idcliente, row.contrato);
-
-			console.log('url_ind_apl', url_ind_apl);
-			axios.get(url_ind_apl)
-				.then(function(r) {
-					console.log('indpal', r.data);
-
-					if(Array.isArray(emptyArray) && emptyArray.length) {
-						$('#ot_apli_doc').val(0);
-						$('#ot_apli_pro').val(0);
-						$('#ot_apli_cta').val(0);
-						$('#ot_apli_cta').val(0);
-						$('#ot_apli_prote').val(0);
-					} else {
-						$('#ot_apli_doc').val('');
-						$('#ot_apli_pro').val('');
-						$('#ot_apli_cta').val('');
-						$('#ot_apli_cta').val('');
-						$('#ot_apli_prote').val('');
-					}
-				})
-				.catch(function(err) {
-					console.log('err.code', err.code);
-					console.log('err.message', err.message);
-					console.log('err.stack', err.stack);
-		
-			});
 
 			$("#tbl_award_ind2").bootstrapTable("refresh", {
 				url: urlSp11Ind2(row.idcliente, row.contrato),
