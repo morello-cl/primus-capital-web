@@ -1,0 +1,92 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Prorrogas
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Prorrogas
+
+                    .row
+                        .card
+                            .card-header
+                                h3.card-title Opciones de Consulta
+                            .card-body.p-4
+                                .mb-5
+                                    .col-lg-12
+                                        .card
+                                            .card-header
+                                                .card-title Prorrogas por Deudor
+                                            .card-body
+                                                .form-group.form-elements
+                                                    .custom-controls-stacked
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='c-options' value='option1' checked)
+                                                            span.custom-control-label Todos
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='c-options' value='option2')
+                                                            span.custom-control-label R.U.T. Deudor
+                                                        .input-group
+                                                            input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
+
+                                .mb-5
+                                    .col-lg-12
+                                        .card
+                                            .card-header
+                                                .card-title Tipo de Informe
+                                            .card-body
+                                                .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            label.custom-control.custom-radio
+                                                                input.custom-control-input(type='radio' name='p-type' value='option4' checked)
+                                                                span.custom-control-label Vigente
+                                                        .custom-controls-stacked
+                                                            label.custom-control.custom-radio
+                                                                input.custom-control-input(type='radio' name='p-type' value='option5')
+                                                                span.custom-control-label Historico
+
+                                .mb-5
+                                    .col-lg-12
+                                        .card
+                                            .card-header
+                                                .card-title Fecha
+                                            .card-body
+                                                .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            label.custom-control.custom-radio
+                                                                input.custom-control-input(type='radio' name='p-datetime' value='option4' checked)
+                                                                span.custom-control-label A hoy
+                                                        .custom-controls-stacked
+                                                            label.custom-control.custom-radio
+                                                                input.custom-control-input(type='radio' name='p-datetime' value='option5')
+                                                                span.custom-control-label Otra Fecha
+                                                .input-group
+                                                    .input-group-text
+                                                        i.fa.fa-calendar
+                                                    input.form-control.pull-right#reservation(type='text')
+
+                                .mb-5
+                                    .row
+                                        .col-lg-6
+                                            button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+                                        .col-lg-6
+                                            button.btn.btn-primary.btn-block(type="button") Consultar
+
+                                
+                                .mb-5
+                                    p.mb-2
+                                        span.float-right.text-muted
+                                            | Estado: favor seleccione preferencias de consulta.
+
+            include _footer
+
+    include _scripts

@@ -52,4 +52,8 @@ router.get('/protests', isLoggedIn, function(req, res, next){
   res.render('_protests', { user: req.user });
 });
 
+router.get('/extensions', isLoggedIn, function(req, res, next){
+  res.render('_extensions', { user: req.user });
+});
+
 module.exports = router;
