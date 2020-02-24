@@ -49,7 +49,7 @@ router.get('/surplus', isLoggedIn, function(req, res, next){
 });
 
 router.get('/protests', isLoggedIn, function(req, res, next){
-  res.render('protestos', { user: req.user });
+  res.render('_protests', { user: req.user });
 });
 
 module.exports = router;
