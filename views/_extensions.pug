@@ -1,0 +1,85 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Prorrogas
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Prorrogas
+
+                    .row
+                        .card
+                            .card-header
+                                h3.card-title Opciones de Consulta
+                            .card-body
+                                .row
+                                    .col-lg-4.col-xl-6
+                                        .card
+                                            .card-header
+                                                .card-title Prorrogas por Deudor
+                                            .card-body
+                                                .form-group.form-elements
+                                                    .custom-controls-stacked
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='c-options' value='option1' checked)
+                                                            span.custom-control-label Todos
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='c-options' value='option2')
+                                                            span.custom-control-label R.U.T. Deudor
+                                                        .input-group
+                                                            input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
+
+
+                                    .col-lg-8.col-xl-6
+                                        .card
+                                            .card-header
+                                                .card-title Fecha
+                                            .card-body
+                                                .form-group.form-elements
+                                                    .custom-controls-stacked
+                                                        .row
+                                                            .col-xl-6
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_hoy' checked)
+                                                                    span.custom-control-label A hoy
+
+                                                        .row
+                                                            .col-xl-5
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_per')
+                                                                    span.custom-control-label Otra Fecha
+
+                                                            .col-lg-6.col-xl-6
+                                                                label.sr-only(for='ext_date') Fecha
+                                                                .form-group
+                                                                    .input-group.date(id='ext_date')
+                                                                        input#ext_date_txt.form-control(type='text', placeholder='', readonly)
+                                                                        span.input-group-addon
+                                                                            span.fa.fa-calendar
+
+                                .row.p-2
+                                    .col-md-6
+                                    .col-md-6
+                                        .row
+                                            .col-lg-6
+                                                button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+                                            .col-lg-6
+                                                button.btn.btn-outline-secondary.btn-block(type="button") Consultar
+
+                                
+                                .row.p-4
+                                    span.float-right.text-muted
+                                        | Estado: favor seleccione preferencias de consulta.
+
+            include _footer
+
+    include _scripts

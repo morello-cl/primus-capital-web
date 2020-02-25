@@ -1,3 +1,4 @@
+const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
 const exportOptionsBoostrapTable = {
 	consoleLog: false,
 	csvEnclosure: '"',
@@ -165,6 +166,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	let _originalOption = '';
+
     const date_now = moment().startOf("day");
 
     const date_end = moment().startOf("day");
@@ -221,6 +224,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -233,12 +237,14 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "contratos",
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "mondoc",
@@ -334,10 +340,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -354,6 +360,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
@@ -366,12 +373,14 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "contratos",
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "f_otorg",
@@ -487,10 +496,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -508,6 +517,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					const rut = $.formatRut(value + "-" + row.dvcliente, true);
 
@@ -519,12 +529,14 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
 					const rut = $.formatRut(value + "-" + row.dvdeudor, true);
 
@@ -536,6 +548,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "contrato",
@@ -676,10 +689,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -697,6 +710,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
                     return $.formatRut(value + "-" + row.dvcliente, true);
                 },
@@ -706,12 +720,14 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
                     return $.formatRut(value + "-" + row.dvdeudor, true);
                 },
@@ -721,12 +737,14 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "f_otorg",
@@ -885,10 +903,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -901,6 +919,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 
     $("#btn-ca-search").click(function(e) {
 		e.preventDefault();
+
+		_originalOption = $('input:radio[name=ca_op1]:checked').val();
 		
 		if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_res') {
 			$('#tblCancelRes').show('slow');
@@ -1010,5 +1030,47 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 			$('#tblCancelDoc').show('slow');
 			$('#tblCancelAbo').hide('slow');
 		}
+	});
+
+	$("#btn_ca_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_cancel_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblCancelRes').hide('slow');
+	});
+
+	$("#btn_ca_bk_det").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_cancel_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblCancelDet').hide('slow');
+
+		if(_originalOption === 'ca_opt_res') {			
+			$('#tblCancelRes').show('slow');
+		}
+	});
+
+	$("#btn_ca_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_cancel_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblCancelDoc').hide('slow');
+		$('#tblCancelDet').show('slow');
+	});
+
+	$("#btn_ca_bk_abo").click(function(e){
+		e.preventDefault();
+
+		$('#tblCancelDeC').hide('slow');
+		$('#tblCancelDoc').show('slow');
 	});
 })(jQuery);
