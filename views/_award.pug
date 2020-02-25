@@ -48,11 +48,11 @@ block content
                                                                 // invisible mientras no se utiliza
                                                                 p
                                                                 .row(style="display:none")
-                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-4
+                                                                    .col-xl-4
                                                                         label.custom-control.custom-radio
                                                                             input.custom-control-input(type='radio' name='ot_op1' value='ot_opt_ind' disabled)
                                                                             span.custom-control-label Individual
-                                                                    .col-sm-12.col-md-12.col-lg-12.col-xl-5
+                                                                    .col-xl-5
                                                                         .input-group
                                                                             input.form-control#ot_nro(type='text' placeholder='R.U.T. Cliente', disabled)
                                             .col-sm-12.col-md-12.col-lg-8.col-xl-6
@@ -106,169 +106,165 @@ block content
                                                     | Estado: favor seleccione preferencias de consulta.
 
                     .row#tblAwardRes(style="display:none")
-                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
-                            .card
-                                .card-header
-                                    h3.card-title
-                                        a#btn_aw_bk_res(href='#')
-                                            i.far.fa-arrow-alt-circle-left.fa-2x
-                                        | &nbsp;&nbsp;Resumen
-                                .card-body.p-4
-                                    table.table-striped#tbl_award_res(data-show-export="true")
+                        .card
+                            .card-header
+                                h3.card-title
+                                    a#btn_aw_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen
+                            .card-body.p-4
+                                table.table-striped#tbl_award_res(data-show-export="true")
 
                     .row#tblAwardDet(style="display:none")
-                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
-                            .card
-                                .card-header
-                                    h3.card-title 
-                                        a#btn_aw_bk_det(href='#')
-                                            i.far.fa-arrow-alt-circle-left.fa-2x
-                                        | &nbsp;&nbsp;Detalle
-                                .card-body.p-4
-                                    table.table-striped#tbl_award_det(data-show-export="true")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_aw_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
+                            .card-body.p-4
+                                table.table-striped#tbl_award_det(data-show-export="true")
 
                     .row#tblAwardDoc(style="display:none")
-                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
-                            .card
-                                .card-header
-                                    h3.card-title
-                                        a#btn_aw_bk_doc(href='#')
-                                            i.far.fa-arrow-alt-circle-left.fa-2x
-                                        | &nbsp;&nbsp;Documento
-                                .card-body.p-4
-                                    table.table-striped#tbl_award_doc(data-show-export="true")
+                        .card
+                            .card-header
+                                h3.card-title
+                                    a#btn_aw_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documento
+                            .card-body.p-4
+                                table.table-striped#tbl_award_doc(data-show-export="true")
 
                     .row#tblAwardDeC(style="display:none")
-                        .col-sm-12.col-md-12.col-lg-12.col-xl-12
-                            .card
-                                .card-header
-                                    h3.card-title 
-                                        a#btn_aw_bk_dec(href='#')
-                                            i.far.fa-arrow-alt-circle-left.fa-2x
-                                        | &nbsp;&nbsp;Detalle Del Contrato
-                                .card-body.p-4
-                                    .card
-                                        .card-header
-                                            h3.card-title
-                                                strong 
-                                                    | Resumen de Liquidación para 
-                                                    span#ot_client_name
-                                        .card-body.p4
-                                            form
-                                                .row
-                                                    .col-xl-4
-                                                        .card
-                                                            .card-body
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_ejecutivo') Ejecutivo Curse
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', readonly)
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_aw_bk_dec(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle Del Contrato
+                            .card-body.p-4
+                                .card
+                                    .card-header
+                                        h3.card-title
+                                            strong 
+                                                | Resumen de Liquidación para 
+                                                span#ot_client_name
+                                    .card-body.p4
+                                        form
+                                            .row
+                                                .col-xl-4
+                                                    .card
+                                                        .card-body
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_ejecutivo') Ejecutivo Curse
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_ejecutivo(type='text', name='ot_ejecutivo', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_producto') Producto
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_producto(type='text', name='ot_producto', readonly)
-                                                                
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_contrato') Nro. Contrato/Doc
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_contrato(type='text', name='ot_contrato', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_producto') Producto
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_producto(type='text', name='ot_producto', readonly)
+                                                            
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_contrato') Nro. Contrato/Doc
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_contrato(type='text', name='ot_contrato', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_fecha_c') Fecha Contrato
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_fecha_c(type='text', name='ot_fecha_c', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_fecha_c') Fecha Contrato
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_fecha_c(type='text', name='ot_fecha_c', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_tasa_o') Tasa Operación
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_tasa_o(type='text', name='ot_tasa_o', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_tasa_o') Tasa Operación
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_tasa_o(type='text', name='ot_tasa_o', readonly)
 
-                                                    .col-xl-4
-                                                        .card
-                                                            .card-body
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_doc') Monto Doctos.
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_doc(type='text', name='ot_mon_doc', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_ant') Monto Anticipo
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_ant(type='text', name='ot_mon_ant', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_dif_precio') Dif. Precio
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_dif_precio(type='text', name='ot_dif_precio', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_comision') Comisión
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_comision(type='text', name='ot_comision', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_iva') I.V.A.
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_iva(type='text', name='ot_iva', readonly)
+                                                .col-xl-4
+                                                    .card
+                                                        .card-body
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_doc') Monto Doctos.
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_mon_doc(type='text', name='ot_mon_doc', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_ant') Monto Anticipo
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_mon_ant(type='text', name='ot_mon_ant', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_dif_precio') Dif. Precio
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_dif_precio(type='text', name='ot_dif_precio', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_comision') Comisión
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_comision(type='text', name='ot_comision', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_iva') I.V.A.
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_iva(type='text', name='ot_iva', readonly)
 
 
-                                                    .col-xl-4
-                                                        .card
-                                                            .card-body
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_impto') Impuestos
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_impto(type='text', name='ot_impto', readonly)
-                                                                .form-group.row  
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_gastos') Gastos
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_gastos(type='text', name='ot_gastos', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_oper') Monto Operación
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_mon_oper(type='text', name='ot_mon_oper', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_aplicacion') Aplicaciones
-                                                                    .col-sm-7
-                                                                        input.form-control.form-control-sm#ot_aplicacion(type='text', name='ot_aplicacion', readonly)
-                                                                .form-group.row
-                                                                    label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_gir') A Girar
-                                                                    .col-sm-7
-                                                                        a#btn_aw_agirar(href='#', type='button', data-toggle='modal', data-target='#modalDeposito')
-                                                                            label#ot_mon_gir
-                                                    
+                                                .col-xl-4
+                                                    .card
+                                                        .card-body
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_impto') Impuestos
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_impto(type='text', name='ot_impto', readonly)
+                                                            .form-group.row  
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_gastos') Gastos
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_gastos(type='text', name='ot_gastos', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_oper') Monto Operación
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_mon_oper(type='text', name='ot_mon_oper', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_aplicacion') Aplicaciones
+                                                                .col-sm-7
+                                                                    input.form-control.form-control-sm#ot_aplicacion(type='text', name='ot_aplicacion', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-5.col-form-label.col-form-label-sm.text-right(for='ot_mon_gir') A Girar
+                                                                .col-sm-7
+                                                                    a#btn_aw_agirar(href='#', type='button', data-toggle='modal', data-target='#modalDeposito')
+                                                                        label#ot_mon_gir
+                                                
 
-                                                .row
-                                                    .col-lg-4.col-xl-6
-                                                    .col-lg-8.col-xl-6
-                                                        .card
-                                                            .card-header.text-center
-                                                                | Detalle de Aplicaciones
-                                                            .card-body
-                                                                .form-group.row
-                                                                    label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_doc') Aplic.a documento(s)
-                                                                    .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_doc(type='text', name='ot_apli_doc', readonly)
+                                            .row
+                                                .col-lg-4.col-xl-6
+                                                .col-lg-8.col-xl-6
+                                                    .card
+                                                        .card-header.text-center
+                                                            | Detalle de Aplicaciones
+                                                        .card-body
+                                                            .form-group.row
+                                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_doc') Aplic.a documento(s)
+                                                                .col-sm-8
+                                                                    input.form-control.form-control-sm#ot_apli_doc(type='text', name='ot_apli_doc', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_pro') Aplic.a prorroga(s)
-                                                                    .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_pro(type='text', name='ot_apli_pro', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_pro') Aplic.a prorroga(s)
+                                                                .col-sm-8
+                                                                    input.form-control.form-control-sm#ot_apli_pro(type='text', name='ot_apli_pro', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_cta') Aplic.a ctas. x cobrar
-                                                                    .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_cta(type='text', name='ot_apli_cta', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_cta') Aplic.a ctas. x cobrar
+                                                                .col-sm-8
+                                                                    input.form-control.form-control-sm#ot_apli_cta(type='text', name='ot_apli_cta', readonly)
 
-                                                                .form-group.row
-                                                                    label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_prote') Aplic.a protestos
-                                                                    .col-sm-8
-                                                                        input.form-control.form-control-sm#ot_apli_prote(type='text', name='ot_apli_prote', readonly)
+                                                            .form-group.row
+                                                                label.col-sm-4.col-form-label.col-form-label-sm.text-right(for='ot_apli_prote') Aplic.a protestos
+                                                                .col-sm-8
+                                                                    input.form-control.form-control-sm#ot_apli_prote(type='text', name='ot_apli_prote', readonly)
 
-                                    .card
-                                        .card-header
-                                            .card-title
-                                                strong
-                                                | Detalle de Liquidación
-                                        .card-body.p4
-                                            table.table-striped#tbl_award_ind2(data-show-export="false")                
+                                .card
+                                    .card-header
+                                        .card-title
+                                            strong
+                                            | Detalle de Liquidación
+                                    .card-body.p4
+                                        table.table-striped#tbl_award_ind2(data-show-export="false")                
             
             include _footer
 

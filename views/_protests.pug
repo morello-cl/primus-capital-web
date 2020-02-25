@@ -38,49 +38,61 @@ block content
                                                         .input-group
                                                             input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
 
-                                    .col-lg-4.col-xl-4
+                                    .col-lg-4.col-xl-3
                                         .card
                                             .card-header
                                                 .card-title Tipo de Informe
                                             .card-body
                                                 .form-group.form-elements
                                                         .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-type' value='option4' checked)
-                                                                span.custom-control-label Vigente
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-type' value='option5')
-                                                                span.custom-control-label Historico
+                                                            .row
+                                                                .col-lg-6
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='p_type' value='p_type_vig' checked)
+                                                                        span.custom-control-label Vigente
+
+                                                            .row
+                                                                .col-lg-6
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='p_type' value='p_type_his')
+                                                                        span.custom-control-label Historico
 
 
-                                    .col-lg-4.col-xl-4
+                                    .col-lg-8.col-xl-5
                                         .card
                                             .card-header
                                                 .card-title Fecha
                                             .card-body
                                                 .form-group.form-elements
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-datetime' value='option4' checked)
-                                                                span.custom-control-label A hoy
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-datetime' value='option5')
-                                                                span.custom-control-label Otra Fecha
-                                                .input-group
-                                                    .input-group-text
-                                                        i.fa.fa-calendar
-                                                    input.form-control.pull-right#reservation(type='text')
+                                                    .custom-controls-stacked
+                                                        .row
+                                                            .col-xl-6
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='pro_op2' value='pro_opt_hoy' checked)
+                                                                    span.custom-control-label A hoy
+
+                                                        .row
+                                                            .col-xl-5
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='pro_op2' value='pro_opt_per')
+                                                                    span.custom-control-label Otra Fecha
+
+                                                            .col-lg-6.col-xl-6
+                                                                label.sr-only(for='pro_date') Fecha
+                                                                .form-group
+                                                                    .input-group.date(id='pro_date')
+                                                                        input#pro_date_txt.form-control(type='text', placeholder='', readonly)
+                                                                        span.input-group-addon
+                                                                            span.fa.fa-calendar
 
                                 .row.p-2
                                     .col-md-6
                                     .col-md-6
                                         .row
                                             .col-lg-6
-                                                button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+                                                button.btn.btn-outline-warning.btn-block#btn_pro_clean(type="button") Limpiar
                                             .col-lg-6
-                                                button.btn.btn-outline-secondary.btn-block(type="button") Consultar
+                                                button.btn.btn-outline-secondary.btn-block#btn_pro_search(type="button") Consultar
 
                                 .row.p-4
                                     .col-md-12

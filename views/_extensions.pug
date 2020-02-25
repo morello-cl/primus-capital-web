@@ -39,24 +39,32 @@ block content
                                                             input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
 
 
-                                    .col-lg-4.col-xl-6
+                                    .col-lg-8.col-xl-6
                                         .card
                                             .card-header
                                                 .card-title Fecha
                                             .card-body
                                                 .form-group.form-elements
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-datetime' value='option4' checked)
-                                                                span.custom-control-label A hoy
-                                                        .custom-controls-stacked
-                                                            label.custom-control.custom-radio
-                                                                input.custom-control-input(type='radio' name='p-datetime' value='option5')
-                                                                span.custom-control-label Otra Fecha
-                                                .input-group
-                                                    .input-group-text
-                                                        i.fa.fa-calendar
-                                                    input.form-control.pull-right#reservation(type='text')
+                                                    .custom-controls-stacked
+                                                        .row
+                                                            .col-xl-6
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_hoy' checked)
+                                                                    span.custom-control-label A hoy
+
+                                                        .row
+                                                            .col-xl-5
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_per')
+                                                                    span.custom-control-label Otra Fecha
+
+                                                            .col-lg-6.col-xl-6
+                                                                label.sr-only(for='ext_date') Fecha
+                                                                .form-group
+                                                                    .input-group.date(id='ext_date')
+                                                                        input#ext_date_txt.form-control(type='text', placeholder='', readonly)
+                                                                        span.input-group-addon
+                                                                            span.fa.fa-calendar
 
                                 .row.p-2
                                     .col-md-6
