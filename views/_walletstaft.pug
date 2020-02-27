@@ -90,29 +90,35 @@ block content
                                                 | Estado: favor seleccione preferencias de consulta.
 
 
-                    .row
+                    .row#tblWsRes(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", role="button", href="#tblWsRes", aria-expanded="false", aria-controls="tblWsRes")
-                                h3.card-title Resumen por Contrato
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen por Contrato
                             .card-body.p-4
-                                .collapse#tblWsRes
-                                    table#tbl_ws_res(data-show-export="true")
+                                table#tbl_ws_res(data-show-export="true")
 
-                    .row
+                    .row#tblWsDet(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", href="#tblWsDet", aria-expanded="false", aria-controls="tblWsDet")
-                                h3.card-title Detalle
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
                             .card-body.p-4
-                                .collapse#tblWsDet
-                                    table#tbl_ws_det(data-show-export="true")
+                                table#tbl_ws_det(data-show-export="true")
 
-                    .row
+                    .row#tblWsDoc(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", href="#tblWsDoc", aria-expanded="false", aria-controls="tblWsDoc")
-                                h3.card-title Documento
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documento
                             .card-body.p-4
-                                .collapse#tblWsDoc
-                                    table#tbl_ws_doc(data-show-export="true")
+                                table#tbl_ws_doc(data-show-export="true")
 
             include _footer
 

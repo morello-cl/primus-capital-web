@@ -671,4 +671,36 @@ function urlSp13docTable(rut, date_ini, date_end) {
 			$('#tblWsDoc').collapse('show');
 		}
 	});
+
+	$("#btn_ws_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_ws_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblWsRes').hide('slow');
+	});
+
+	$("#btn_ws_bk_det").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_ws_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblWsDet').hide('slow');
+		$('#tblWsRes').show('slow');
+	});
+
+	$("#btn_ws_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_ws_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblWsDoc').hide('slow');
+		$('#tblWsDet').show('slow');
+	});
 })(jQuery);
