@@ -886,20 +886,6 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			$("#tbl_surplus_res").bootstrapTable("refresh", {
 				url: urlSp14resTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_det') {
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').show('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
-
-			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const nro_client = rut.substring(0, rut.length -2 );
-
-			$("#tbl_surplus_det").bootstrapTable("refresh", {
-				url: urlSp14detTable(nro_client, dt_ini, dt_end),
-			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_doc') {
 			$('#tblSurplusRes').hide('slow');
 			$('#tblSurplusDet').hide('slow');
@@ -913,7 +899,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			$("#tbl_surplus_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=sp_op1]:checked').val() === 'ot_opt_abo'){
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_abo'){
 			$('#tblSurplusRes').hide('slow');
 			$('#tblSurplusDet').hide('slow');
 			$('#tblSurplusDoc').hide('slow');
@@ -926,7 +912,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			$("#tbl_surplus_doc").bootstrapTable("refresh", {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=sp_op1]:checked').val() === 'ot_opt_car'){
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_car'){
 			$('#tblSurplusRes').hide('slow');
 			$('#tblSurplusDet').hide('slow');
 			$('#tblSurplusDoc').hide('slow');
