@@ -90,9 +90,9 @@ block content
                                         .col-md-6
                                             .row
                                                 .col-lg-6
-                                                    button.btn.btn-outline-warning.btn-block#btn-ot-clear(type="button") Limpiar
+                                                    button.btn.btn-outline-warning.btn-block#btn-sp-clear(type="button") Limpiar
                                                 .col-lg-6
-                                                    button.btn.btn-outline-secondary.btn-block#btn-ot-search(type="button") Consultar
+                                                    button.btn.btn-outline-secondary.btn-block#btn-sp-search(type="button") Consultar
 
                                     p
                                     .row
@@ -100,37 +100,55 @@ block content
                                             span.text-muted.text-right
                                                 | Estado: favor seleccione preferencias de consulta.
 
-                    .row
+                    .row#tblSurplusRes(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", role="button", href="#tblSurplusRes", aria-expanded="false", aria-controls="tblSurplusRes")
-                                h3.card-title Resumen por Contrato
+                            .card-header
+                                h3.card-title 
+                                    a#btn_sp_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen
                             .card-body.p-4
-                                .collapse#tblSurplusRes
-                                    table#tbl_surplus_res(data-show-export="true")
+                                table#tbl_surplus_res(data-show-export="true")
 
-                    .row
+                    .row#tblSurplusDet(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", href="#tblSurplusDet", aria-expanded="false", aria-controls="tblSurplusDet")
-                                h3.card-title Detalle
+                            .card-header
+                                h3.card-title 
+                                    a#btn_sp_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
                             .card-body.p-4
-                                .collapse#tblSurplusDet
-                                    table#tbl_surplus_det(data-show-export="true")
+                                table#tbl_surplus_det(data-show-export="true")
 
-                    .row
+                    .row#tblSurplusDoc(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", href="#tblSurplusDoc", aria-expanded="false", aria-controls="tblSurplusDoc")
-                                h3.card-title Documento
+                            .card-header
+                                h3.card-title 
+                                    a#btn_sp_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documentos
                             .card-body.p-4
-                                .collapse#tblSurplusDoc
-                                    table#tbl_surplus_doc(data-show-export="true")
+                                table#tbl_surplus_doc(data-show-export="true")
 
-                    .row
+                    .row#tblSurplusAbo(style="display:none")
                         .card
-                            .card-header(data-toggle="collapse", href="#tblSurplusAbo", aria-expanded="false", aria-controls="tblSurplusAbo")
-                                h3.card-title Abono
+                            .card-header
+                                h3.card-title 
+                                    a#btn_sp_bk_abo(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Abono
                             .card-body.p-4
-                                .collapse#tblSurplusAbo
-                                    table#tbl_surplus_abo(data-show-export="true")
+                                table#tbl_surplus_abo(data-show-export="true")
+
+                    .row#tblSurplusCar(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_sp_bk_car(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Abono
+                            .card-body.p-4
+                                table#tbl_surplus_car(data-show-export="true")
 
             include _footer
 

@@ -178,42 +178,6 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		maxDate: date_end
 	});
 
-	$('#btn-ot-clear').click(function(e){
-		e.preventDefault();
-
-		// opciones activas por defecto
-		$('input:radio[name=sp_op1]').filter('[value=sp_opt_res]').prop('checked', true);
-		$('input:radio[name=sp_op2]').filter('[value=sp_opt_hoy]').prop('checked', true);
-		$('#sp_date_ini_txt').prop('readonly', true);
-		$('#sp_date_end_txt').prop('readonly', true);
-
-		// buscador queda modo default
-		$("#sp_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#sp_date_end").datetimepicker({
-			defaultDate: date_end
-		});
-
-		// limpiar tablas
-		$('#tblSurplusRes').collapse('hide');
-		$("#tbl_surplus_res").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblSurplusDet').collapse('hide');
-		$("#tbl_surplus_det").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblSurplusDoc').collapse('hide');
-		$("#tbl_surplus_doc").bootstrapTable("refresh", {
-            url: [],
-		});
-		$('#tblSurplusAbo').collapse('hide');
-		$("#tbl_surplus_abo").bootstrapTable("refresh", {
-            url: [],
-        });
-	});
-
 	$('#btn_sp_date_ini').click(function(e){
 		$('#sp_date_ini').data("DateTimePicker").toggle();
 	});
@@ -812,8 +776,143 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
 	});
+	$("#tbl_surplus_car").bootstrapTable({
+		columns: [
+			{
+				field: "idcliente",
+				title: "R.U.T.",
+				searchable: true,
+				class: 'text-nowrap',
+				formatter: function(value, row, index) {
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
 
-    $("#btn-ot-search").click(function(e) {
+                    return rut_client;
+                },
+			},
+			{
+				field: "nomcliente",
+				title: "Nombre",
+				searchable: true,
+			},
+			{
+				field: "contratos",
+				title: "Contratos",
+				searchable: true,
+			},
+			{
+				field: "tasa_min",
+				title: "Tasa Min.",
+				searchable: true,
+            },
+            {
+				field: "tasa_max",
+				title: "Tasa Max",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "mon_doc",
+				title: "Mon Doc",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "mont_ant",
+				title: "Mon Ant",
+				sortable: true,
+				searchable: true,
+			},
+			{
+				field: "dif_precio",
+				title: "Dif Precio",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "comision",
+				title: "Comision",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "iva",
+				title: "IVA",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "gastos",
+				title: "Gastos",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "impto",
+				title: "Impto",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "mon_oper",
+				title: "Mon Oper",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "apl",
+				title: "Aplic",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+            },
+            {
+				field: "agirar",
+				title: "A Giro",
+				//formatter: function(value, row, index) {
+                //    return numeral(value).format("$ 0");
+                //},
+                sortable: true,
+                searchable: true,
+			}
+		],
+		url: [],
+		locale: "es-SP",
+		clickToSelect: false,
+		showRefresh: true,
+		showColumns: true,
+		exportDataType: "all",
+		exportTypes: __exportTypes,
+		exportOptions: exportOptionsBoostrapTable,
+		search: true,
+		searchAlign: "right",
+		striped: true,
+		pagination: true,
+		pageNumber: 1,
+		pageSize: 10,
+		pageList: [20, 30, 40, 50],
+	});
+
+    $("#btn-sp-search").click(function(e) {
 		e.preventDefault();
 		
 		if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_res') {
@@ -866,6 +965,46 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
 			});
 		}
+	});
+
+	$('#btn-sp-clear').click(function(e){
+		e.preventDefault();
+
+		// opciones activas por defecto
+		$('input:radio[name=sp_op1]').filter('[value=sp_opt_res]').prop('checked', true);
+		$('input:radio[name=sp_op2]').filter('[value=sp_opt_hoy]').prop('checked', true);
+		$('#sp_date_ini_txt').prop('readonly', true);
+		$('#sp_date_end_txt').prop('readonly', true);
+
+		// buscador queda modo default
+		$("#sp_date_ini").datetimepicker({
+			defaultDate: date_ini
+		});
+		$("#sp_date_end").datetimepicker({
+			defaultDate: date_end
+		});
+
+		// limpiar tablas
+		$('#tblSurplusRes').hide('slow');
+		$("#tbl_surplus_res").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblSurplusDet').hide('slow');
+		$("#tbl_surplus_det").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblSurplusDoc').hide('slow');
+		$("#tbl_surplus_doc").bootstrapTable("refresh", {
+            url: [],
+		});
+		$('#tblSurplusAbo').hide('slow');
+		$("#tbl_surplus_abo").bootstrapTable("refresh", {
+            url: [],
+		});
+		$('#tblSurplusCar').hide('slow');
+		$("#tbl_surplus_car").bootstrapTable("refresh", {
+            url: [],
+        });
 	});
 
 	$("#tbl_surplus_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
