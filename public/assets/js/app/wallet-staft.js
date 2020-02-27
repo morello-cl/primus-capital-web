@@ -612,7 +612,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_res]').prop('checked', true);
+		$('input:radio[name=ws_op1]').filter('[value=ws_opt_con]').prop('checked', true);
 		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
 		$('#ws_date_ini_txt').prop('readonly', true);
 		$('#ws_date_end_txt').prop('readonly', true);
