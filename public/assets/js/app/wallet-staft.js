@@ -616,9 +616,9 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_con') {
-			$('#tblWsRes').collapse('show');
-			$('#tblWsDet').collapse('hide');
-			$('#tblWsDoc').collapse('hide');
+			$('#tblWsRes').show('slow');
+			$('#tblWsDet').hide('slow');
+			$('#tblWsDoc').hide('slow');
 
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -634,9 +634,9 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				url: urlSp13docTable(0, dt_ini, dt_end),
 			});
 
-			$('#tblWsRes').collapse('hide');
-			$('#tblWsDet').collapse('hide');
-			$('#tblWsDoc').collapse('show');
+			$('#tblWsRes').hide('slow');
+			$('#tblWsDet').hide('slow');
+			$('#tblWsDoc').show('slow');
 		}
 	});
 
