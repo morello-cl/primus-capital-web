@@ -376,13 +376,6 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
                     return fecha.format('DD-MM-YYYY');
                 },
-            },
-            {
-				field: "tasa_doc",
-				title: "Tasa",
-				align: 'center',
-				sortable: true,
-				searchable: true,
 			},
 			{
 				field: "tipo",
@@ -393,14 +386,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "dias_cob",
-				title: "Días Prom.",
-				align: 'center',
-				sortable: true,
-				searchable: true,
-			},
-			{
-				field: "mon_doc",
+				field: "mondoc",
 				title: "Mon Doc.",
 				align: 'right',
                 sortable: true,
@@ -410,7 +396,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "mon_ant",
+				field: "monant",
 				title: "Mon Ant.",
 				align: 'right',
                 sortable: true,
@@ -420,78 +406,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "dif_precio",
-				title: "Dif Precio",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-            {
-				field: "comision",
-				title: "Comisión",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "iva",
-				title: "IVA",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "gastos",
-				title: "Gastos",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "impto",
-				title: "Impto",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "mon_gir",
-				title: "Mon Oper",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "apl",
-				title: "Aplic",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
+				field: "noant",
+				title: "No Ant",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -500,12 +416,35 @@ function urlSp14carTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "diaspond",
-				title: "Días Pond.",
-				align: 'center',
+				field: "monrec",
+				title: "Mon Rec",
+				align: 'right',
                 sortable: true,
-                searchable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+            {
+				field: "excedente",
+				title: "Excedente",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
             },
+            {
+				field: "aplic",
+				title: "Aplic",
+				align: 'right',
+                sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+            }
 		],
 		url: [],
 		locale: "es-SP",
