@@ -159,38 +159,6 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		maxDate: date_end
 	});
 
-	$('#btn-ws-clear').click(function(e){
-		e.preventDefault();
-
-		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_res]').prop('checked', true);
-		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
-		$('#ws_date_ini_txt').prop('readonly', true);
-		$('#ws_date_end_txt').prop('readonly', true);
-
-		// buscador queda modo default
-		$("#ws_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#ws_date_end").datetimepicker({
-			defaultDate: date_end
-		});
-
-		// limpiar tablas
-		$('#tblWsRes').collapse('hide');
-		$("#tbl_ws_res").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblWsDet').collapse('hide');
-		$("#tbl_ws_det").bootstrapTable("refresh", {
-            url: [],
-        });
-		$('#tblWsDoc').collapse('hide');
-		$("#tbl_ws_doc").bootstrapTable("refresh", {
-            url: [],
-        });
-	});
-
 	$('#btn_ws_date_ini').click(function(e){
 		$('#ws_date_ini').data("DateTimePicker").toggle();
 	});
@@ -638,6 +606,38 @@ function urlSp13docTable(rut, date_ini, date_end) {
 			$('#tblWsDet').hide('slow');
 			$('#tblWsDoc').show('slow');
 		}
+	});
+
+	$('#btn-ws-clear').click(function(e){
+		e.preventDefault();
+
+		// opciones activas por defecto
+		$('input:radio[name=ws_op1]').filter('[value=ws_opt_res]').prop('checked', true);
+		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
+		$('#ws_date_ini_txt').prop('readonly', true);
+		$('#ws_date_end_txt').prop('readonly', true);
+
+		// buscador queda modo default
+		$("#ws_date_ini").datetimepicker({
+			defaultDate: date_ini
+		});
+		$("#ws_date_end").datetimepicker({
+			defaultDate: date_end
+		});
+
+		// limpiar tablas
+		$('#tblWsRes').hide('slow');
+		$("#tbl_ws_res").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblWsDet').hide('slow');
+		$("#tbl_ws_det").bootstrapTable("refresh", {
+            url: [],
+        });
+		$('#tblWsDoc').hide('slow');
+		$("#tbl_ws_doc").bootstrapTable("refresh", {
+            url: [],
+        });
 	});
 
 	$("#tbl_ws_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
