@@ -934,7 +934,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+			$("#tbl_surplus_abo").bootstrapTable("refresh", {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_car'){
