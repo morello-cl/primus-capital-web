@@ -154,6 +154,25 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 
 	return url;
 }
+function urlSp14carTable(rut, date_ini, date_end) {
+	let url = '/surplus/api/sp_14_car/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(date_ini){
+		url = `${url}&date[gte]=${date_ini}`;
+	} else {
+		url = `${url}&date[gte]=1900-01-01`;
+	}
+	if(date_end) {
+		url = `${url}&date[lte]=${date_end}`;
+	} else {
+		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
+	}
+
+	return url;
+}
 
 (function($) {
 	"use strict";
@@ -916,10 +935,11 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_res') {
-			$('#tblSurplusRes').collapse('show');
-			$('#tblSurplusDet').collapse('hide');
-			$('#tblSurplusDoc').collapse('hide');
-			$('#tblSurplusAbo').collapse('hide');
+			$('#tblSurplusRes').show('slow');
+			$('#tblSurplusDet').hide('slow');
+			$('#tblSurplusDoc').hide('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -928,10 +948,11 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp14resTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_det') {
-			$('#tblSurplusRes').collapse('hide');
-			$('#tblSurplusDet').collapse('show');
-			$('#tblSurplusDoc').collapse('hide');
-			$('#tblSurplusAbo').collapse('hide');
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').show('slow');
+			$('#tblSurplusDoc').hide('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -941,10 +962,11 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_doc') {
-			$('#tblSurplusRes').collapse('hide');
-			$('#tblSurplusDet').collapse('hide');
-			$('#tblSurplusDoc').collapse('show');
-			$('#tblSurplusAbo').collapse('hide');
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').hide('slow');
+			$('#tblSurplusDoc').show('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -953,16 +975,30 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'ot_opt_abo'){
-			$('#tblSurplusRes').collapse('hide');
-			$('#tblSurplusDet').collapse('hide');
-			$('#tblSurplusDoc').collapse('hide');
-			$('#tblSurplusAbo').collapse('show');
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').hide('slow');
+			$('#tblSurplusDoc').hide('slow');
+			$('#tblSurplusAbo').show('slow');
+			$('#tblSurplusCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
 			$("#tbl_surplus_doc").bootstrapTable("refresh", {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
+			});
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'ot_opt_car'){
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').hide('slow');
+			$('#tblSurplusDoc').hide('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').show('slow');
+
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+			$("#tbl_surplus_car").bootstrapTable("refresh", {
+				url: urlSp14carTable(0, dt_ini, dt_end),
 			});
 		}
 	});
@@ -1017,10 +1053,11 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').collapse('hide');
-			$('#tblSurplusDet').collapse('show');
-			$('#tblSurplusDoc').collapse('hide');
-			$('#tblSurplusAbo').collapse('hide');
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').show('slow');
+			$('#tblSurplusDoc').hide('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').hide('slow');
 		}
 	});
 
@@ -1038,10 +1075,11 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 				url: urlSp11docTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').collapse('hide');
-			$('#tblSurplusDet').collapse('hide');
-			$('#tblSurplusDoc').collapse('show');
-			$('#tblSurplusAbo').collapse('hide');
+			$('#tblSurplusRes').hide('slow');
+			$('#tblSurplusDet').hide('slow');
+			$('#tblSurplusDoc').show('slow');
+			$('#tblSurplusAbo').hide('slow');
+			$('#tblSurplusCar').hide('slow');
 		}
 	});
 })(jQuery);
