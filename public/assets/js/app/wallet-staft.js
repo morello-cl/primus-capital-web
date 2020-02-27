@@ -650,9 +650,9 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				url: urlSp13detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblWsRes').collapse('hide');
-			$('#tblWsDet').collapse('show');
-			$('#tblWsDoc').collapse('hide');
+			$('#tblWsRes').hide('slow');
+			$('#tblWsDet').show('slow');
+			$('#tblWsDoc').hide('slow');
 		}
 	});
 
@@ -666,9 +666,9 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				url: urlSp13docTable(0, dt_ini, dt_end),
 			});
 
-			$('#tblWsRes').collapse('hide');
-			$('#tblWsDet').collapse('hide');
-			$('#tblWsDoc').collapse('show');
+			$('#tblWsRes').hide('slow');
+			$('#tblWsDet').hide('slow');
+			$('#tblWsDoc').show('slow');
 		}
 	});
 
