@@ -16,8 +16,6 @@ function isLoggedIn(req, res, next) {
 router.get('/sp_13_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    console.log('res.rut', _rut);
-
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_res', {
         rut: _rut,
         fdesde: req.query.date.gte,
@@ -28,12 +26,12 @@ router.get('/sp_13_res', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_13_res', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_13_res.err', err);
 
             res.status(400).json({
             });
@@ -43,8 +41,6 @@ router.get('/sp_13_res', isLoggedIn, function(req, res, next){
 
 router.get('/sp_13_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
-
-    console.log('det.rut', _rut);
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_det', {
         rut: _rut,
@@ -56,12 +52,12 @@ router.get('/sp_13_det', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_13_det', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_13_det.err', err);
 
             res.status(400).json({
             });
@@ -71,8 +67,6 @@ router.get('/sp_13_det', isLoggedIn, function(req, res, next){
 
 router.get('/sp_13_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
-
-    console.log('doc.rut', _rut);
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_doc', {
         rut: _rut,
@@ -84,12 +78,12 @@ router.get('/sp_13_doc', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_13_doc', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_13_doc.err', err);
 
             res.status(400).json({
             });
