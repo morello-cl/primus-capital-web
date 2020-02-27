@@ -1,3 +1,4 @@
+const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
 const exportOptionsBoostrapTable = {
 	consoleLog: false,
 	csvEnclosure: '"',
@@ -157,18 +158,6 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 (function($) {
 	"use strict";
 	
-	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
-	$("#ot_nro").rut().on('rutInvalido', function(e) {
-		if(v($("#ot_nro").val()).isBlank()) {
-			$('#ot_nro').removeClass('is-invalid');
-		} else {
-			$('#ot_nro').addClass('is-invalid');
-		}
-	});
-	$("#ot_nro").rut().on('rutValido', function(e, rut, dv) {
-		$('#ot_nro').removeClass('is-invalid');
-	});
-
     const date_now = moment().startOf("day");
 
     const date_end = moment().startOf("day");
@@ -354,10 +343,10 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -538,10 +527,10 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -674,10 +663,10 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",
@@ -810,10 +799,10 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		url: [],
 		locale: "es-SP",
 		clickToSelect: false,
-		showRefresh: false,
+		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: ["json", "xml", "csv", "txt", "sql", "excel"],
+		exportTypes: __exportTypes,
 		exportOptions: exportOptionsBoostrapTable,
 		search: true,
 		searchAlign: "right",

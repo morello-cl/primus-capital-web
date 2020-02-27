@@ -17,7 +17,7 @@ router.get('/sp_14_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_res', {
-        rut: _rut,
+        Rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
@@ -26,12 +26,12 @@ router.get('/sp_14_res', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_14_res', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_14_res.err', err);
 
             res.status(400).json({
             });
@@ -42,8 +42,8 @@ router.get('/sp_14_res', isLoggedIn, function(req, res, next){
 router.get('/sp_14_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_11_det', {
-        rut: _rut,
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_det', {
+        Rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
@@ -52,12 +52,12 @@ router.get('/sp_14_det', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_14_det', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_14_det.err', err);
 
             res.status(400).json({
             });
@@ -70,8 +70,8 @@ router.get('/sp_14_doc', isLoggedIn, function(req, res, next){
     let _contrato = req.query.contrato ? req.query.contrato : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_doc', {
-        rut: _rut,
-        contrato: _contrato,
+        Rut: _rut,
+        Contrato: _contrato,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
@@ -80,12 +80,12 @@ router.get('/sp_14_doc', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_14_doc', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_14_doc.err', err);
 
             res.status(400).json({
             });
@@ -108,12 +108,38 @@ router.get('/sp_14_abo', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log(r.data);
+            console.log('sp_14_abo', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_14_abo.err', err);
+
+            res.status(400).json({
+            });
+        });
+    
+});
+
+router.get('/sp_14_car', isLoggedIn, function(req, res, next){
+    let _rut = req.query.rut ? req.query.rut : 0;
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_14_car', {
+        rut: _rut,
+        fdesde: req.query.date.gte,
+        fhasta: req.query.date.lte,
+        codempl : 0,
+        codcli: 0
+    }, {
+        headers: { Authorization: `Bearer ${req.user.access_token}` }
+    })
+        .then(function(r){
+            console.log('sp_14_car', r.data);
+
+            res.json(r.data);
+        })
+        .catch(function(err){
+            console.log('sp_14_car.err', err);
 
             res.status(400).json({
             });
