@@ -622,7 +622,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	});
 
 	$("#tbl_ex_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
-		if(field === 'contratoss') {
+		if(field === 'contrato') {
 
 			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");

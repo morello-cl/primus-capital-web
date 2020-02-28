@@ -17,7 +17,7 @@ router.get('/sp_15_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
     const _body = {
-        rut: /*_rut*/3062000,
+        rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
