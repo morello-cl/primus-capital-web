@@ -17,7 +17,7 @@ const awardRouter = require('./routes/award_route');
 const cancellationsRouter = require('./routes/cancellations_route');
 const walletStaftRouter = require('./routes/wallet-staft_route');
 const surplusRouter = require('./routes/surplus_route');
-const protestsRouter = require('./routes/protestst_route');
+const protestsRouter = require('./routes/protests_route');
 
 var app = express();
 

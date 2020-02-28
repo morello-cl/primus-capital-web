@@ -16,13 +16,17 @@ function isLoggedIn(req, res, next) {
 router.get('/sp_15_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_res', {
+    const _body = {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
         codcli: 0
-    }, {
+    };
+
+    console.log('sp_15_res', _body);
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_res', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
