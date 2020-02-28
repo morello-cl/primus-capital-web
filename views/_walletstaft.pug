@@ -1,0 +1,128 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+                
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Cartera Vigente
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Cartera Vigente
+
+                    .row
+                        .card
+                            .card-header(data-toggle="collapse", role="button", href="#divBodySearchAward", aria-expanded="false", aria-controls="divBodySearchAward")
+                                h3.card-title Opciones de Consulta
+                            .card-body
+                                #divBodySearchAward
+                                    .row
+                                        .col-lg-4.col-xl-6
+                                            .card
+                                                .card-header
+                                                    .card-title Ver Cartera Vigente por
+                                                .card-body
+                                                    .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            .row
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ws_op1' value='ws_opt_con' checked)
+                                                                        span.custom-control-label Contratos
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ws_op1' value='ws_opt_doc')
+                                                                        span.custom-control-label Documentos
+                                        .col-lg-8.col-xl-6
+                                            .card
+                                                .card-header
+                                                    .card-title Fecha
+                                                .card-body
+                                                    .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            .row
+                                                                .col-sm-12
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ws_op2' value='ws_opt_hoy' checked)
+                                                                        span.custom-control-label A hoy
+                                                            p
+                                                            .row
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ws_op2' value='ws_opt_per')
+                                                                        span.custom-control-label Periodo
+
+                                                                .col-lg-6.col-xl-4
+                                                                    label(for='ws_date_ini') Desde
+                                                                    .form-group
+                                                                        .input-group.date(id='ws_date_ini')
+                                                                            input#ws_date_ini_txt.form-control(type='text', placeholder='', readonly)
+                                                                            span.input-group-addon
+                                                                                span.fa.fa-calendar
+
+                                                                .col-lg-6.col-xl-4
+                                                                    label(for='ws_date_end') Hasta
+                                                                    .form-group
+                                                                        .input-group.date(id='ws_date_end')
+                                                                            input#ws_date_end_txt.form-control(type='text', placeholder='', readonly)
+                                                                            span.input-group-addon
+                                                                                span.fa.fa-calendar
+
+
+                                    .row
+                                        .col-md-6
+                                        .col-md-6
+                                            .row
+                                                .col-lg-6
+                                                    button.btn.btn-outline-warning.btn-block#btn-ws-clear(type="button") Limpiar
+                                                .col-lg-6
+                                                    button.btn.btn-outline-secondary.btn-block#btn-ws-search(type="button") Consultar
+
+                                    p
+                                    .row
+                                        .col-md-12
+                                            span.text-muted.text-right
+                                                | Estado: favor seleccione preferencias de consulta.
+
+
+                    .row#tblWsRes(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen por Contrato
+                            .card-body.p-4
+                                table#tbl_ws_res(data-show-export="true")
+
+                    .row#tblWsDet(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
+                            .card-body.p-4
+                                table#tbl_ws_det(data-show-export="true")
+
+                    .row#tblWsDoc(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ws_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documento
+                            .card-body.p-4
+                                table#tbl_ws_doc(data-show-export="true")
+
+            include _footer
+
+    include _scripts
+
+    script(src='/assets/js/app/wallet-staft.js')

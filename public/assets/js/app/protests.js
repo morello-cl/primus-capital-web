@@ -78,8 +78,8 @@ const exportOptionsBoostrapTable = {
 	worksheetName: "Otorgamientos"
 };
 
-function urlSp13resTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_res/?';
+function urlSp15resTable(rut, date_ini, date_end) {
+	let url = '/protests/api/sp_15_res/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -97,8 +97,8 @@ function urlSp13resTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp13detTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_det/?';
+function urlSp15detTable(rut, date_ini, date_end) {
+	let url = '/protests/api/sp_15_det/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -116,8 +116,8 @@ function urlSp13detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp13docTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_doc/?';
+function urlSp15docTable(rut, date_ini, date_end) {
+	let url = '/protests/api/sp_15_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -140,44 +140,16 @@ function urlSp13docTable(rut, date_ini, date_end) {
 	"use strict";
 
     const date_now = moment().startOf("day");
-
-    const date_end = moment().startOf("day");
-
-    const date_ini = moment().add(-6, 'M');
      
-    $("#ws_date_ini").datetimepicker({
+    $("#po_date").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_ini
-    });
-    
-	$("#ws_date_end").datetimepicker({
-		format: "DD-MM-YYYY",
-		locale: "es",
-		defaultDate: date_end,
-		minDate: date_ini,
-		maxDate: date_end
-	});
-
-	$('#btn_ws_date_ini').click(function(e){
-		$('#ws_date_ini').data("DateTimePicker").toggle();
-	});
-
-	$('#btn_ws_date_end').click(function(e){
-		$('#ws_date_end').data("DateTimePicker").toggle();
-	});
-    
-    $("#ws_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_end").datetimepicker({
-			minDate: $("#ws_date_ini").data("DateTimePicker").date()
-        });
-    });
-    $("#ws_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_ini").datetimepicker({
-			maxDate: $("#ws_date_end").data("DateTimePicker").date()
-        });
+		defaultDate: date_now
     });
 
+	$('#btn_po_date').click(function(e){
+		$('#po_date').data("DateTimePicker").toggle();
+	});
 
     $('input:radio[name=ws_op2]').click(function(e){
         if($('input:radio[name=ws_op2]:checked').val() === 'w_opt_per') {
@@ -198,7 +170,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
     });
     
 
-    $("#tbl_ws_res").bootstrapTable({
+    $("#tbl_po_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -298,7 +270,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_ws_det").bootstrapTable({
+	$("#tbl_po_det").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -421,7 +393,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_ws_doc").bootstrapTable({
+	$("#tbl_po_doc").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -580,67 +552,61 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-    $("#btn-ws-search").click(function(e) {
+    $("#btn_po_search").click(function(e) {
 		e.preventDefault();
 		
-		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_con') {
-			$('#tblWsRes').show('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').hide('slow');
+		if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
+			$('#tblPoRes').show('slow');
+			$('#tblPoDet').hide('slow');
+			$('#tblPoDoc').hide('slow');
 
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_ini = $("#ws_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_ws_res").bootstrapTable("refresh", {
-				url: urlSp13resTable(0, dt_ini, dt_end),
+			$("#tbl_po_res").bootstrapTable("refresh", {
+				url: urlSp15resTable(0, null, null),
 			});
-		} else if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_doc') {
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-
-			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+		} else if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_rut') {
+			$("#tbl_po_doc").bootstrapTable("refresh", {
+				url: urlSp15docTable(0, null, null),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').show('slow');
+			$('#tblPoRes').hide('slow');
+			$('#tblPoDet').hide('slow');
+			$('#tblPoDoc').show('slow');
 		}
 	});
 
-	$('#btn-ws-clear').click(function(e){
+	$('#btn_po_clear').click(function(e){
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_con]').prop('checked', true);
-		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
+		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
+		$('input:radio[name=po_opt2]').filter('[value=po_type_vig]').prop('checked', true);
 		$('#ws_date_ini_txt').prop('readonly', true);
 		$('#ws_date_end_txt').prop('readonly', true);
 
 		// buscador queda modo default
-		$("#ws_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#ws_date_end").datetimepicker({
-			defaultDate: date_end
+		$("#po_date").datetimepicker({
+			defaultDate: date_now
 		});
 
 		// limpiar tablas
-		$('#tblWsRes').hide('slow');
-		$("#tbl_ws_res").bootstrapTable("refresh", {
+		$('#tblPoRes').hide('slow');
+		$("#tbl_po_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDet').hide('slow');
-		$("#tbl_ws_det").bootstrapTable("refresh", {
+		$('#tblPoDet').hide('slow');
+		$("#tbl_po_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDoc').hide('slow');
-		$("#tbl_ws_doc").bootstrapTable("refresh", {
+		$('#tblPoDoc').hide('slow');
+		$("#tbl_po_doc").bootstrapTable("refresh", {
             url: [],
         });
 	});
 
-	$("#tbl_ws_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_po_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -656,7 +622,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		}
 	});
 
-	$("#tbl_ws_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_po_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -672,35 +638,35 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		}
 	});
 
-	$("#btn_ws_bk_res").click(function(e){
+	$("#btn_po_bk_res").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_ws_res").bootstrapTable("refresh", {
+		$("#tbl_po_res").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsRes').hide('slow');
+		$('#tblPoRes').hide('slow');
 	});
 
-	$("#btn_ws_bk_det").click(function(e){
+	$("#btn_po_bk_det").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_ws_det").bootstrapTable("refresh", {
+		$("#tbl_po_det").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsDet').hide('slow');
-		$('#tblWsRes').show('slow');
+		$('#tblPoDet').hide('slow');
+		$('#tblPoRes').show('slow');
 	});
 
-	$("#btn_ws_bk_doc").click(function(e){
+	$("#btn_po_bk_doc").click(function(e){
 		e.preventDefault();
 
 		$("#tbl_ws_doc").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsDoc').hide('slow');
-		$('#tblWsDet').show('slow');
+		$('#tblPoDoc').hide('slow');
+		$('#tblPoDet').show('slow');
 	});
 })(jQuery);

@@ -13,25 +13,29 @@ function isLoggedIn(req, res, next) {
 	return res.redirect("/login");
 }
 
-router.get('/sp_13_res', isLoggedIn, function(req, res, next){
+router.get('/sp_16_res', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_res', {
+    const _body = {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
         codcli: 0
-    }, {
+    };
+
+    console.log('sp_16_res', _body);
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_16_res', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log('sp_13_res', r.data);
+            console.log('sp_16_res', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('sp_13_res.err', err);
+            console.log('sp_16_res.err', err);
 
             res.status(400).json({
             });
@@ -39,10 +43,10 @@ router.get('/sp_13_res', isLoggedIn, function(req, res, next){
     
 });
 
-router.get('/sp_13_det', isLoggedIn, function(req, res, next){
+router.get('/sp_16_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_det', {
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_16_det', {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
@@ -52,12 +56,12 @@ router.get('/sp_13_det', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log('sp_13_det', r.data);
+            console.log('sp_16_det', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('sp_13_det.err', err);
+            console.log('sp_16_det.err', err);
 
             res.status(400).json({
             });
@@ -65,10 +69,10 @@ router.get('/sp_13_det', isLoggedIn, function(req, res, next){
     
 });
 
-router.get('/sp_13_doc', isLoggedIn, function(req, res, next){
+router.get('/sp_16_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_doc', {
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_16_doc', {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
@@ -78,12 +82,12 @@ router.get('/sp_13_doc', isLoggedIn, function(req, res, next){
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
-            console.log('sp_13_doc', r.data);
+            console.log('sp_16_doc', r.data);
 
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('sp_13_doc.err', err);
+            console.log('sp_16_doc.err', err);
 
             res.status(400).json({
             });

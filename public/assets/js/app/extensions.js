@@ -78,8 +78,8 @@ const exportOptionsBoostrapTable = {
 	worksheetName: "Otorgamientos"
 };
 
-function urlSp13resTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_res/?';
+function urlSp16resTable(rut, date_ini, date_end) {
+	let url = '/extensions/api/sp_16_res/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -97,8 +97,8 @@ function urlSp13resTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp13detTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_det/?';
+function urlSp16detTable(rut, date_ini, date_end) {
+	let url = '/extensions/api/sp_16_det/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -116,8 +116,8 @@ function urlSp13detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp13docTable(rut, date_ini, date_end) {
-	let url = '/wallet-staft/api/sp_13_doc/?';
+function urlSp16docTable(rut, date_ini, date_end) {
+	let url = '/extensions/api/sp_16_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
@@ -140,44 +140,16 @@ function urlSp13docTable(rut, date_ini, date_end) {
 	"use strict";
 
     const date_now = moment().startOf("day");
-
-    const date_end = moment().startOf("day");
-
-    const date_ini = moment().add(-6, 'M');
      
-    $("#ws_date_ini").datetimepicker({
+    $("#ex_date").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_ini
-    });
-    
-	$("#ws_date_end").datetimepicker({
-		format: "DD-MM-YYYY",
-		locale: "es",
-		defaultDate: date_end,
-		minDate: date_ini,
-		maxDate: date_end
-	});
-
-	$('#btn_ws_date_ini').click(function(e){
-		$('#ws_date_ini').data("DateTimePicker").toggle();
-	});
-
-	$('#btn_ws_date_end').click(function(e){
-		$('#ws_date_end').data("DateTimePicker").toggle();
-	});
-    
-    $("#ws_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_end").datetimepicker({
-			minDate: $("#ws_date_ini").data("DateTimePicker").date()
-        });
-    });
-    $("#ws_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_ini").datetimepicker({
-			maxDate: $("#ws_date_end").data("DateTimePicker").date()
-        });
+		defaultDate: date_now
     });
 
+	$('#btn_ex_date').click(function(e){
+		$('#ex_date').data("DateTimePicker").toggle();
+	});
 
     $('input:radio[name=ws_op2]').click(function(e){
         if($('input:radio[name=ws_op2]:checked').val() === 'w_opt_per') {
@@ -198,7 +170,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
     });
     
 
-    $("#tbl_ws_res").bootstrapTable({
+    $("#tbl_ex_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -218,8 +190,14 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "contrato",
+				title: "Contrato",
+				align: 'center',
+				searchable: true,
+			},
+			{
+				field: "candoc",
+				title: "Candoc",
 				align: 'center',
 				searchable: true,
 			},
@@ -234,8 +212,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "monant",
-				title: "Mon Ant",
+				field: "interes",
+				title: "Interes",
 				align: 'right',
 				sortable: true,
 				searchable: true,
@@ -244,8 +222,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "monrec",
-				title: "Mon Rec",
+				field: "comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -254,8 +232,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "capamort",
-				title: "Capa Mort",
+				field: "iva",
+				title: "IVA",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -264,21 +242,14 @@ function urlSp13docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "saldo",
-				title: "Saldo",
+				field: "total",
+				title: "Total",
 				align: 'right',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
                 },
-            },
-            {
-				field: "docvig",
-				title: "Doc Vig",
-				align: 'right',
-                sortable: true,
-				searchable: false,
             }
 		],
 		url: [],
@@ -298,7 +269,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_ws_det").bootstrapTable({
+	$("#tbl_ex_det").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -421,7 +392,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_ws_doc").bootstrapTable({
+	$("#tbl_ex_doc").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -580,127 +551,120 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-    $("#btn-ws-search").click(function(e) {
+    $("#btn_ex_search").click(function(e) {
 		e.preventDefault();
 		
-		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_con') {
-			$('#tblWsRes').show('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').hide('slow');
+		if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_all') {
+			$('#tblExRes').show('slow');
+			$('#tblExDet').hide('slow');
+			$('#tblExDoc').hide('slow');
 
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_ini = $("#ws_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_ws_res").bootstrapTable("refresh", {
-				url: urlSp13resTable(0, dt_ini, dt_end),
+			$("#tbl_ex_res").bootstrapTable("refresh", {
+				url: urlSp16resTable(0, null, null),
 			});
-		} else if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_doc') {
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-
-			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+		} else if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_rut') {
+			$("#tbl_ex_doc").bootstrapTable("refresh", {
+				url: urlSp16docTable(0, null, null),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').show('slow');
+			$('#tblExRes').hide('slow');
+			$('#tblExDet').hide('slow');
+			$('#tblExDoc').show('slow');
 		}
 	});
 
-	$('#btn-ws-clear').click(function(e){
+	$('#btn_ex_clear').click(function(e){
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_con]').prop('checked', true);
-		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
-		$('#ws_date_ini_txt').prop('readonly', true);
-		$('#ws_date_end_txt').prop('readonly', true);
+		$('input:radio[name=ex_opt1]').filter('[value=ex_opt1_all]').prop('checked', true);
+		$('input:radio[name=ex_opt2]').filter('[value=ex_opt2_hoy]').prop('checked', true);
+		$('#ex_date').prop('readonly', true);
 
 		// buscador queda modo default
-		$("#ws_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#ws_date_end").datetimepicker({
-			defaultDate: date_end
+		$("#ex_date").datetimepicker({
+			defaultDate: date_now
 		});
 
 		// limpiar tablas
-		$('#tblWsRes').hide('slow');
-		$("#tbl_ws_res").bootstrapTable("refresh", {
+		$('#tblExRes').hide('slow');
+		$("#tbl_ex_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDet').hide('slow');
-		$("#tbl_ws_det").bootstrapTable("refresh", {
+		$('#tblExDet').hide('slow');
+		$("#tbl_ex_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDoc').hide('slow');
-		$("#tbl_ws_doc").bootstrapTable("refresh", {
+		$('#tblExDoc').hide('slow');
+		$("#tbl_ex_doc").bootstrapTable("refresh", {
             url: [],
         });
 	});
 
-	$("#tbl_ws_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_ex_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_ws_det").bootstrapTable("refresh", {
-				url: urlSp13detTable(nro_client, dt_ini, dt_end),
+			$("#tbl_ex_det").bootstrapTable("refresh", {
+				url: urlSp15detTable(nro_client, null, null),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').show('slow');
-			$('#tblWsDoc').hide('slow');
+			$('#tblExRes').hide('slow');
+			$('#tblExDet').show('slow');
+			$('#tblExDoc').hide('slow');
 		}
 	});
 
-	$("#tbl_ws_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_ex_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+			$("#tbl_ex_doc").bootstrapTable("refresh", {
+				url: urlSp13docTable(0, null, null),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').show('slow');
+			$('#tblExRes').hide('slow');
+			$('#tblExDet').hide('slow');
+			$('#tblExDoc').show('slow');
 		}
 	});
 
-	$("#btn_ws_bk_res").click(function(e){
+	$("#btn_ex_bk_res").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_ws_res").bootstrapTable("refresh", {
+		$("#tbl_ex_res").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsRes').hide('slow');
+		$('#tblExRes').hide('slow');
 	});
 
-	$("#btn_ws_bk_det").click(function(e){
+	$("#btn_ex_bk_det").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_ws_det").bootstrapTable("refresh", {
+		$("#tbl_ex_det").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsDet').hide('slow');
-		$('#tblWsRes').show('slow');
+		$('#tblExDet').hide('slow');
+		$('#tblExRes').show('slow');
 	});
 
-	$("#btn_ws_bk_doc").click(function(e){
+	$("#btn_ex_bk_doc").click(function(e){
 		e.preventDefault();
 
-		$("#tbl_ws_doc").bootstrapTable("refresh", {
+		$("#tbl_ex_doc").bootstrapTable("refresh", {
 			url: [],
 		});
 
-		$('#tblWsDoc').hide('slow');
-		$('#tblWsDet').show('slow');
+		$('#tblExDoc').hide('slow');
+		$('#tblExDet').show('slow');
 	});
 })(jQuery);

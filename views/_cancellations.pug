@@ -1,0 +1,140 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Cancelaciones
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Cancelaciones
+
+                    .row
+                        .card
+                            .card-header(data-toggle="collapse", role="button", href="#divBodyCancelAward", aria-expanded="false", aria-controls="divBodyCancelAward")
+                                h3.card-title Opciones de Consulta
+                            .card-body
+                                #divBodyCancelAward
+                                    .row
+                                        .col-lg-4.col-xl-6
+                                            .card
+                                                .card-header
+                                                    .card-title Contrato(s)
+                                                .card-body
+                                                    .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            .row
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_res' checked)
+                                                                        span.custom-control-label Contrato
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_doc')
+                                                                        span.custom-control-label Documento
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ca_op1' value='ca_opt_abo')
+                                                                        span.custom-control-label Abono a documento
+
+                                        .col-lg-8.col-xl-6
+                                            .card
+                                                .card-header
+                                                    .card-title Fecha
+                                                .card-body
+                                                    .form-group.form-elements
+                                                        .custom-controls-stacked
+                                                            label.custom-control.custom-radio
+                                                                input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_hoy' checked)
+                                                                span.custom-control-label A hoy
+                                                            p
+                                                            .row
+                                                                .col-xl-4
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='ca_op2' value='ca_opt_per')
+                                                                        span.custom-control-label Periodo
+
+                                                                .col-lg-6.col-xl-4
+                                                                    label(for='ca_date_ini') Desde
+                                                                    .form-group
+                                                                        .input-group.date(id='ca_date_ini')
+                                                                            input#ca_date_ini_txt.form-control(type='text', placeholder='', readonly)
+                                                                            span.input-group-addon
+                                                                                span.fa.fa-calendar
+
+                                                                .col-lg-6.col-xl-4
+                                                                    label(for='ca_date_end') Hasta
+                                                                    .form-group
+                                                                        .input-group.date(id='ca_date_end')
+                                                                            input#ca_date_end_txt.form-control(type='text', placeholder='', readonly)
+                                                                            span.input-group-addon
+                                                                                span.fa.fa-calendar
+
+
+                                    .row
+                                        .col-md-6
+                                        .col-md-6
+                                            .row
+                                                .col-lg-6
+                                                    button.btn.btn-outline-warning.btn-block#btn-ca-clear(type="button") Limpiar
+                                                .col-lg-6
+                                                    button.btn.btn-outline-secondary.btn-block#btn-ca-search(type="button") Consultar
+
+                                    p
+                                    .row
+                                        .col-md-12
+                                            span.text-muted.text-right
+                                                | Estado: favor seleccione preferencias de consulta.
+
+                    .row#tblCancelRes(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ca_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen
+                            .card-body.p-4
+                                table#tbl_cancel_res(data-show-export="true")
+
+                    .row#tblCancelDet(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ca_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
+                            .card-body.p-4
+                                table#tbl_cancel_det(data-show-export="true")
+
+                    .row#tblCancelDoc(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ca_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documento
+                            .card-body.p-4
+                                table#tbl_cancel_doc(data-show-export="true")
+
+                    .row#tblCancelAbo(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ca_bk_abo(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Abono a documento
+                            .card-body.p-4
+                                table#tbl_cancel_abo(data-show-export="true")
+
+            include _footer
+
+    include _scripts
+
+    script(src='/assets/js/app/cancellations.js')

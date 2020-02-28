@@ -37,19 +37,23 @@ router.get('/award', isLoggedIn, function(req, res, next){
 });
 
 router.get('/cancellations', isLoggedIn, function(req, res, next){
-  res.render('cancellations_page', { user: req.user });
+  res.render('_cancellations', { user: req.user });
 });
 
 router.get('/wallet-staft', isLoggedIn, function(req, res, next){
-  res.render('wallet-staft_page', { user: req.user });
+  res.render('_walletstaft', { user: req.user });
 });
 
 router.get('/surplus', isLoggedIn, function(req, res, next){
-  res.render('surplus_page', { user: req.user });
+  res.render('_surplus', { user: req.user });
 });
 
 router.get('/protests', isLoggedIn, function(req, res, next){
-  res.render('protestos', { user: req.user });
+  res.render('_protests', { user: req.user });
+});
+
+router.get('/extensions', isLoggedIn, function(req, res, next){
+  res.render('_extensions', { user: req.user});
 });
 
 module.exports = router;

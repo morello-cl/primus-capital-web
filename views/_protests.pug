@@ -1,0 +1,136 @@
+extends _layout
+
+block content
+    body.app
+        .page
+            .page-main
+                include _sidebar
+
+            .app-content
+                .side-app
+                    .page-header
+                        div
+                            h1.page-title Protestos
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href='/') Inicio
+                                li.breadcrumb-item.active(aria-current='page') Protestos
+
+                    .row
+                        .card
+                            .card-header
+                                h3.card-title Opciones de Consulta
+                            .card-body
+                                .row
+                                    .col-lg-4.col-xl-4
+                                        .card
+                                            .card-header
+                                                .card-title Protestos por Deudor
+                                            .card-body
+                                                .form-group.form-elements
+                                                    .custom-controls-stacked
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='po_opt1' value='po_opt1_all' checked)
+                                                            span.custom-control-label Todos
+                                                        label.custom-control.custom-radio
+                                                            input.custom-control-input(type='radio' name='po_opt1' value='po_opt1_rut' disabled)
+                                                            span.custom-control-label R.U.T. Deudor
+                                                        .input-group
+                                                            input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
+
+                                    .col-lg-4.col-xl-3
+                                        .card
+                                            .card-header
+                                                .card-title Tipo de Informe
+                                            .card-body
+                                                .form-group.form-elements
+                                                        .custom-controls-stackedpo_opt2
+                                                            .row
+                                                                .col-lg-6
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='po_opt2' value='po_opt2_vig' checked)
+                                                                        span.custom-control-label Vigente
+
+                                                            .row
+                                                                .col-lg-6
+                                                                    label.custom-control.custom-radio
+                                                                        input.custom-control-input(type='radio' name='po_opt2' value='po_opt2_his')
+                                                                        span.custom-control-label Historico
+
+
+                                    .col-lg-8.col-xl-5
+                                        .card
+                                            .card-header
+                                                .card-title Fecha
+                                            .card-body
+                                                .form-group.form-elements
+                                                    .custom-controls-stacked
+                                                        .row
+                                                            .col-xl-6
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='po_opt3' value='po_opt3_hoy' checked)
+                                                                    span.custom-control-label A hoy
+
+                                                        .row
+                                                            .col-xl-5
+                                                                label.custom-control.custom-radio
+                                                                    input.custom-control-input(type='radio' name='po_opt3' value='po_opt3_per')
+                                                                    span.custom-control-label Otra Fecha
+
+                                                            .col-lg-6.col-xl-6
+                                                                label.sr-only(for='po_date') Fecha
+                                                                .form-group
+                                                                    .input-group.date(id='po_date')
+                                                                        input#po_date_txt.form-control(type='text', placeholder='', readonly)
+                                                                        span.input-group-addon
+                                                                            span.fa.fa-calendar
+
+                                .row.p-2
+                                    .col-md-6
+                                    .col-md-6
+                                        .row
+                                            .col-lg-6
+                                                button.btn.btn-outline-warning.btn-block#btn_po_clear(type="button") Limpiar
+                                            .col-lg-6
+                                                button.btn.btn-outline-secondary.btn-block#btn_po_search(type="button") Consultar
+
+                                .row.p-4
+                                    .col-md-12
+                                        span.float-right.text-muted
+                                            | Estado: favor seleccione preferencias de consulta.
+
+                    .row#tblPoRes(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_po_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen
+                            .card-body.p-4
+                                table#tbl_po_res(data-show-export="true")
+
+                    .row#tblPoDet(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_po_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
+                            .card-body.p-4
+                                table#tbl_po_det(data-show-export="true")
+
+                    .row#tblPoDoc(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_po_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documentos
+                            .card-body.p-4
+                                table#tbl_po_doc(data-show-export="true")
+
+            include _footer
+
+    include _scripts
+
+    script(src='/assets/js/app/protests.js')
