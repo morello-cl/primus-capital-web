@@ -30,10 +30,10 @@ block content
                                                 .form-group.form-elements
                                                     .custom-controls-stacked
                                                         label.custom-control.custom-radio
-                                                            input.custom-control-input(type='radio' name='c-options' value='option1' checked)
+                                                            input.custom-control-input(type='radio' name='ex_opt1' value='ex_opt1_all' checked)
                                                             span.custom-control-label Todos
                                                         label.custom-control.custom-radio
-                                                            input.custom-control-input(type='radio' name='c-options' value='option2')
+                                                            input.custom-control-input(type='radio' name='ex_opt1' value='ex_opt1_rut')
                                                             span.custom-control-label R.U.T. Deudor
                                                         .input-group
                                                             input.form-control(type='text' placeholder='R.U.T deudor...', disabled)
@@ -49,20 +49,20 @@ block content
                                                         .row
                                                             .col-xl-6
                                                                 label.custom-control.custom-radio
-                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_hoy' checked)
+                                                                    input.custom-control-input(type='radio' name='ex_opt2' value='ex_opt2_hoy' checked)
                                                                     span.custom-control-label A hoy
 
                                                         .row
                                                             .col-xl-5
                                                                 label.custom-control.custom-radio
-                                                                    input.custom-control-input(type='radio' name='ext_op2' value='ext_opt_per')
+                                                                    input.custom-control-input(type='radio' name='ex_opt2' value='ex_opt2_otr')
                                                                     span.custom-control-label Otra Fecha
 
                                                             .col-lg-6.col-xl-6
-                                                                label.sr-only(for='ext_date') Fecha
+                                                                label.sr-only(for='ex_date') Fecha
                                                                 .form-group
-                                                                    .input-group.date(id='ext_date')
-                                                                        input#ext_date_txt.form-control(type='text', placeholder='', readonly)
+                                                                    .input-group.date(id='ex_date')
+                                                                        input#ex_date_txt.form-control(type='text', placeholder='', readonly)
                                                                         span.input-group-addon
                                                                             span.fa.fa-calendar
 
@@ -71,15 +71,47 @@ block content
                                     .col-md-6
                                         .row
                                             .col-lg-6
-                                                button.btn.btn-outline-warning.btn-block(type="button") Limpiar
+                                                button.btn.btn-outline-warning.btn-block#btn_po_clear(type="button") Limpiar
                                             .col-lg-6
-                                                button.btn.btn-outline-secondary.btn-block(type="button") Consultar
+                                                button.btn.btn-outline-secondary.btn-block#btn_po_search(type="button") Consultar
 
                                 
                                 .row.p-4
                                     span.float-right.text-muted
                                         | Estado: favor seleccione preferencias de consulta.
 
+                    .row#tblExRes(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ex_bk_res(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Resumen
+                            .card-body.p-4
+                                table#tbl_ex_res(data-show-export="true")
+
+                    .row#tblExDet(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ex_bk_det(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Detalle
+                            .card-body.p-4
+                                table#tbl_ex_det(data-show-export="true")
+
+                    .row#tblExDoc(style="display:none")
+                        .card
+                            .card-header
+                                h3.card-title 
+                                    a#btn_ex_bk_doc(href='#')
+                                        i.far.fa-arrow-alt-circle-left.fa-2x
+                                    | &nbsp;&nbsp;Documentos
+                            .card-body.p-4
+                                table#tbl_ex_doc(data-show-export="true")
+
             include _footer
 
     include _scripts
+
+    script(src='/assets/js/app/extensions.js')
