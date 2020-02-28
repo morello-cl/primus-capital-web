@@ -17,6 +17,7 @@ const awardRouter = require('./routes/award_route');
 const cancellationsRouter = require('./routes/cancellations_route');
 const walletStaftRouter = require('./routes/wallet-staft_route');
 const surplusRouter = require('./routes/surplus_route');
+const protestsRouter = require('./routes/protestst_route');
 
 var app = express();
 
@@ -118,6 +119,7 @@ app.use('/award/api', awardRouter);
 app.use('/cancellations/api', cancellationsRouter);
 app.use('/wallet-staft/api', walletStaftRouter);
 app.use('/surplus/api', surplusRouter);
+app.use('/protests/api', protestsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
