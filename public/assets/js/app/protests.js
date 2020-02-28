@@ -552,62 +552,59 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-    $("#btn-ws-search").click(function(e) {
+    $("#btn-po-search").click(function(e) {
 		e.preventDefault();
 		
-		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_con') {
-			$('#tblWsRes').show('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').hide('slow');
+		if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
+			$('#tblPoRes').show('slow');
+			$('#tblPoDet').hide('slow');
+			$('#tblPoDoc').hide('slow');
 
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_ws_res").bootstrapTable("refresh", {
-				url: urlSp13resTable(0, dt_ini, dt_end),
+			$("#tbl_po_res").bootstrapTable("refresh", {
+				url: urlSp15resTable(0, dt_ini, dt_end),
 			});
-		} else if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_doc') {
+		} else if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_rut') {
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+			$("#tbl_po_doc").bootstrapTable("refresh", {
+				url: urlSp15docTable(0, dt_ini, dt_end),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').show('slow');
+			$('#tblPoRes').hide('slow');
+			$('#tblPoDet').hide('slow');
+			$('#tblPoDoc').show('slow');
 		}
 	});
 
-	$('#btn-ws-clear').click(function(e){
+	$('#btn-po-clear').click(function(e){
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_con]').prop('checked', true);
-		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
+		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
+		$('input:radio[name=po_opt2]').filter('[value=po_type_vig]').prop('checked', true);
 		$('#ws_date_ini_txt').prop('readonly', true);
 		$('#ws_date_end_txt').prop('readonly', true);
 
 		// buscador queda modo default
-		$("#ws_date_ini").datetimepicker({
-			defaultDate: date_ini
-		});
-		$("#ws_date_end").datetimepicker({
-			defaultDate: date_end
+		$("#po_date").datetimepicker({
+			defaultDate: date_now
 		});
 
 		// limpiar tablas
-		$('#tblWsRes').hide('slow');
-		$("#tbl_ws_res").bootstrapTable("refresh", {
+		$('#tblPoRes').hide('slow');
+		$("#tbl_po_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDet').hide('slow');
-		$("#tbl_ws_det").bootstrapTable("refresh", {
+		$('#tblPoDet').hide('slow');
+		$("#tbl_po_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblWsDoc').hide('slow');
-		$("#tbl_ws_doc").bootstrapTable("refresh", {
+		$('#tblPoDoc').hide('slow');
+		$("#tbl_po_doc").bootstrapTable("refresh", {
             url: [],
         });
 	});
