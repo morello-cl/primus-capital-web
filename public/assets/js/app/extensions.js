@@ -554,6 +554,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 
     $("#btn_ex_search").click(function(e) {
 		e.preventDefault();
+
+		alert('hola')
 		
 		if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_all') {
 			$('#tblPoRes').show('slow');
