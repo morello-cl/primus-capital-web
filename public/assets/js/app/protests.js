@@ -552,7 +552,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-    $("#btn-po-search").click(function(e) {
+    $("#btn_po_search").click(function(e) {
 		e.preventDefault();
 		
 		if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
@@ -560,18 +560,15 @@ function urlSp15docTable(rut, date_ini, date_end) {
 			$('#tblPoDet').hide('slow');
 			$('#tblPoDoc').hide('slow');
 
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_ini = $("#ws_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
 			$("#tbl_po_res").bootstrapTable("refresh", {
-				url: urlSp15resTable(0, dt_ini, dt_end),
+				url: urlSp15resTable(0, null, null),
 			});
 		} else if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_rut') {
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-
 			$("#tbl_po_doc").bootstrapTable("refresh", {
-				url: urlSp15docTable(0, dt_ini, dt_end),
+				url: urlSp15docTable(0, null, null),
 			});
 
 			$('#tblPoRes').hide('slow');
@@ -580,7 +577,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		}
 	});
 
-	$('#btn-po-clear').click(function(e){
+	$('#btn_po_clear').click(function(e){
 		e.preventDefault();
 
 		// opciones activas por defecto
