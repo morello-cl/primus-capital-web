@@ -556,24 +556,24 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_all') {
-			$('#tblPoRes').show('slow');
-			$('#tblPoDet').hide('slow');
-			$('#tblPoDoc').hide('slow');
+			$('#tblExRes').show('slow');
+			$('#tblExDet').hide('slow');
+			$('#tblExDoc').hide('slow');
 
 			//const dt_ini = $("#ws_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_po_res").bootstrapTable("refresh", {
+			$("#tbl_ex_res").bootstrapTable("refresh", {
 				url: urlSp16resTable(0, null, null),
 			});
 		} else if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_rut') {
-			$("#tbl_po_doc").bootstrapTable("refresh", {
+			$("#tbl_ex_doc").bootstrapTable("refresh", {
 				url: urlSp16docTable(0, null, null),
 			});
 
-			$('#tblPoRes').hide('slow');
-			$('#tblPoDet').hide('slow');
-			$('#tblPoDoc').show('slow');
+			$('#tblExRes').hide('slow');
+			$('#tblExDet').hide('slow');
+			$('#tblExDoc').show('slow');
 		}
 	});
 
