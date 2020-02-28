@@ -190,8 +190,14 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "contrato",
+				title: "Contrato",
+				align: 'center',
+				searchable: true,
+			},
+			{
+				field: "candoc",
+				title: "Candoc",
 				align: 'center',
 				searchable: true,
 			},
@@ -206,8 +212,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "monant",
-				title: "Mon Ant",
+				field: "interes",
+				title: "Interes",
 				align: 'right',
 				sortable: true,
 				searchable: true,
@@ -216,8 +222,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
                 },
 			},
 			{
-				field: "monrec",
-				title: "Mon Rec",
+				field: "comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -226,8 +232,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "capamort",
-				title: "Capa Mort",
+				field: "iva",
+				title: "IVA",
 				align: 'right',
                 sortable: true,
 				searchable: true,
@@ -236,21 +242,14 @@ function urlSp16docTable(rut, date_ini, date_end) {
                 },
             },
             {
-				field: "saldo",
-				title: "Saldo",
+				field: "total",
+				title: "Total",
 				align: 'right',
                 sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
                 },
-            },
-            {
-				field: "docvig",
-				title: "Doc Vig",
-				align: 'right',
-                sortable: true,
-				searchable: false,
             }
 		],
 		url: [],
