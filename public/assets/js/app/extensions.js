@@ -605,7 +605,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	});
 
 	$("#tbl_ex_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
-		if(field === 'contratos') {			
+		if(field === 'contrato') {			
 			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
@@ -621,13 +621,13 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	});
 
 	$("#tbl_ex_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
-		if(field === 'contrato') {
+		if(field === 'contratoss') {
 
 			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
 			$("#tbl_ex_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, null, null),
+				url: urlSp15docTable(0, null, null),
 			});
 
 			$('#tblExRes').hide('slow');
