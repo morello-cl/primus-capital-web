@@ -612,7 +612,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 			const nro_client = row.idcliente;
 
 			$("#tbl_ex_det").bootstrapTable("refresh", {
-				url: urlSp15detTable(nro_client, null, null),
+				url: urlSp16detTable(nro_client, null, null),
 			});
 
 			$('#tblExRes').hide('slow');
@@ -628,7 +628,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
 			$("#tbl_ex_doc").bootstrapTable("refresh", {
-				url: urlSp15docTable(0, null, null),
+				url: urlSp16docTable(0, null, null),
 			});
 
 			$('#tblExRes').hide('slow');
