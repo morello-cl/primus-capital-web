@@ -47,13 +47,18 @@ router.get('/sp_15_res', isLoggedIn, function(req, res, next){
 router.get('/sp_15_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_det', {
+    const _body = {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
-        codcli: 0
-    }, {
+        codcli: 0,
+        tipoinfo: 1
+    };
+
+    console.log('sp_15_det', _body);
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_det', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
@@ -73,13 +78,18 @@ router.get('/sp_15_det', isLoggedIn, function(req, res, next){
 router.get('/sp_15_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_doc', {
+    const _body = {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
-        codcli: 0
-    }, {
+        codcli: 0,
+        tipoinfo: 1
+    };
+
+    console.log('sp_15_doc', _body);
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_15_doc', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
