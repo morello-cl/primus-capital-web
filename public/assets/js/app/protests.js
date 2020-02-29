@@ -196,6 +196,16 @@ function urlSp15docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
+				field: "candoc",
+				title: "Can Doc",
+				align: 'right',
+				sortable: true,
+				searchable: true,
+				formatter: function(value, row, index) {
+                    return numeral(value).format("0,000[.]0");
+                },
+			},
+			{
 				field: "mondoc",
 				title: "Mon Doc",
 				align: 'right',
@@ -204,54 +214,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
                 },
-			},
-			{
-				field: "monant",
-				title: "Mon Ant",
-				align: 'right',
-				sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "monrec",
-				title: "Mon Rec",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "capamort",
-				title: "Capa Mort",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "saldo",
-				title: "Saldo",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            },
-            {
-				field: "docvig",
-				title: "Doc Vig",
-				align: 'right',
-                sortable: true,
-				searchable: false,
-            }
+			}
 		],
 		url: [],
 		locale: "es-SP",
