@@ -176,9 +176,10 @@ function urlSp15docTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T.",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -571,33 +572,31 @@ function urlSp15docTable(rut, date_ini, date_end) {
 
 	$("#tbl_po_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_ws_det").bootstrapTable("refresh", {
-				url: urlSp13detTable(nro_client, dt_ini, dt_end),
+			$("#tbl_po_det").bootstrapTable("refresh", {
+				url: urlSp15detTable(nro_client, null, dt_end),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').show('slow');
-			$('#tblWsDoc').hide('slow');
+			$('#tblPoRes').hide('slow');
+			$('#tblPoDet').show('slow');
+			$('#tblPoDoc').hide('slow');
 		}
 	});
 
 	$("#tbl_po_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
+			const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const nro_client = row.idcliente;
 
-			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-
-			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+			$("#tbl_po_doc").bootstrapTable("refresh", {
+				url: urlSp15docTable(nro_client, null, dt_end),
 			});
 
-			$('#tblWsRes').hide('slow');
-			$('#tblWsDet').hide('slow');
-			$('#tblWsDoc').show('slow');
+			$('#tblPoRes').hide('slow');
+			$('#tblPoDet').hide('slow');
+			$('#tblPoDoc').show('slow');
 		}
 	});
 
