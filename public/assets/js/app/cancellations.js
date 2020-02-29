@@ -390,7 +390,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				formatter: function(value, row, index) {
 					console.log('value', value);
-					const fecha = moment(value, "DD-MM-YYYY H:M:S");
+					const fecha = moment(value, "DD-MM-YYYY H:mm:SS");
 
                     return fecha.format('DD-MM-YYYY');
                 },
