@@ -46,13 +46,15 @@ router.get('/sp_16_res', isLoggedIn, function(req, res, next){
 router.get('/sp_16_det', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_16_det', {
+    const _body = {
         rut: _rut,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
         codcli: 0
-    }, {
+    };
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_16_det', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
