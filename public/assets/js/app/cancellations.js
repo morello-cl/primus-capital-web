@@ -388,11 +388,11 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				class: 'text-nowrap',
-				/*formatter: function(value, row, index) {
-					const fecha = moment(value);
+				formatter: function(value, row, index) {
+					const fecha = moment(value, "DD-MM-YYYY H:M:S");
 
                     return fecha.format('DD-MM-YYYY');
-                },*/
+                },
             },
             {
 				field: "tipo",
