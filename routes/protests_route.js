@@ -21,7 +21,8 @@ router.get('/sp_15_res', isLoggedIn, function(req, res, next){
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
-        codcli: 0
+        codcli: 0,
+        tipoinfo: 1
     };
 
     console.log('sp_15_res', _body);
