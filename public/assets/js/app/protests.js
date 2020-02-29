@@ -238,11 +238,12 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
+					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
 
                     return rut_client;
                 },
@@ -254,30 +255,21 @@ function urlSp15docTable(rut, date_ini, date_end) {
 				searchable: true,
 			},
 			{
-				field: "contrato",
-				title: "Contrato",
+				field: "contratos",
+				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true
 			},
 			{
-				field: "fchot",
-				title: "Fecha",
-				align: 'center',
-				class: 'text-nowrap',
+				field: "candoc",
+				title: "Can Doc.",
+				align: 'right',
+                sortable: true,
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
-
-                    return fecha.format('DD-MM-YYYY');
+                    return numeral(value).format("0,000[.]0");
                 },
-            },
-			{
-				field: "tipo",
-				title: "Tipo",
-				class: 'text-nowrap',
-				align: 'center',
-				sortable: true,
-				searchable: true,
 			},
 			{
 				field: "mondoc",
@@ -288,57 +280,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 				formatter: function(value, row, index) {
                     return numeral(value).format("0,000[.]0");
                 },
-			},
-			{
-				field: "monant",
-				title: "Mon Ant.",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "monrec",
-				title: "Mon Rec.",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "capamort",
-				title: "Capa Mort",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-			{
-				field: "saldo",
-				title: "Saldo",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-			},
-            {
-				field: "docvig",
-				title: "Doc Vig",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            }
+			}
 		],
 		url: [],
 		locale: "es-SP",
