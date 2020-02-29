@@ -376,8 +376,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				sortable: true
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "contrato",
+				title: "Contrato",
 				align: 'center',
 				searchable: true,
 				sortable: true
@@ -388,11 +388,11 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
+				/*formatter: function(value, row, index) {
 					const fecha = moment(value);
 
                     return fecha.format('DD-MM-YYYY');
-                },
+                },*/
             },
             {
 				field: "tipo",
