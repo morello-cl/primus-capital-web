@@ -151,21 +151,19 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		$('#po_date').data("DateTimePicker").toggle();
 	});
 
-    $('input:radio[name=ws_op2]').click(function(e){
-        if($('input:radio[name=ws_op2]:checked').val() === 'w_opt_per') {
-			$('#ws_date_ini_txt').prop('readonly', false);
-			$('#ws_date_end_txt').prop('readonly', false);
+    $('input:radio[name=po_opt3]').click(function(e){
+        if($('input:radio[name=po_opt3]:checked').val() === 'po_opt3_per') {
+			$('#po_date_txt').prop('readonly', false);
         } else {
-			$('#ws_date_ini_txt').prop('readonly', true);
-			$('#ws_date_end_txt').prop('readonly', true);
+			$('#po_date_txt').prop('readonly', true);
         }
     });
 
-    $('input:radio[name=ws_op1]').click(function(e){
-        if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_ind') {
-            $('#ws_nro').attr('disabled', false);
+    $('input:radio[name=po_opt1]').click(function(e){
+        if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
+            $('#po_nro').attr('disabled', false);
         } else {
-            $('#ws_nro').attr('disabled', true);
+            $('#po_nro').attr('disabled', true);
         }
     });
     
@@ -339,6 +337,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 			{
 				field: "contratos",
 				title: "Contratos",
+				align: 'center',
 				searchable: true,
 				sortable: true,
 			},
