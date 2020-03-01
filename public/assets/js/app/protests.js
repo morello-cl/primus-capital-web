@@ -439,6 +439,8 @@ function urlSp15docTable(rut, date_ini, date_end) {
 	$('#btn_po_clear').click(function(e){
 		e.preventDefault();
 
+		$('#po_nro').val('');
+
 		// opciones activas por defecto
 		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
 		$('input:radio[name=po_opt2]').filter('[value=po_opt2_vig]').prop('checked', true);
