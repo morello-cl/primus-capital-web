@@ -139,7 +139,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 (function($) {
 	"use strict";
 
-	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
+	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'change' });
 	$("#po_nro").rut().on('rutInvalido', function(e) {
 		if(v($("#po_nro").val()).isBlank()) {
 			$('#po_nro').removeClass('is-invalid');
