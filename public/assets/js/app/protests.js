@@ -139,7 +139,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 (function($) {
 	"use strict";
 
-	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'change' });
+	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#po_nro").rut().on('rutInvalido', function(e) {
 		if(v($("#po_nro").val()).isBlank()) {
 			$('#po_nro').removeClass('is-invalid');
@@ -440,6 +440,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 
 		$('#po_nro').val('');
+		$('#po_nro').removeClass('is-invalid');
 
 		// opciones activas por defecto
 		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
