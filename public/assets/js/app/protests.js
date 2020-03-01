@@ -165,9 +165,9 @@ function urlSp15docTable(rut, date_ini, date_end) {
 
     $('input:radio[name=po_opt3]').click(function(e){
         if($('input:radio[name=po_opt3]:checked').val() === 'po_opt3_per') {
-			$('#po_date_txt').prop('readonly', false);
+			$('#po_date_txt').prop('disabled', false);
         } else {
-			$('#po_date_txt').prop('readonly', true);
+			$('#po_date_txt').prop('disabled', true);
         }
     });
 
@@ -440,13 +440,14 @@ function urlSp15docTable(rut, date_ini, date_end) {
 		e.preventDefault();
 
 		$('#po_nro').val('');
+		$('#po_nro').attr('disabled', true);
 		$('#po_nro').removeClass('is-invalid');
 
 		// opciones activas por defecto
 		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
 		$('input:radio[name=po_opt2]').filter('[value=po_opt2_vig]').prop('checked', true);
 		$('input:radio[name=po_opt3]').filter('[value=po_opt3_hoy]').prop('checked', true);
-		$('#po_date_txt').prop('readonly', true);
+		$('#po_date_txt').prop('disabled', true);
 
 		// buscador queda modo default
 		$("#po_date").datetimepicker({
