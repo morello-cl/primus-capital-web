@@ -139,6 +139,18 @@ function urlSp15docTable(rut, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
+	$("#po_nro").rut().on('rutInvalido', function(e) {
+		if(v($("#po_nro").val()).isBlank()) {
+			$('#po_nro').removeClass('is-invalid');
+		} else {
+			$('#po_nro').addClass('is-invalid');
+		}
+	});
+	$("#po_nro").rut().on('rutValido', function(e, rut, dv) {
+		$('#po_nro').removeClass('is-invalid');
+	});
+
     const date_now = moment().startOf("day");
      
     $("#po_date").datetimepicker({
@@ -160,7 +172,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
     });
 
     $('input:radio[name=po_opt1]').click(function(e){
-        if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
+        if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_rut') {
             $('#po_nro').attr('disabled', false);
         } else {
             $('#po_nro').attr('disabled', true);
