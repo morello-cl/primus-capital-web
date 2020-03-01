@@ -528,7 +528,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 	});
 
 	$("#tbl_po_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
-		if(field === 'contrato') {
+		if(field === 'contratos') {
 			const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
