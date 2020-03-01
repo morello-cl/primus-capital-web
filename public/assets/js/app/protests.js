@@ -429,9 +429,9 @@ function urlSp15docTable(rut, date_ini, date_end) {
 
 		// opciones activas por defecto
 		$('input:radio[name=po_opt1]').filter('[value=po_opt1_all]').prop('checked', true);
-		$('input:radio[name=po_opt2]').filter('[value=po_type_vig]').prop('checked', true);
-		$('#ws_date_ini_txt').prop('readonly', true);
-		$('#ws_date_end_txt').prop('readonly', true);
+		$('input:radio[name=po_opt2]').filter('[value=po_opt2_vig]').prop('checked', true);
+		$('input:radio[name=po_opt3]').filter('[value=po_opt3_hoy]').prop('checked', true);
+		$('#po_date_txt').prop('readonly', true);
 
 		// buscador queda modo default
 		$("#po_date").datetimepicker({
