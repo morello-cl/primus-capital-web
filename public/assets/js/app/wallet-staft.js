@@ -116,11 +116,14 @@ function urlSp13detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp13docTable(rut, date_ini, date_end) {
+function urlSp13docTable(rut, contrato, date_ini, date_end) {
 	let url = '/wallet-staft/api/sp_13_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
@@ -671,7 +674,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
 			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+				url: urlSp13docTable(row.idcliente, row.contrato, dt_ini, dt_end),
 			});
 
 			$('#tblWsRes').hide('slow');
