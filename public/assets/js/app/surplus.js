@@ -230,7 +230,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
         }
     });
 
-    $("#tbl_surplus_res").bootstrapTable({
+    $("#tbl_sp_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -347,7 +347,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_det").bootstrapTable({
+	$("#tbl_sp_det").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -474,7 +474,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_doc").bootstrapTable({
+	$("#tbl_sp_doc").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -638,7 +638,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_abo").bootstrapTable({
+	$("#tbl_sp_abo").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -797,7 +797,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
 	});
-	$("#tbl_surplus_car").bootstrapTable({
+	$("#tbl_sp_car").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -937,55 +937,55 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_res') {
-			$('#tblSurplusRes').show('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').show('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_surplus_res").bootstrapTable("refresh", {
+			$("#tbl_sp_res").bootstrapTable("refresh", {
 				url: urlSp14resTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_doc') {
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').show('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').show('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+			$("#tbl_sp_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_abo'){
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').show('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').show('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_abo").bootstrapTable("refresh", {
+			$("#tbl_sp_abo").bootstrapTable("refresh", {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_car'){
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').show('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').show('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_car").bootstrapTable("refresh", {
+			$("#tbl_sp_car").bootstrapTable("refresh", {
 				url: urlSp14carTable(0, dt_ini, dt_end),
 			});
 		}
@@ -1009,47 +1009,47 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		});
 
 		// limpiar tablas
-		$('#tblSurplusRes').hide('slow');
-		$("#tbl_surplus_res").bootstrapTable("refresh", {
+		$('#tblSpRes').hide('slow');
+		$("#tbl_sp_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblSurplusDet').hide('slow');
-		$("#tbl_surplus_det").bootstrapTable("refresh", {
+		$('#tblSpDet').hide('slow');
+		$("#tbl_sp_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblSurplusDoc').hide('slow');
-		$("#tbl_surplus_doc").bootstrapTable("refresh", {
+		$('#tblSpDoc').hide('slow');
+		$("#tbl_sp_doc").bootstrapTable("refresh", {
             url: [],
 		});
-		$('#tblSurplusAbo').hide('slow');
-		$("#tbl_surplus_abo").bootstrapTable("refresh", {
+		$('#tblSpAbo').hide('slow');
+		$("#tbl_sp_abo").bootstrapTable("refresh", {
             url: [],
 		});
-		$('#tblSurplusCar').hide('slow');
-		$("#tbl_surplus_car").bootstrapTable("refresh", {
+		$('#tblSpCar').hide('slow');
+		$("#tbl_sp_car").bootstrapTable("refresh", {
             url: [],
         });
 	});
 
-	$("#tbl_surplus_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_sp_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_surplus_det").bootstrapTable("refresh", {
+			$("#tbl_sp_det").bootstrapTable("refresh", {
 				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').show('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').show('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 		}
 	});
 
-	$("#tbl_surplus_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_sp_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 			console.log('doc.field', field);
 			console.log('doc.row', row);
@@ -1059,15 +1059,15 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			const nro_client = row.idcliente;
 			const nro_contrato = row.contrato;
 
-			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+			$("#tbl_sp_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').show('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').show('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 		}
 	});
 
