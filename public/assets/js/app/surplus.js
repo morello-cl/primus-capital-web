@@ -377,7 +377,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				}
 			},
 			{
-				field: "fotorgam",
+				field: "fecha",
 				title: "Fecha",
 				align: 'center',
 				class: 'text-nowrap',
