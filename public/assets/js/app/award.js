@@ -1153,11 +1153,11 @@ function urlSp11IndDep(rut, contrato) {
 					$('#ot_mon_ant').val(numeral(r.data[0].mon_ant).format("$ 0,000[.]0"));
 					$('#ot_dif_precio').val(numeral(r.data[0].dif_precio).format("$ 0,000[.]0"));
 					$('#ot_comision').val(numeral(r.data[0].comision).format("$ 0,000[.]0"));
-					$('#ot_iva').val('');
+					$('#ot_iva').val(numeral(r.data[0].iva).format("$ 0,000[.]0"));
 
 					$('#ot_impto').val(numeral(r.data[0].impto).format("$ 0,000[.]0"));
 					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
-					$('#ot_mon_oper').val('');
+					$('#ot_mon_oper').val(numeral(r.data[0].montoOperacion).format("$ 0,000[.]0"));
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
 					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
 
