@@ -564,7 +564,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
+					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
 
                     return fecha.format('DD-MM-YYYY');
                 },
@@ -591,7 +591,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
+					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
 
                     return fecha.format('DD-MM-YYYY');
                 },
@@ -754,7 +754,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
+					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
 
                     return fecha.format('DD-MM-YYYY');
                 },
@@ -781,7 +781,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
+					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
 
                     return fecha.format('DD-MM-YYYY');
                 },
@@ -793,7 +793,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: function(value, row, index) {
-					const fecha = moment(value);
+					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
 
                     return fecha.format('DD-MM-YYYY');
                 },
