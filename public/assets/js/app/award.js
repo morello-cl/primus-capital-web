@@ -193,6 +193,7 @@ function urlSp11IndDep(rut, contrato) {
 	let _originalOption = '';
 	let _awardCliente = '';
 	let _awardContrato = '';
+	let _awardNRoot = '';
 	
 	$('#ot_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#ot_nro").rut().on('rutInvalido', function(e) {
@@ -1161,6 +1162,7 @@ function urlSp11IndDep(rut, contrato) {
 					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
 
 					const url_ind_apl = urlSp11IndApl(_awardCliente, r.data[0].nroot);
+					_awardNRoot = r.data[0].nroot;
 
 					console.log('url_ind_apl', url_ind_apl);
 					axios.get(url_ind_apl)
@@ -1205,7 +1207,7 @@ function urlSp11IndDep(rut, contrato) {
 	});
 
 	$("#modalDeposito").on('shown.bs.modal', function(e){
-		const url = urlSp11IndDep(_awardCliente, _awardContrato);
+		const url = urlSp11IndDep(_awardCliente, _awardNRoot);
 
 		console.log('url', url);
 
