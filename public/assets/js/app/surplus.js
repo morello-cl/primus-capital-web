@@ -123,7 +123,7 @@ function urlSp14docTable(rut, contrato, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 	if(contrato) {
-		url = `${url}&contrato=${rut}`;
+		url = `${url}&contrato=${contrato}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
