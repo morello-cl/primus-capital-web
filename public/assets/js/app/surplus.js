@@ -1057,9 +1057,10 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
 
 			$("#tbl_surplus_doc").bootstrapTable("refresh", {
-				url: urlSp14docTable(nro_client, dt_ini, dt_end),
+				url: urlSp14docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
 			$('#tblSurplusRes').hide('slow');
