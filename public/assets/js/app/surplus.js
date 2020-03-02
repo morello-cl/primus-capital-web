@@ -116,11 +116,14 @@ function urlSp14detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp14docTable(rut, date_ini, date_end) {
+function urlSp14docTable(rut, contrato, date_ini, date_end) {
 	let url = '/surplus/api/sp_14_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${rut}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
@@ -1053,11 +1056,10 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
 			const nro_client = row.idcliente;
 
 			$("#tbl_surplus_doc").bootstrapTable("refresh", {
-				url: urlSp11docTable(nro_client, dt_ini, dt_end),
+				url: urlSp14docTable(nro_client, dt_ini, dt_end),
 			});
 
 			$('#tblSurplusRes').hide('slow');
