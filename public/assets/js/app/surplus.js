@@ -184,12 +184,12 @@ function urlSp14carTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	
+
 	if($('input:radio[name=sp_op2]:checked').val() === 'sp_opt_per') {
 		if(date_ini){
 			url = `${url}&date[gte]=${date_ini}`;
 		} else {
-			url = `${url}&date[gte]=1900-01-01`;
+			url = `${url}&date[gte]=${moment().add(-1, 'M').format('YYYY-MM-DD')}`;
 		}
 		if(date_end) {
 			url = `${url}&date[lte]=${date_end}`;
@@ -197,7 +197,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
 		}
 	} else {
-		url = `${url}&date[gte]=1900-01-01`;
+		url = `${url}&date[gte]=${moment().add(-1, 'M').format('YYYY-MM-DD')}`;
 		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
 	}
 
@@ -211,7 +211,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
     const date_end = moment().startOf("day");
 
-	const date_ini = moment().add(-6, 'M');
+	const date_ini = moment().add(-3, 'M');
      
     $("#sp_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
