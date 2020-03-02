@@ -1051,7 +1051,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 			const nro_client = row.idcliente;
 			const nro_contrato = row.contrato;
 
-			$("#tbl_cancel_doc").bootstrapTable("refresh", {
+			$("#tbl_cancel_abo").bootstrapTable("refresh", {
 				url: urlSp12aboTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 

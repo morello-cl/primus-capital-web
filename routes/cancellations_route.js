@@ -89,14 +89,18 @@ router.get('/sp_12_abo', isLoggedIn, function(req, res, next) {
     let _rut = req.query.rut ? req.query.rut : 0;
     let _contrato = req.query.contrato ? req.query.contrato : 0;
 
-    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_12_abo', {
+    let _body = {
         rut: _rut,
         contrato: _contrato,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,
         codcli: 0
-    }, {
+    };
+
+    console.log('sp_12_abo', _body);
+
+    axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_12_abo', _body, {
         headers: { Authorization: `Bearer ${req.user.access_token}` }
     })
         .then(function(r){
@@ -105,7 +109,7 @@ router.get('/sp_12_abo', isLoggedIn, function(req, res, next) {
             res.json(r.data);
         })
         .catch(function(err){
-            console.log('err', err);
+            console.log('sp_12_abo.err', err);
             res.status(400).json({});
         });
     
