@@ -97,11 +97,14 @@ function urlSp15resTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp15detTable(rut, date_ini, date_end) {
+function urlSp15detTable(rut, contrato, date_ini, date_end) {
 	let url = '/protests/api/sp_15_det/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
@@ -116,11 +119,14 @@ function urlSp15detTable(rut, date_ini, date_end) {
 
 	return url;
 }
-function urlSp15docTable(rut, date_ini, date_end) {
+function urlSp15docTable(rut, contrato, date_ini, date_end) {
 	let url = '/protests/api/sp_15_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
 	if(date_ini){
 		url = `${url}&date[gte]=${date_ini}`;
@@ -482,7 +488,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 			const nro_client = row.idcliente;
 
 			$("#tbl_po_det").bootstrapTable("refresh", {
-				url: urlSp15detTable(nro_client, null, dt_end),
+				url: urlSp15detTable(nro_client, null, null, dt_end),
 			});
 
 			$('#tblPoRes').hide('slow');
@@ -497,7 +503,7 @@ function urlSp15docTable(rut, date_ini, date_end) {
 			const nro_client = row.idcliente;
 
 			$("#tbl_po_doc").bootstrapTable("refresh", {
-				url: urlSp15docTable(nro_client, null, dt_end),
+				url: urlSp15docTable(nro_client, row.contratos, null, dt_end),
 			});
 
 			$('#tblPoRes').hide('slow');
