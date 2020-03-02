@@ -244,7 +244,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "mondoc",
@@ -380,7 +383,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "f_otorg",
@@ -556,6 +562,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "f_otorg",
@@ -1021,15 +1031,34 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
 
 			$("#tbl_cancel_doc").bootstrapTable("refresh", {
-				url: urlSp12docTable(nro_client, dt_ini, dt_end),
+				url: urlSp12docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
 			$('#tblCancelRes').hide('slow');
 			$('#tblCancelDet').hide('slow');
 			$('#tblCancelDoc').show('slow');
 			$('#tblCancelAbo').hide('slow');
+		}
+	});
+
+	$("#tbl_cancel_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		if(field === 'contrato') {
+			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
+
+			$("#tbl_cancel_doc").bootstrapTable("refresh", {
+				url: urlSp12aboTable(nro_client, nro_contrato, dt_ini, dt_end),
+			});
+
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').show('slow');
 		}
 	});
 
