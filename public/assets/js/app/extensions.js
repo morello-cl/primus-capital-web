@@ -194,6 +194,10 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "candoc",
@@ -293,6 +297,10 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "fchot",
