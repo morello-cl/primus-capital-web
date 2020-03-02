@@ -1070,4 +1070,36 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			$('#tblSurplusCar').hide('slow');
 		}
 	});
+
+	$("#btn_sp_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpRes').hide('slow');
+	});
+
+	$("#btn_sp_bk_det").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpDet').hide('slow');
+		$('#tblSpRes').show('slow');
+	});
+
+	$("#btn_sp_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpDoc').hide('slow');
+		$('#tblSpDet').show('slow');
+	});
 })(jQuery);
