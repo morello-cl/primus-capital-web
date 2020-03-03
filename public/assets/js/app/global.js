@@ -82,6 +82,20 @@ var __exportOptionsTable = {
 };
 
 
+function __dateFormatTable(value, row, index) {
+    const fecha = moment(value);
+
+    return fecha.format('DD-MM-YYYY');
+};
+
+
+/**
+ * 
+ * @param {}} date_ini 
+ * @param {*} date_end 
+ * @param {*} optionName 
+ * @param {*} optionValue 
+ */
 function __addUrlDateTime(date_ini, date_end, optionName, optionValue) {
 	let url = '';
 	
