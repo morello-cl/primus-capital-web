@@ -1141,7 +1141,7 @@ function urlSp11IndDep(rut, contrato) {
 			console.log('url', url);
 			axios.get(url)
 				.then(function(r) {
-					console.log('r.data', r.data);
+					console.log('urlSp11Ind1.data', r.data);
 
 					$('#ot_client_name').text(r.data[0].nomcliente);
 
@@ -1169,7 +1169,7 @@ function urlSp11IndDep(rut, contrato) {
 					console.log('url_ind_apl', url_ind_apl);
 					axios.get(url_ind_apl)
 						.then(function(r) {
-							console.log('indpal', r.data);
+							console.log('urlSp11IndApl', r.data);
 		
 							if(Array.isArray(r.data) && r.data.length) {
 								$('#ot_apli_doc').val(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));

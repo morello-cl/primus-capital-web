@@ -1,8 +1,8 @@
 "use strict";
 
-const __exportTypesTable = ["json", "xml", "csv", "txt", "excel"];
+var __exportTypesTable = ["json", "xml", "csv", "txt", "excel"];
 
-const __exportOptionsTable = {
+var __exportOptionsTable = {
 	consoleLog: false,
 	csvEnclosure: '"',
 	csvSeparator: ";",
