@@ -340,13 +340,13 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 			rut = $.formatRut(rut, false);
 			rut = rut.slice(0, -2);
 			console.log('rut', rut);
-			$("#tbl_po_doc").bootstrapTable("refresh", {
+			$("#tbl_po_res").bootstrapTable("refresh", {
 				url: urlSp15resTable(rut, null, dt_end),
 			});
 
-			$('#tblPoRes').hide('slow');
+			$('#tblPoRes').show('slow');
 			$('#tblPoDet').hide('slow');
-			$('#tblPoDoc').show('slow');
+			$('#tblPoDoc').hide('slow');
 		}
 	});
 
