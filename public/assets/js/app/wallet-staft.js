@@ -142,6 +142,8 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	__exportOptionsTable.worksheetName = 'Cartera Vigente';
+
     const date_now = moment().startOf("day");
 
     const date_end = moment().startOf("day");

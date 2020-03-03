@@ -139,6 +139,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	__exportOptionsTable.worksheetName = 'Prorrogas';
+
     const date_now = moment().startOf("day");
      
     $("#ex_date").datetimepicker({

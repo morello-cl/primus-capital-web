@@ -166,6 +166,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	__exportOptionsTable.worksheetName = 'Cancelaciones';
+
 	let _originalOption = '';
 
     const date_now = moment().startOf("day");

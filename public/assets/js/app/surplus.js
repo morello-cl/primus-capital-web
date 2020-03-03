@@ -84,7 +84,7 @@ function urlSp14resTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	
+
 	if($('input:radio[name=sp_op2]:checked').val() === 'sp_opt_per') {
 		if(date_ini){
 			url = `${url}&date[gte]=${date_ini}`;
@@ -209,6 +209,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
 (function($) {
 	"use strict";
+
+	__exportOptionsTable.worksheetName = 'Excedentes';
 	
     const date_now = moment().startOf("day");
 

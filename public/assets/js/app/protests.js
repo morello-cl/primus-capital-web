@@ -145,6 +145,8 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 (function($) {
 	"use strict";
 
+	__exportOptionsTable.worksheetName = 'Protestos';
+
 	$('#po_nro').rut({ formatOn: 'keyup', ignoreControlKeys: false, validateOn: 'keyup' });
 	$("#po_nro").rut().on('rutInvalido', function(e) {
 		if(v($("#po_nro").val()).isBlank()) {
