@@ -1118,7 +1118,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 $(window).on('load', function(){
 	if(getUrlVars()['page'] === 'abono') {
 		$("#tbl_cancel_abo").bootstrapTable("refresh", {
-			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
+			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], '2019-09-03', '2020-03-03'),
 		});
 
 		$('#tblCancelRes').hide('slow');
