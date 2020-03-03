@@ -519,11 +519,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
@@ -843,6 +839,65 @@ function urlSp11IndApl(rut, contrato) {
 		theadClasses: 'thead-light'
 	});
 
+	$("#tbl_award_inddep").bootstrapTable({
+		columns: [
+			{
+				field: "idcliente",
+				title: "R.U.T. Cliente",
+				searchable: true,
+				sortable: true,
+				class: 'text-nowrap',
+				formatter: __rutClientFormatTable
+			},
+			{
+				field: "nomcliente",
+				title: "Nombre Cliente",
+				class: 'text-nowrap',
+				searchable: true,
+				sortable: true,
+			},
+			{
+				field: "monto",
+				title: "Monto",
+				align: 'right',
+				searchable: true,
+				sortable: true,
+				formatter: __numeralFormatTable
+			},
+			{
+				field: "nombanco",
+				title: "Banco",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+            },
+            {
+				field: "ctacteclie",
+				title: "Cta. Cte.",
+				align: 'center',
+				class: 'text-nowrap',
+				sortable: true,
+				searchable: true,
+			}
+		],
+		url: [],
+		locale: "es-SP",
+		clickToSelect: false,
+		showRefresh: true,
+		showColumns: true,
+		exportDataType: "all",
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
+		search: true,
+		searchAlign: "right",
+		striped: true,
+		pagination: true,
+		pageNumber: 1,
+		pageSize: 10,
+		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
+	});
+
 	$("#btn_aw_bk_res").click(function(e){
 		e.preventDefault();
 
@@ -1104,8 +1159,8 @@ function urlSp11IndApl(rut, contrato) {
 	});
 
 	$("#modalDeposito").on('shown.bs.modal', function(e){
-		
-		$("#tbl_award_ind2").bootstrapTable("refresh", {
+
+		$("#tbl_award_inddep").bootstrapTable("refresh", {
 			url: urlSp11IndDep(_awardCliente, _awardNRoot),
 		});
 	});

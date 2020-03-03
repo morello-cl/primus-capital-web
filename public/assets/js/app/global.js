@@ -85,6 +85,12 @@ function __numeralFormatTable(value, row, index) {
     return numeral(value).format("0,000[.]0");
 }
 
+function __rutClientFormatTable(value, row, index) {
+    const rut_format = $.formatRut(value + "-" + row.dvcliente, false);
+
+    return rut_format;
+}
+
 function __rutDeudorFormatTable(value, row, index) {
     const rut_format = $.formatRut(value + "-" + row.dvdeudor, false);
 
