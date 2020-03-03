@@ -1091,7 +1091,7 @@ function urlSp11IndApl(rut, contrato) {
 							console.log('urlSp11IndApl.data', r.data);
 		
 							if(Array.isArray(r.data) && r.data.length) {
-								$('#ot_apli_doc').val(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));
+								$('#ot_apli_doc').text(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));
 								$('#ot_apli_pro').val(numeral(r.data[0].aplprorroga).format("$ 0,000[.]0"));
 								$('#ot_apli_cta').val(numeral(r.data[0].aplcxc).format("$ 0,000[.]0"));
 								$('#ot_apli_prote').val(numeral(r.data[0].aplprotesto).format("$ 0,000[.]0"));
