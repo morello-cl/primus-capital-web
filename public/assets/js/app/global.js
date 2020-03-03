@@ -87,6 +87,11 @@ function __dateFormatTable(value, row, index) {
 
     return fecha.format('DD-MM-YYYY');
 };
+function __dateFormat(value) {
+    const fecha = moment(value);
+
+    return fecha.format('DD-MM-YYYY');
+};
 
 
 /**

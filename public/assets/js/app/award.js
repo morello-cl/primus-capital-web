@@ -568,11 +568,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "fvcmto",
@@ -580,11 +576,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "tasa_doc",
@@ -748,11 +740,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
             {
 				field: "mondcto",
@@ -1043,7 +1031,7 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_ejecutivo').val(r.data[0].ejecutivo);
 					$('#ot_producto').val(r.data[0].tipo);
 					$('#ot_contrato').val(r.data[0].nroContrato + ' / ' + r.data[0].ndocs);
-					$('#ot_fecha_c').val(moment(r.data[0].fecha, 'DD-MM-YYYY H:mm:SS').format('DD-MM-YYYY'));
+					$('#ot_fecha_c').val(__dateFormat(r.data[0].fecha));
 					$('#ot_tasa_o').val(r.data[0].tasa_op);
 
 					$('#ot_mon_doc').val(numeral(r.data[0].mon_doc).format("$ 0,000[.]0"));
