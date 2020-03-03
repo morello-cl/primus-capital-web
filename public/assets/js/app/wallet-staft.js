@@ -1,99 +1,11 @@
-const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
-const exportOptionsBoostrapTable = {
-	consoleLog: false,
-	csvEnclosure: '"',
-	csvSeparator: ";",
-	csvUseBOM: true,
-	displayTableName: false,
-	escape: false,
-	excelstyles: [
-		"css",
-		"properties",
-		"to",
-		"export",
-		"to",
-		"excel"
-	],
-	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
-	htmlContent: false,
-	ignoreColumn: [],
-	ignoreRow: [],
-	jspdf: {
-		orientation: "p",
-		unit: "pt",
-		format: "a4",
-		margins: {
-			left: 20,
-			right: 10,
-			top: 10,
-			bottom: 10
-		},
-		autotable: {
-			styles: {
-				cellPadding: 2,
-				rowHeight: 12,
-				fontSize: 8,
-				fillColor: 255,
-				textColor: 50,
-				fontStyle: "normal",
-				overflow: "ellipsize",
-				halign: "left",
-				valign: "middle"
-			},
-			headerStyles: {
-				fillColor: [
-					52, 73, 94
-				],
-				textColor: 255,
-				fontStyle: "bold",
-				halign: "center"
-			},
-			alternateRowStyles: {
-				fillColor: 245
-			},
-			tableExport: {
-				onAfterAutotable: null,
-				onBeforeAutotable: null,
-				onTable: null
-			}
-		}
-	},
-	numbers: {
-		html: {
-			decimalMark: ".",
-			thousandsSeparator: ","
-		},
-		output: {
-			decimalMark: ",",
-			thousandsSeparator: "."
-		}
-	},
-	onCellData: null,
-	onCellHtmlData: null,
-	outputMode: "file",
-	tbodySelector: "tr",
-	theadSelector: "tr",
-	tableName: "primus_capital_report",
-	type: "csv",
-	worksheetName: "Otorgamientos"
-};
-
 function urlSp13resTable(rut, date_ini, date_end) {
 	let url = '/wallet-staft/api/sp_13_res/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
@@ -103,41 +15,30 @@ function urlSp13detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
-function urlSp13docTable(rut, date_ini, date_end) {
+function urlSp13docTable(rut, contrato, date_ini, date_end) {
 	let url = '/wallet-staft/api/sp_13_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
 
 (function($) {
 	"use strict";
+
+	__exportOptionsTable.worksheetName = 'Cartera Vigente';
 
     const date_now = moment().startOf("day");
 
@@ -222,6 +123,10 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "mondoc",
@@ -287,8 +192,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -296,6 +201,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_ws_det").bootstrapTable({
@@ -322,6 +228,10 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "fchot",
@@ -329,11 +239,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -410,8 +316,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -419,6 +325,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_ws_doc").bootstrapTable({
@@ -466,11 +373,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "tipo",
@@ -491,11 +394,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "mora",
@@ -569,8 +468,8 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -578,6 +477,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
     $("#btn-ws-search").click(function(e) {
@@ -663,7 +563,7 @@ function urlSp13docTable(rut, date_ini, date_end) {
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
 			$("#tbl_ws_doc").bootstrapTable("refresh", {
-				url: urlSp13docTable(0, dt_ini, dt_end),
+				url: urlSp13docTable(row.idcliente, row.contrato, dt_ini, dt_end),
 			});
 
 			$('#tblWsRes').hide('slow');

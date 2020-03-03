@@ -67,9 +67,11 @@ router.get('/sp_13_det', isLoggedIn, function(req, res, next){
 
 router.get('/sp_13_doc', isLoggedIn, function(req, res, next){
     let _rut = req.query.rut ? req.query.rut : 0;
+    let _contrato = req.query.contrato ? req.query.contrato : 0;
 
     axios.post( 'http://200.54.149.45/PrimusCapital.WebClienteApi/api/webcliente/sp_13_doc', {
         rut: _rut,
+        contrato: _contrato,
         fdesde: req.query.date.gte,
         fhasta: req.query.date.lte,
         codempl : 0,

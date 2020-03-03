@@ -1,82 +1,10 @@
-const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
-const exportOptionsBoostrapTable = {
-	consoleLog: false,
-	csvEnclosure: '"',
-	csvSeparator: ";",
-	csvUseBOM: true,
-	displayTableName: false,
-	escape: false,
-	excelstyles: [
-		"css",
-		"properties",
-		"to",
-		"export",
-		"to",
-		"excel"
-	],
-	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
-	htmlContent: false,
-	ignoreColumn: [],
-	ignoreRow: [],
-	jspdf: {
-		orientation: "p",
-		unit: "pt",
-		format: "a4",
-		margins: {
-			left: 20,
-			right: 10,
-			top: 10,
-			bottom: 10
-		},
-		autotable: {
-			styles: {
-				cellPadding: 2,
-				rowHeight: 12,
-				fontSize: 8,
-				fillColor: 255,
-				textColor: 50,
-				fontStyle: "normal",
-				overflow: "ellipsize",
-				halign: "left",
-				valign: "middle"
-			},
-			headerStyles: {
-				fillColor: [
-					52, 73, 94
-				],
-				textColor: 255,
-				fontStyle: "bold",
-				halign: "center"
-			},
-			alternateRowStyles: {
-				fillColor: 245
-			},
-			tableExport: {
-				onAfterAutotable: null,
-				onBeforeAutotable: null,
-				onTable: null
-			}
-		}
-	},
-	numbers: {
-		html: {
-			decimalMark: ".",
-			thousandsSeparator: ","
-		},
-		output: {
-			decimalMark: ",",
-			thousandsSeparator: "."
-		}
-	},
-	onCellData: null,
-	onCellHtmlData: null,
-	outputMode: "file",
-	tbodySelector: "tr",
-	theadSelector: "tr",
-	tableName: "primus_capital_report",
-	type: "csv",
-	worksheetName: "Otorgamientos"
-};
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
 function urlSp12resTable(rut, date_ini, date_end) {
 	let url = '/cancellations/api/sp_12_res/?';
@@ -84,16 +12,8 @@ function urlSp12resTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+	
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ca_op2', 'ca_opt_per')}`;
 
 	return url;
 }
@@ -103,16 +23,8 @@ function urlSp12detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ca_op2', 'ca_opt_per')}`;
 
 	return url;
 }
@@ -125,16 +37,8 @@ function urlSp12docTable(rut, contrato, date_ini, date_end) {
 	if(contrato) {
 		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ca_op2', 'ca_opt_per')}`;
 
 	console.log('urlSp12docTable', url);
 
@@ -149,22 +53,16 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 	if(contrato) {
 		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+	
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ca_op2', 'ca_opt_per')}`;
 
 	return url;
 }
 
 (function($) {
 	"use strict";
+
+	__exportOptionsTable.worksheetName = 'Cancelaciones';
 
 	let _originalOption = '';
 
@@ -244,7 +142,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "mondoc",
@@ -343,8 +244,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -352,6 +253,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
     
     $("#tbl_cancel_det").bootstrapTable({
@@ -380,7 +282,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "f_otorg",
@@ -388,12 +293,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					console.log('value', value);
-					const fecha = moment(value, "DD-MM-YYYY H:mm:SS");
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
             {
 				field: "tipo",
@@ -500,8 +400,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -509,6 +409,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_cancel_doc").bootstrapTable({
@@ -556,6 +457,10 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "f_otorg",
@@ -563,11 +468,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -590,11 +491,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "mondcto",
@@ -693,8 +590,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -702,6 +599,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_cancel_abo").bootstrapTable({
@@ -753,11 +651,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -780,11 +674,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "f_pago",
@@ -792,11 +682,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "quienpaga",
@@ -907,8 +793,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -916,6 +802,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
     $("#btn-ca-search").click(function(e) {
@@ -1021,15 +908,34 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
 
 			$("#tbl_cancel_doc").bootstrapTable("refresh", {
-				url: urlSp12docTable(nro_client, dt_ini, dt_end),
+				url: urlSp12docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
 			$('#tblCancelRes').hide('slow');
 			$('#tblCancelDet').hide('slow');
 			$('#tblCancelDoc').show('slow');
 			$('#tblCancelAbo').hide('slow');
+		}
+	});
+
+	$("#tbl_cancel_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		if(field === 'contrato') {
+			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
+
+			$("#tbl_cancel_abo").bootstrapTable("refresh", {
+				url: urlSp12aboTable(nro_client, nro_contrato, dt_ini, dt_end),
+			});
+
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').show('slow');
 		}
 	});
 
@@ -1071,7 +977,24 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 	$("#btn_ca_bk_abo").click(function(e){
 		e.preventDefault();
 
-		$('#tblCancelDeC').hide('slow');
-		$('#tblCancelDoc').show('slow');
+		if(getUrlVars()['page'] !== 'abono') {
+			$('#tblCancelDeC').hide('slow');
+			$('#tblCancelDoc').show('slow');
+		} else {
+			window.location.href = "/cancellations";
+		}
 	});
 })(jQuery);
+
+$(window).on('load', function(){
+	if(getUrlVars()['page'] === 'abono') {
+		$("#tbl_cancel_abo").bootstrapTable("refresh", {
+			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
+		});
+
+		$('#tblCancelRes').hide('slow');
+		$('#tblCancelDet').hide('slow');
+		$('#tblCancelDoc').hide('slow');
+		$('#tblCancelAbo').show('slow');
+	}
+});

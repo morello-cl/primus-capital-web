@@ -1,99 +1,11 @@
-const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
-const exportOptionsBoostrapTable = {
-	consoleLog: false,
-	csvEnclosure: '"',
-	csvSeparator: ";",
-	csvUseBOM: true,
-	displayTableName: false,
-	escape: false,
-	excelstyles: [
-		"css",
-		"properties",
-		"to",
-		"export",
-		"to",
-		"excel"
-	],
-	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
-	htmlContent: false,
-	ignoreColumn: [],
-	ignoreRow: [],
-	jspdf: {
-		orientation: "p",
-		unit: "pt",
-		format: "a4",
-		margins: {
-			left: 20,
-			right: 10,
-			top: 10,
-			bottom: 10
-		},
-		autotable: {
-			styles: {
-				cellPadding: 2,
-				rowHeight: 12,
-				fontSize: 8,
-				fillColor: 255,
-				textColor: 50,
-				fontStyle: "normal",
-				overflow: "ellipsize",
-				halign: "left",
-				valign: "middle"
-			},
-			headerStyles: {
-				fillColor: [
-					52, 73, 94
-				],
-				textColor: 255,
-				fontStyle: "bold",
-				halign: "center"
-			},
-			alternateRowStyles: {
-				fillColor: 245
-			},
-			tableExport: {
-				onAfterAutotable: null,
-				onBeforeAutotable: null,
-				onTable: null
-			}
-		}
-	},
-	numbers: {
-		html: {
-			decimalMark: ".",
-			thousandsSeparator: ","
-		},
-		output: {
-			decimalMark: ",",
-			thousandsSeparator: "."
-		}
-	},
-	onCellData: null,
-	onCellHtmlData: null,
-	outputMode: "file",
-	tbodySelector: "tr",
-	theadSelector: "tr",
-	tableName: "primus_capital_report",
-	type: "csv",
-	worksheetName: "Otorgamientos"
-};
-
 function urlSp14resTable(rut, date_ini, date_end) {
 	let url = '/surplus/api/sp_14_res/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
 
 	return url;
 }
@@ -103,35 +15,22 @@ function urlSp14detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
 
 	return url;
 }
-function urlSp14docTable(rut, date_ini, date_end) {
+function urlSp14docTable(rut, contrato, date_ini, date_end) {
 	let url = '/surplus/api/sp_14_doc/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
 
 	return url;
 }
@@ -141,16 +40,8 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
 
 	return url;
 }
@@ -160,28 +51,22 @@ function urlSp14carTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
 
 	return url;
 }
 
 (function($) {
 	"use strict";
+
+	__exportOptionsTable.worksheetName = 'Excedentes';
 	
     const date_now = moment().startOf("day");
 
     const date_end = moment().startOf("day");
 
-    const date_ini = moment().add(-6, 'M');
+	const date_ini = moment().add(-3, 'M');
      
     $("#sp_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
@@ -227,7 +112,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
         }
     });
 
-    $("#tbl_surplus_res").bootstrapTable({
+    $("#tbl_sp_res").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -251,6 +136,10 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Contratos",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "mondoc",
@@ -329,8 +218,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -340,7 +229,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_det").bootstrapTable({
+	$("#tbl_sp_det").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -364,18 +253,18 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Contrato",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
-				field: "fotorgam",
+				field: "fecha",
 				title: "Fecha",
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "tipo",
@@ -452,8 +341,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -463,7 +352,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_doc").bootstrapTable({
+	$("#tbl_sp_doc").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -502,7 +391,10 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "contrato",
 				title: "Contrato",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: function(value, row, index) {
+					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+				}
 			},
 			{
 				field: "f_otorg",
@@ -510,11 +402,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "tipo",
@@ -534,77 +422,84 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "mondoc",
 				title: "Mon Doc",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "intmora",
 				title: "Int Mora",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "intdev",
 				title: "Int Dev",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "excedente",
 				title: "Excedente",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "operacion",
 				title: "Operacion",
                 sortable: true,
-                searchable: true,
+				searchable: true,
+				formatter: __numeralFormatTable,
             }
 		],
 		url: [],
@@ -613,8 +508,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -624,7 +519,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageList: [20, 30, 40, 50],
 	});
 
-	$("#tbl_surplus_abo").bootstrapTable({
+	$("#tbl_sp_abo").bootstrapTable({
 		columns: [
 			{
 				field: "idcliente",
@@ -668,7 +563,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "f_otorg",
 				title: "Fch Ot.",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "tipo",
@@ -686,13 +582,15 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "f_vcmto",
 				title: "Fch Vcto",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "f_pago",
 				title: "Fch Pago",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "quienpaga",
@@ -710,61 +608,71 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "mondcto",
 				title: "Mon Dcto",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "int_mora",
 				title: "Int Mora",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "int_dev",
 				title: "Int Dev",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "excgen",
 				title: "Excgen",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 		],
 		url: [],
@@ -773,8 +681,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -783,123 +691,58 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
 	});
-	$("#tbl_surplus_car").bootstrapTable({
+	$("#tbl_sp_car").bootstrapTable({
 		columns: [
 			{
-				field: "idcliente",
-				title: "R.U.T.",
+				field: "concepto",
+				title: "Concepto",
+				searchable: true,
+				class: 'text-nowrap'
+			},
+			{
+				field: "iddeudor",
+				title: "R.U.T. Deudor",
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
-				field: "nomcliente",
-				title: "Nombre",
+				field: "nomdeudor",
+				title: "Nombre Deudor",
+				searchable: true,
+				class: 'text-nowrap',
+			},
+			{
+				field: "docto",
+				title: "Docto",
 				searchable: true,
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "monto",
+				title: "Monto",
 				searchable: true,
-			},
-			{
-				field: "tasa_min",
-				title: "Tasa Min.",
-				searchable: true,
+				formatter: __numeralFormatTable,
             },
             {
-				field: "tasa_max",
-				title: "Tasa Max",
+				field: "cargo",
+				title: "Cargo",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
-				field: "mon_doc",
-				title: "Mon Doc",
+				field: "abono",
+				title: "Abono",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
-				field: "mont_ant",
-				title: "Mon Ant",
+				field: "fecha",
+				title: "Fecha",
 				sortable: true,
 				searchable: true,
-			},
-			{
-				field: "dif_precio",
-				title: "Dif Precio",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "comision",
-				title: "Comision",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "iva",
-				title: "IVA",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "gastos",
-				title: "Gastos",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "impto",
-				title: "Impto",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "mon_oper",
-				title: "Mon Oper",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "apl",
-				title: "Aplic",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
+				formatter: __dateFormatTable,
 			}
 		],
 		url: [],
@@ -908,8 +751,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -923,55 +766,55 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		e.preventDefault();
 		
 		if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_res') {
-			$('#tblSurplusRes').show('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').show('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
-			$("#tbl_surplus_res").bootstrapTable("refresh", {
+			$("#tbl_sp_res").bootstrapTable("refresh", {
 				url: urlSp14resTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_doc') {
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').show('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').show('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_doc").bootstrapTable("refresh", {
+			$("#tbl_sp_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_abo'){
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').show('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').show('slow');
+			$('#tblSpCar').hide('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_abo").bootstrapTable("refresh", {
+			$("#tbl_sp_abo").bootstrapTable("refresh", {
 				url: urlSp14aboTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_car'){
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').show('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').show('slow');
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_surplus_car").bootstrapTable("refresh", {
+			$("#tbl_sp_car").bootstrapTable("refresh", {
 				url: urlSp14carTable(0, dt_ini, dt_end),
 			});
 		}
@@ -995,65 +838,97 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		});
 
 		// limpiar tablas
-		$('#tblSurplusRes').hide('slow');
-		$("#tbl_surplus_res").bootstrapTable("refresh", {
+		$('#tblSpRes').hide('slow');
+		$("#tbl_sp_res").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblSurplusDet').hide('slow');
-		$("#tbl_surplus_det").bootstrapTable("refresh", {
+		$('#tblSpDet').hide('slow');
+		$("#tbl_sp_det").bootstrapTable("refresh", {
             url: [],
         });
-		$('#tblSurplusDoc').hide('slow');
-		$("#tbl_surplus_doc").bootstrapTable("refresh", {
+		$('#tblSpDoc').hide('slow');
+		$("#tbl_sp_doc").bootstrapTable("refresh", {
             url: [],
 		});
-		$('#tblSurplusAbo').hide('slow');
-		$("#tbl_surplus_abo").bootstrapTable("refresh", {
+		$('#tblSpAbo').hide('slow');
+		$("#tbl_sp_abo").bootstrapTable("refresh", {
             url: [],
 		});
-		$('#tblSurplusCar').hide('slow');
-		$("#tbl_surplus_car").bootstrapTable("refresh", {
+		$('#tblSpCar').hide('slow');
+		$("#tbl_sp_car").bootstrapTable("refresh", {
             url: [],
         });
 	});
 
-	$("#tbl_surplus_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_sp_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
-			$("#tbl_surplus_det").bootstrapTable("refresh", {
+			$("#tbl_sp_det").bootstrapTable("refresh", {
 				url: urlSp14detTable(nro_client, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').show('slow');
-			$('#tblSurplusDoc').hide('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').show('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 		}
 	});
 
-	$("#tbl_surplus_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+	$("#tbl_sp_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 			console.log('doc.field', field);
 			console.log('doc.row', row);
 
 			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const rut = $.formatRut($("#ot_nro").val(), false);
 			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
 
-			$("#tbl_surplus_doc").bootstrapTable("refresh", {
-				url: urlSp11docTable(nro_client, dt_ini, dt_end),
+			$("#tbl_sp_doc").bootstrapTable("refresh", {
+				url: urlSp14docTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
-			$('#tblSurplusRes').hide('slow');
-			$('#tblSurplusDet').hide('slow');
-			$('#tblSurplusDoc').show('slow');
-			$('#tblSurplusAbo').hide('slow');
-			$('#tblSurplusCar').hide('slow');
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').show('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
 		}
+	});
+
+	$("#btn_sp_bk_res").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_res").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpRes').hide('slow');
+	});
+
+	$("#btn_sp_bk_det").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_det").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpDet').hide('slow');
+		$('#tblSpRes').show('slow');
+	});
+
+	$("#btn_sp_bk_doc").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_doc").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpDoc').hide('slow');
+		$('#tblSpDet').show('slow');
 	});
 })(jQuery);
