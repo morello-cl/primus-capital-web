@@ -324,8 +324,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -333,6 +333,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
     
     $("#tbl_cancel_det").bootstrapTable({
@@ -484,8 +485,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -493,6 +494,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_cancel_doc").bootstrapTable({
@@ -681,8 +683,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -690,6 +692,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
 	$("#tbl_cancel_abo").bootstrapTable({
@@ -895,8 +898,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -904,6 +907,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		pageNumber: 1,
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
+		theadClasses: 'thead-light'
 	});
 
     $("#btn-ca-search").click(function(e) {
