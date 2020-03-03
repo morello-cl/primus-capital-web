@@ -1116,7 +1116,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 
 	if(getUrlVars()['page'] === 'abono') {
 		$("#tbl_cancel_abo").bootstrapTable("refresh", {
-			url: urlSp12aboTable(nro_client, nro_contrato, null, null),
+			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
 		});
 
 		$('#tblCancelRes').hide('slow');
