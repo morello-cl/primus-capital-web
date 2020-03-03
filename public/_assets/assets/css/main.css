@@ -510,4 +510,7 @@ a.text-primary:hover, a.text-primary:focus {
     .bootstrap-table .fixed-table-container .table thead th .th-inner {
         white-space: pre-wrap!important;
     }
+    .bootstrap-table .fixed-table-container .table td {
+        white-space: nowrap!important;
+    }
 }
