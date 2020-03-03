@@ -1164,4 +1164,10 @@ function urlSp11IndApl(rut, contrato) {
 			url: urlSp11IndDep(_awardCliente, _awardNRoot),
 		});
 	});
+
+	$('#modalDeposito').on('hidden.bs.modal', function(e){
+		$("#tbl_award_inddep").bootstrapTable("refresh", {
+			url: [],
+		});
+	});
 })(jQuery);
