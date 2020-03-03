@@ -1,83 +1,3 @@
-const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
-const exportOptionsBoostrapTable = {
-	consoleLog: false,
-	csvEnclosure: '"',
-	csvSeparator: ";",
-	csvUseBOM: true,
-	displayTableName: false,
-	escape: false,
-	excelstyles: [
-		"css",
-		"properties",
-		"to",
-		"export",
-		"to",
-		"excel"
-	],
-	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
-	htmlContent: false,
-	ignoreColumn: [],
-	ignoreRow: [],
-	jspdf: {
-		orientation: "p",
-		unit: "pt",
-		format: "a4",
-		margins: {
-			left: 20,
-			right: 10,
-			top: 10,
-			bottom: 10
-		},
-		autotable: {
-			styles: {
-				cellPadding: 2,
-				rowHeight: 12,
-				fontSize: 8,
-				fillColor: 255,
-				textColor: 50,
-				fontStyle: "normal",
-				overflow: "ellipsize",
-				halign: "left",
-				valign: "middle"
-			},
-			headerStyles: {
-				fillColor: [
-					52, 73, 94
-				],
-				textColor: 255,
-				fontStyle: "bold",
-				halign: "center"
-			},
-			alternateRowStyles: {
-				fillColor: 245
-			},
-			tableExport: {
-				onAfterAutotable: null,
-				onBeforeAutotable: null,
-				onTable: null
-			}
-		}
-	},
-	numbers: {
-		html: {
-			decimalMark: ".",
-			thousandsSeparator: ","
-		},
-		output: {
-			decimalMark: ",",
-			thousandsSeparator: "."
-		}
-	},
-	onCellData: null,
-	onCellHtmlData: null,
-	outputMode: "file",
-	tbodySelector: "tr",
-	theadSelector: "tr",
-	tableName: "primus_capital_report",
-	type: "csv",
-	worksheetName: "Otorgamientos"
-};
-
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -373,12 +293,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					console.log('value', value);
-					const fecha = moment(value, "DD-MM-YYYY H:mm:SS");
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
             {
 				field: "tipo",
@@ -553,11 +468,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -580,11 +491,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "mondcto",
@@ -744,11 +651,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -771,11 +674,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "f_pago",
@@ -783,11 +682,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
 			},
 			{
 				field: "quienpaga",
