@@ -495,3 +495,19 @@ a.text-primary:hover, a.text-primary:focus {
 .bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
     border-top-color: #166daa;
 }
+
+/*--------------------------------------------------------------
+>>> MINOR FIXES
+----------------------------------------------------------------*/
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .loading-text {
+    font-size: 1.5em!important;
+}
+
+@media screen and (max-width: 960px) {
+    table .text-nowrap {
+        white-space: pre-wrap!important;
+    }
+    .bootstrap-table .fixed-table-container .table thead th .th-inner {
+        white-space: pre-wrap!important;
+    }
+}
