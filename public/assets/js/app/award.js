@@ -1,24 +1,4 @@
-function addUrlDateTime(date_ini, date_end) {
-	let url = '';
-	
-	if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {
-		if(date_ini){
-			url = `${url}&date[gte]=${date_ini}`;
-		} else {
-			url = `${url}&date[gte]=1900-01-01`;
-		}
-		if(date_end) {
-			url = `${url}&date[lte]=${date_end}`;
-		} else {
-			url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-		}
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
 
-	return url;
-}
 
 function urlSp11resTable(rut, date_ini, date_end) {
 	let url = '/award/api/sp_11_res/?';
@@ -27,7 +7,7 @@ function urlSp11resTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ot_op2', 'ot_opt_per')}`;
 
 	return url;
 }
@@ -38,7 +18,7 @@ function urlSp11detTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ot_op2', 'ot_opt_per')}`;
 
 	return url;
 }
@@ -52,7 +32,7 @@ function urlSp11docTable(rut, contrato, date_ini, date_end) {
 		url = `${url}&contrato=${contrato}`;
 	}
 
-	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ot_op2', 'ot_opt_per')}`;
 
 	return url;
 }
