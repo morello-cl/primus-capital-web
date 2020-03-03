@@ -1104,18 +1104,9 @@ function urlSp11IndApl(rut, contrato) {
 	});
 
 	$("#modalDeposito").on('shown.bs.modal', function(e){
-		const url = urlSp11IndDep(_awardCliente, _awardNRoot);
-
-		console.log('url', url);
-
-		axios.get(url)
-			.then(function(r) {
-				console.log('urlSp11IndDep', r.data);
-			})
-			.catch(function(err) {
-				console.log('err.code', err.code);
-				console.log('err.message', err.message);
-				console.log('err.stack', err.stack);
-			});
+		
+		$("#tbl_award_ind2").bootstrapTable("refresh", {
+			url: urlSp11IndDep(_awardCliente, _awardNRoot),
+		});
 	});
 })(jQuery);
