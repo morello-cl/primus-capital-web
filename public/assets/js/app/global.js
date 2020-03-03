@@ -86,13 +86,13 @@ function __numeralFormatTable(value, row, index) {
 }
 
 function __rutClientFormatTable(value, row, index) {
-    const rut_format = $.formatRut(value + "-" + row.dvcliente, false);
+    const rut_format = $.formatRut(value + "-" + row.dvcliente, true);
 
     return rut_format;
 }
 
 function __rutDeudorFormatTable(value, row, index) {
-    const rut_format = $.formatRut(value + "-" + row.dvdeudor, false);
+    const rut_format = $.formatRut(value + "-" + row.dvdeudor, true);
 
     return rut_format;
 }
