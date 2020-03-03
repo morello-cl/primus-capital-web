@@ -1096,7 +1096,7 @@ function urlSp11IndApl(rut, contrato) {
 								$('#ot_apli_cta').val(numeral(r.data[0].aplcxc).format("$ 0,000[.]0"));
 								$('#ot_apli_prote').val(numeral(r.data[0].aplprotesto).format("$ 0,000[.]0"));
 
-								$('#ot_apli_doc').attr('href', `/cancellations?page=abono&rut=${_awardCliente}&contrato=${_awardContrato}`);
+								$('#ot_apli_doc').attr('href', `/cancellations?page=abono&rut=${_awardCliente}&contrato=${_awardNRoot}`);
 
 							} else {
 								$('#ot_apli_doc').val('');

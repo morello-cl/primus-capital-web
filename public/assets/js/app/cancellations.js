@@ -1114,14 +1114,16 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		$('#tblCancelDoc').show('slow');
 	});
 
-	if(getUrlVars()['page'] === 'abono') {
-		$("#tbl_cancel_abo").bootstrapTable("refresh", {
-			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
-		});
-
-		$('#tblCancelRes').hide('slow');
-		$('#tblCancelDet').hide('slow');
-		$('#tblCancelDoc').hide('slow');
-		$('#tblCancelAbo').show('slow');
-	}
+	$(windows).load(function(){
+		if(getUrlVars()['page'] === 'abono') {
+			$("#tbl_cancel_abo").bootstrapTable("refresh", {
+				url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
+			});
+	
+			$('#tblCancelRes').hide('slow');
+			$('#tblCancelDet').hide('slow');
+			$('#tblCancelDoc').hide('slow');
+			$('#tblCancelAbo').show('slow');
+		}
+	});
 })(jQuery);
