@@ -84,16 +84,8 @@ function urlSp13resTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
@@ -103,16 +95,8 @@ function urlSp13detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+	
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
@@ -125,16 +109,8 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 	if(contrato) {
 		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ws_op2', 'ws_opt_per')}`;
 
 	return url;
 }
