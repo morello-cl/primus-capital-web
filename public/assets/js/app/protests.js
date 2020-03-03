@@ -325,7 +325,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
     $("#btn_po_search").click(function(e) {
 		e.preventDefault();
 
-		const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+		const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 		
 		if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
 			$('#tblPoRes').show('slow');
