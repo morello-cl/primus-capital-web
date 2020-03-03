@@ -1079,7 +1079,7 @@ function urlSp11IndApl(rut, contrato) {
 								if(parseInt(r.data[0].aplicacionadocto) > 0) {
 									$('#ot_apli_doc').attr('href', `/cancellations?page=abono&rut=${_awardCliente}&contrato=${_awardContrato}`);
 								} else {
-									$('#ot_apli_doc').attr('href', '');
+									$('#ot_apli_doc').removeAttr('href');
 								}
 
 							} else {
