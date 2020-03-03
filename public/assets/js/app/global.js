@@ -81,6 +81,15 @@ var __exportOptionsTable = {
 	worksheetName: "Informe"
 };
 
+function __numeralFormatTable(value, row, index) {
+    return numeral(value).format("0,000[.]0");
+}
+
+function __rutDeudorFormatTable(value, row, index) {
+    const rut_format = $.formatRut(value + "-" + row.dvdeudor, false);
+
+    return rut_format;
+}
 
 function __dateFormatTable(value, row, index) {
     const fecha = moment(value);

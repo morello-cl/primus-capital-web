@@ -429,66 +429,77 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Mon Doc",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "intmora",
 				title: "Int Mora",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "intdev",
 				title: "Int Dev",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "excedente",
 				title: "Excedente",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "operacion",
 				title: "Operacion",
                 sortable: true,
-                searchable: true,
+				searchable: true,
+				formatter: __numeralFormatTable,
             }
 		],
 		url: [],
@@ -597,61 +608,71 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "mondcto",
 				title: "Mon Dcto",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "int_mora",
 				title: "Int Mora",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "int_dev",
 				title: "Int Dev",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "excgen",
 				title: "Excgen",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
 				searchable: true,
-				sortable: true
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 		],
 		url: [],
@@ -673,117 +694,55 @@ function urlSp14carTable(rut, date_ini, date_end) {
 	$("#tbl_sp_car").bootstrapTable({
 		columns: [
 			{
-				field: "idcliente",
-				title: "R.U.T.",
+				field: "concepto",
+				title: "Concepto",
+				searchable: true,
+				class: 'text-nowrap'
+			},
+			{
+				field: "iddeudor",
+				title: "R.U.T. Deudor",
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
-				field: "nomcliente",
-				title: "Nombre",
+				field: "nomdeudor",
+				title: "Nombre Deudor",
+				searchable: true,
+				class: 'text-nowrap',
+			},
+			{
+				field: "docto",
+				title: "Docto",
 				searchable: true,
 			},
 			{
-				field: "contratos",
-				title: "Contratos",
+				field: "monto",
+				title: "Monto",
 				searchable: true,
-			},
-			{
-				field: "tasa_min",
-				title: "Tasa Min.",
-				searchable: true,
+				formatter: __numeralFormatTable,
             },
             {
-				field: "tasa_max",
-				title: "Tasa Max",
+				field: "cargo",
+				title: "Cargo",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
-				field: "mon_doc",
-				title: "Mon Doc",
+				field: "abono",
+				title: "Abono",
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
-				field: "mont_ant",
-				title: "Mon Ant",
+				field: "fecha",
+				title: "Fecha",
 				sortable: true,
 				searchable: true,
-			},
-			{
-				field: "dif_precio",
-				title: "Dif Precio",
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "comision",
-				title: "Comision",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "iva",
-				title: "IVA",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "gastos",
-				title: "Gastos",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "impto",
-				title: "Impto",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "mon_oper",
-				title: "Mon Oper",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "apl",
-				title: "Aplic",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
-            },
-            {
-				field: "agirar",
-				title: "A Giro",
-				//formatter: function(value, row, index) {
-                //    return numeral(value).format("$ 0");
-                //},
-                sortable: true,
-                searchable: true,
+				formatter: __dateFormatTable,
 			}
 		],
 		url: [],

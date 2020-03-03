@@ -84,16 +84,8 @@ function urlSp16resTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ex_opt2', 'ex_opt2_otr')}`;
 
 	return url;
 }
@@ -103,16 +95,8 @@ function urlSp16detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+	
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ex_opt2', 'ex_opt2_otr')}`;
 
 	return url;
 }
@@ -122,16 +106,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+	
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'ex_opt2', 'ex_opt2_otr')}`;
 
 	return url;
 }
@@ -264,8 +240,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -391,8 +367,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -550,8 +526,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
