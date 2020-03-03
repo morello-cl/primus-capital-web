@@ -1082,22 +1082,22 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 	$("#btn_ca_bk_abo").click(function(e){
 		e.preventDefault();
 
-		$('#tblCancelDeC').hide('slow');
-		$('#tblCancelDoc').show('slow');
+		if(getUrlVars()['page'] !== 'abono') {
+			$('#tblCancelDeC').hide('slow');
+			$('#tblCancelDoc').show('slow');
+		}
 	});
 })(jQuery);
 
 $(window).on('load', function(){
 	if(getUrlVars()['page'] === 'abono') {
 		$("#tbl_cancel_abo").bootstrapTable("refresh", {
-			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], '2019-09-03', '2020-03-03'),
+			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], null, null),
 		});
 
 		$('#tblCancelRes').hide('slow');
 		$('#tblCancelDet').hide('slow');
 		$('#tblCancelDoc').hide('slow');
 		$('#tblCancelAbo').show('slow');
-
-		$("#btn_ca_bk_abo").attr('disabled', true);
 	}
 });
