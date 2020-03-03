@@ -78,6 +78,14 @@ const exportOptionsBoostrapTable = {
 	worksheetName: "Otorgamientos"
 };
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
 function urlSp12resTable(rut, date_ini, date_end) {
 	let url = '/cancellations/api/sp_12_res/?';
 
@@ -1105,4 +1113,15 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		$('#tblCancelDeC').hide('slow');
 		$('#tblCancelDoc').show('slow');
 	});
+
+	if(getUrlVars()['page'] === 'abono') {
+		$("#tbl_cancel_abo").bootstrapTable("refresh", {
+			url: urlSp12aboTable(nro_client, nro_contrato, null, null),
+		});
+
+		$('#tblCancelRes').hide('slow');
+		$('#tblCancelDet').hide('slow');
+		$('#tblCancelDoc').hide('slow');
+		$('#tblCancelAbo').show('slow');
+	}
 })(jQuery);
