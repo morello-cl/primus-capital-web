@@ -1085,6 +1085,8 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 		if(getUrlVars()['page'] !== 'abono') {
 			$('#tblCancelDeC').hide('slow');
 			$('#tblCancelDoc').show('slow');
+		} else {
+			window.location.href = "/cancellations";
 		}
 	});
 })(jQuery);
