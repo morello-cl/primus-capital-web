@@ -190,6 +190,8 @@ function urlSp11IndDep(rut, contrato) {
 (function($) {
 	"use strict";
 
+	__exportOptionsTable.worksheetName = 'Otorgamientos';
+
 	let _originalOption = '';
 	let _awardCliente = '';
 	let _awardContrato = '';
@@ -412,8 +414,8 @@ function urlSp11IndDep(rut, contrato) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -603,8 +605,8 @@ function urlSp11IndDep(rut, contrato) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -810,8 +812,8 @@ function urlSp11IndDep(rut, contrato) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
@@ -947,8 +949,8 @@ function urlSp11IndDep(rut, contrato) {
 		showRefresh: true,
 		showColumns: true,
 		exportDataType: "all",
-		exportTypes: __exportTypes,
-		exportOptions: exportOptionsBoostrapTable,
+		exportTypes: __exportTypesTable,
+		exportOptions: __exportOptionsTable,
 		search: true,
 		searchAlign: "right",
 		striped: true,
