@@ -145,7 +145,6 @@ function urlSp11IndApl(rut, contrato) {
         });
     });
 
-
     $('input:radio[name=ot_op2]').click(function(e){
         if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {
 			$('#ot_date_ini_txt').prop('readonly', false);
@@ -1045,6 +1044,12 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_mon_oper').val(numeral(r.data[0].montoOperacion).format("$ 0,000[.]0"));
 					$('#ot_aplicacion').val(r.data[0].aplicacion);
 					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
+					
+					// llenamos futuro modal de agirar
+					$('#aw_cli').val(r.data[0].nomcliente);
+					$('#aw_rut').val(_awardCliente);
+					$('#aw_con').val(r.data[0].nroContrato);
+					$('#aw_fec').val(__dateFormat(r.data[0].fecha));
 
 					const url_ind_apl = urlSp11IndApl(_awardCliente, r.data[0].nroot);
 					_awardNRoot = r.data[0].nroot;
