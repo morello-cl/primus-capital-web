@@ -1,82 +1,24 @@
-const __exportTypes = ["json", "xml", "csv", "txt", "excel"];
-const exportOptionsBoostrapTable = {
-	consoleLog: false,
-	csvEnclosure: '"',
-	csvSeparator: ";",
-	csvUseBOM: true,
-	displayTableName: false,
-	escape: false,
-	excelstyles: [
-		"css",
-		"properties",
-		"to",
-		"export",
-		"to",
-		"excel"
-	],
-	fileName: `primus-capital-${moment().format("YYYYMMDD_HHmmSS")}`,
-	htmlContent: false,
-	ignoreColumn: [],
-	ignoreRow: [],
-	jspdf: {
-		orientation: "p",
-		unit: "pt",
-		format: "a4",
-		margins: {
-			left: 20,
-			right: 10,
-			top: 10,
-			bottom: 10
-		},
-		autotable: {
-			styles: {
-				cellPadding: 2,
-				rowHeight: 12,
-				fontSize: 8,
-				fillColor: 255,
-				textColor: 50,
-				fontStyle: "normal",
-				overflow: "ellipsize",
-				halign: "left",
-				valign: "middle"
-			},
-			headerStyles: {
-				fillColor: [
-					52, 73, 94
-				],
-				textColor: 255,
-				fontStyle: "bold",
-				halign: "center"
-			},
-			alternateRowStyles: {
-				fillColor: 245
-			},
-			tableExport: {
-				onAfterAutotable: null,
-				onBeforeAutotable: null,
-				onTable: null
-			}
+function addUrlDateTime(date_ini, date_end) {
+	let url = '';
+	
+	if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {
+		if(date_ini){
+			url = `${url}&date[gte]=${date_ini}`;
+		} else {
+			url = `${url}&date[gte]=1900-01-01`;
 		}
-	},
-	numbers: {
-		html: {
-			decimalMark: ".",
-			thousandsSeparator: ","
-		},
-		output: {
-			decimalMark: ",",
-			thousandsSeparator: "."
+		if(date_end) {
+			url = `${url}&date[lte]=${date_end}`;
+		} else {
+			url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
 		}
-	},
-	onCellData: null,
-	onCellHtmlData: null,
-	outputMode: "file",
-	tbodySelector: "tr",
-	theadSelector: "tr",
-	tableName: "primus_capital_report",
-	type: "csv",
-	worksheetName: "Otorgamientos"
-};
+	} else {
+		url = `${url}&date[gte]=1900-01-01`;
+		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
+	}
+
+	return url;
+}
 
 function urlSp11resTable(rut, date_ini, date_end) {
 	let url = '/award/api/sp_11_res/?';
@@ -84,16 +26,8 @@ function urlSp11resTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
 
 	return url;
 }
@@ -103,16 +37,8 @@ function urlSp11detTable(rut, date_ini, date_end) {
 	if(rut) {
 		url = `${url}&rut=${rut}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
 
 	return url;
 }
@@ -125,16 +51,8 @@ function urlSp11docTable(rut, contrato, date_ini, date_end) {
 	if(contrato) {
 		url = `${url}&contrato=${contrato}`;
 	}
-	if(date_ini){
-		url = `${url}&date[gte]=${date_ini}`;
-	} else {
-		url = `${url}&date[gte]=1900-01-01`;
-	}
-	if(date_end) {
-		url = `${url}&date[lte]=${date_end}`;
-	} else {
-		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
-	}
+
+	url = `${url}${addUrlDateTime(date_ini, date_end)}`;
 
 	return url;
 }
@@ -162,18 +80,6 @@ function urlSp11Ind2(rut, contrato) {
 
 	return url;
 }
-function urlSp11IndApl(rut, contrato) {
-	let url = '/award/api/sp_11_indapl/?';
-
-	if(rut) {
-		url = `${url}&rut=${rut}`;
-	}
-	if(contrato) {
-		url = `${url}&contrato=${contrato}`;
-	}
-
-	return url;
-}
 function urlSp11IndDep(rut, contrato) {
 	let url = '/award/api/sp_11_inddep/?';
 
@@ -186,6 +92,19 @@ function urlSp11IndDep(rut, contrato) {
 
 	return url;
 }
+function urlSp11IndApl(rut, contrato) {
+	let url = '/award/api/sp_11_indapl/?';
+
+	if(rut) {
+		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
+	}
+
+	return url;
+}
+
 
 (function($) {
 	"use strict";
@@ -1169,7 +1088,7 @@ function urlSp11IndDep(rut, contrato) {
 					console.log('url_ind_apl', url_ind_apl);
 					axios.get(url_ind_apl)
 						.then(function(r) {
-							console.log('urlSp11IndApl', r.data);
+							console.log('urlSp11IndApl.data', r.data);
 		
 							if(Array.isArray(r.data) && r.data.length) {
 								$('#ot_apli_doc').val(numeral(r.data[0].aplicacionadocto).format("$ 0,000[.]0"));
