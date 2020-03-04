@@ -796,6 +796,19 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			$("#tbl_sp_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(0, dt_ini, dt_end),
 			});
+		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_det') {
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').show('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
+
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+			$("#tbl_sp_det").bootstrapTable("refresh", {
+				url: urlSp14detTable(0, dt_ini, dt_end),
+			});
 		} else if($('input:radio[name=sp_op1]:checked').val() === 'sp_opt_abo'){
 			$('#tblSpRes').hide('slow');
 			$('#tblSpDet').hide('slow');
