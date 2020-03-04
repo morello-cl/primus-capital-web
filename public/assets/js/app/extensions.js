@@ -537,21 +537,20 @@ function urlSp16docTable(rut, date_ini, date_end) {
 
     $("#btn_ex_search").click(function(e) {
 		e.preventDefault();
+
+		const dt = $("#ex_date_txt").data("DateTimePicker").date().format("YYYY-MM-DD");
 		
 		if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_all') {
 			$('#tblExRes').show('slow');
 			$('#tblExDet').hide('slow');
 			$('#tblExDoc').hide('slow');
-
-			//const dt_ini = $("#ws_date").data("DateTimePicker").date().format("YYYY-MM-DD");
-			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 	
 			$("#tbl_ex_res").bootstrapTable("refresh", {
-				url: urlSp16resTable(0, null, null),
+				url: urlSp16resTable(0, dt, null),
 			});
 		} else if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_rut') {
 			$("#tbl_ex_doc").bootstrapTable("refresh", {
-				url: urlSp16docTable(0, null, null),
+				url: urlSp16docTable(0, dt, null),
 			});
 
 			$('#tblExRes').hide('slow');
