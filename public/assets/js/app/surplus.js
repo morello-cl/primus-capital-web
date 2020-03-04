@@ -958,4 +958,15 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		$('#tblSpDoc').hide('slow');
 		$('#tblSpDet').show('slow');
 	});
+
+	$("#btn_sp_bk_abo").click(function(e){
+		e.preventDefault();
+
+		$("#tbl_sp_abo").bootstrapTable("refresh", {
+			url: [],
+		});
+
+		$('#tblSpAbo').hide('slow');
+		$('#tblSpDoc').show('slow');
+	});
 })(jQuery);
