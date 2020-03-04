@@ -832,7 +832,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 			const dt_ini = $("#ca_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ca_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
 
-			$("#tbl_cancel_doc").bootstrapTable("refresh", {
+			$("#tbl_cancel_det").bootstrapTable("refresh", {
 				url: urlSp12detTable(0, dt_ini, dt_end),
 			});
 		} else if($('input:radio[name=ca_op1]:checked').val() === 'ca_opt_doc') {

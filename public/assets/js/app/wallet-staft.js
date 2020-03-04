@@ -81,20 +81,12 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 
 
     $('input:radio[name=ws_op2]').click(function(e){
-        if($('input:radio[name=ws_op2]:checked').val() === 'w_opt_per') {
+        if($('input:radio[name=ws_op2]:checked').val() === 'ws_opt_per') {
 			$('#ws_date_ini_txt').prop('readonly', false);
 			$('#ws_date_end_txt').prop('readonly', false);
         } else {
 			$('#ws_date_ini_txt').prop('readonly', true);
 			$('#ws_date_end_txt').prop('readonly', true);
-        }
-    });
-
-    $('input:radio[name=ws_op1]').click(function(e){
-        if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_ind') {
-            $('#ws_nro').attr('disabled', false);
-        } else {
-            $('#ws_nro').attr('disabled', true);
         }
     });
     
@@ -483,7 +475,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
     $("#btn-ws-search").click(function(e) {
 		e.preventDefault();
 		
-		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_con') {
+		if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_res') {
 			$('#tblWsRes').show('slow');
 			$('#tblWsDet').hide('slow');
 			$('#tblWsDoc').hide('slow');
@@ -494,6 +486,17 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 			$("#tbl_ws_res").bootstrapTable("refresh", {
 				url: urlSp13resTable(0, dt_ini, dt_end),
 			});
+		} else if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_det') {
+			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+			$("#tbl_ws_det").bootstrapTable("refresh", {
+				url: urlSp13detTable(0, dt_ini, dt_end),
+			});
+
+			$('#tblWsRes').hide('slow');
+			$('#tblWsDet').show('slow');
+			$('#tblWsDoc').hide('slow');
 		} else if($('input:radio[name=ws_op1]:checked').val() === 'ws_opt_doc') {
 			const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -512,7 +515,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 		e.preventDefault();
 
 		// opciones activas por defecto
-		$('input:radio[name=ws_op1]').filter('[value=ws_opt_con]').prop('checked', true);
+		$('input:radio[name=ws_op1]').filter('[value=ws_opt_res]').prop('checked', true);
 		$('input:radio[name=ws_op2]').filter('[value=ws_opt_hoy]').prop('checked', true);
 		$('#ws_date_ini_txt').prop('readonly', true);
 		$('#ws_date_end_txt').prop('readonly', true);
