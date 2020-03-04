@@ -1,5 +1,3 @@
-
-
 function urlSp11resTable(rut, date_ini, date_end) {
 	let url = '/award/api/sp_11_res/?';
 
@@ -84,7 +82,6 @@ function urlSp11IndApl(rut, contrato) {
 
 	return url;
 }
-
 
 (function($) {
 	"use strict";
