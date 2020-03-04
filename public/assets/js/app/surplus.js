@@ -34,11 +34,14 @@ function urlSp14docTable(rut, contrato, date_ini, date_end) {
 
 	return url;
 }
-function urlSp14aboTable(rut, date_ini, date_end) {
+function urlSp14aboTable(rut, contrato, date_ini, date_end) {
 	let url = '/surplus/api/sp_14_abo/?';
 
 	if(rut) {
 		url = `${url}&rut=${rut}`;
+	}
+	if(contrato) {
+		url = `${url}&contrato=${contrato}`;
 	}
 
 	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
@@ -691,6 +694,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		pageSize: 10,
 		pageList: [20, 30, 40, 50],
 	});
+
 	$("#tbl_sp_car").bootstrapTable({
 		columns: [
 			{
@@ -890,6 +894,28 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
 			$("#tbl_sp_doc").bootstrapTable("refresh", {
 				url: urlSp14docTable(nro_client, nro_contrato, dt_ini, dt_end),
+			});
+
+			$('#tblSpRes').hide('slow');
+			$('#tblSpDet').hide('slow');
+			$('#tblSpDoc').show('slow');
+			$('#tblSpAbo').hide('slow');
+			$('#tblSpCar').hide('slow');
+		}
+	});
+
+	$("#tbl_sp_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		if(field === 'contrato') {
+			console.log('doc.field', field);
+			console.log('doc.row', row);
+
+			const dt_ini = $("#sp_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt_end = $("#sp_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const nro_client = row.idcliente;
+			const nro_contrato = row.contrato;
+
+			$("#tbl_sp_doc").bootstrapTable("refresh", {
+				url: urlSp14aboTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
 			$('#tblSpRes').hide('slow');
