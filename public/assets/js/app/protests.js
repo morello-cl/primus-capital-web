@@ -321,7 +321,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
     $("#btn_po_search").click(function(e) {
 		e.preventDefault();
 
-		const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+		const dt = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 		
 		if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_all') {
 			$('#tblPoRes').show('slow');
@@ -329,7 +329,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 			$('#tblPoDoc').hide('slow');
 	
 			$("#tbl_po_res").bootstrapTable("refresh", {
-				url: urlSp15resTable(0, null, dt_end),
+				url: urlSp15resTable(0, dt, null),
 			});
 		} else if($('input:radio[name=po_opt1]:checked').val() === 'po_opt1_rut') {
 			let rut = $('#po_nro').val();
@@ -337,7 +337,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 			rut = rut.slice(0, -2);
 			console.log('rut', rut);
 			$("#tbl_po_res").bootstrapTable("refresh", {
-				url: urlSp15resTable(rut, null, dt_end),
+				url: urlSp15resTable(rut, dt, null),
 			});
 
 			$('#tblPoRes').show('slow');
@@ -381,11 +381,11 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 
 	$("#tbl_po_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {			
-			const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
 			$("#tbl_po_det").bootstrapTable("refresh", {
-				url: urlSp15detTable(nro_client, null, dt_end),
+				url: urlSp15detTable(nro_client, dt, null),
 			});
 
 			$('#tblPoRes').hide('slow');
@@ -396,11 +396,11 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 
 	$("#tbl_po_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contratos') {
-			const dt_end = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt = $("#po_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
 			$("#tbl_po_doc").bootstrapTable("refresh", {
-				url: urlSp15docTable(nro_client, row.contratos, null, dt_end),
+				url: urlSp15docTable(nro_client, row.contratos, dt, null),
 			});
 
 			$('#tblPoRes').hide('slow');
