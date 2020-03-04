@@ -129,13 +129,11 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		$('#ex_date').data("DateTimePicker").toggle();
 	});
 
-    $('input:radio[name=ws_op2]').click(function(e){
-        if($('input:radio[name=ws_op2]:checked').val() === 'w_opt_per') {
-			$('#ws_date_ini_txt').prop('readonly', false);
-			$('#ws_date_end_txt').prop('readonly', false);
+    $('input:radio[name=ex_opt2]').click(function(e){
+        if($('input:radio[name=ex_opt2]:checked').val() === 'ex_opt2_otr') {
+			$('#ex_date_txt').prop('readonly', false);
         } else {
-			$('#ws_date_ini_txt').prop('readonly', true);
-			$('#ws_date_end_txt').prop('readonly', true);
+			$('#ex_date_txt').prop('readonly', true);
         }
     });
 
