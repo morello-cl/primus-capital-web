@@ -538,7 +538,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
     $("#btn_ex_search").click(function(e) {
 		e.preventDefault();
 
-		const dt = $("#ex_date_txt").data("DateTimePicker").date().format("YYYY-MM-DD");
+		const dt = $("#ex_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 		
 		if($('input:radio[name=ex_opt1]:checked').val() === 'ex_opt1_all') {
 			$('#tblExRes').show('slow');
@@ -590,8 +590,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	$("#tbl_ex_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		console.log('field', field);
 		if(field === 'contrato') {			
-			const dt = $("#ex_date_txt").data("DateTimePicker").date().format("YYYY-MM-DD");
-			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt = $("#ex_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
 			$("#tbl_ex_det").bootstrapTable("refresh", {
@@ -607,9 +606,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 	$("#tbl_ex_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		if(field === 'contrato') {
 
-			//const dt_ini = $("#ws_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
-			//const dt_end = $("#ws_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
-			const dt = $("#ex_date_txt").data("DateTimePicker").date().format("YYYY-MM-DD");
+			const dt = $("#ex_date").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const nro_client = row.idcliente;
 
 			$("#tbl_ex_doc").bootstrapTable("refresh", {
