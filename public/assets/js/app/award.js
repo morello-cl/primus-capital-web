@@ -1097,8 +1097,8 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_impto').val(numeral(r.data[0].impto).format("$ 0,000[.]0"));
 					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
 					$('#ot_mon_oper').val(numeral(r.data[0].montoOperacion).format("$ 0,000[.]0"));
-					$('#ot_aplicacion').val(r.data[0].aplicacion);
-					$('#ot_mon_gir').text(numeral(r.data[0].mon_gir).format("$ 0,000[.]0"));
+					$('#ot_aplicacion').val(numeral(r.data[0].aplicacion).format("$ 0,000[.]0"));
+					$('#ot_mon_gir').text(numeral(r.data[0].aGirar).format("$ 0,000[.]0"));
 					
 					// llenamos futuro modal de agirar
 					$('#aw_cli').val(r.data[0].nomcliente);
