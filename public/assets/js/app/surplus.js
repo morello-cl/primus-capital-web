@@ -5,7 +5,7 @@ function urlSp14resTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
 
 	return url;
 }
@@ -16,7 +16,7 @@ function urlSp14detTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
 
 	return url;
 }
@@ -30,7 +30,7 @@ function urlSp14docTable(rut, contrato, date_ini, date_end) {
 		url = `${url}&contrato=${contrato}`;
 	}
 
-	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
 
 	return url;
 }
@@ -41,7 +41,7 @@ function urlSp14aboTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
 
 	return url;
 }
@@ -52,7 +52,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		url = `${url}&rut=${rut}`;
 	}
 
-	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per')}`;
+	url = `${url}${__addUrlDateTime(date_ini, date_end, 'sp_op2', 'sp_opt_per', -1)}`;
 
 	return url;
 }

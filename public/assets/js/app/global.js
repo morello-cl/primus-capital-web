@@ -116,14 +116,14 @@ function __dateFormat(value) {
  * @param {*} optionName 
  * @param {*} optionValue 
  */
-function __addUrlDateTime(date_ini, date_end, optionName, optionValue) {
+function __addUrlDateTime(date_ini, date_end, optionName, optionValue, lastDateDefault) {
 	let url = '';
 	
 	if($(`input:radio[name=${optionName}]:checked`).val() === optionValue) {
 		if(date_ini){
 			url = `${url}&date[gte]=${date_ini}`;
 		} else {
-			url = `${url}&date[gte]=${moment().add(-6, 'M').format('YYYY-MM-DD')}`;
+			url = `${url}&date[gte]=${moment().add(lastDateDefault, 'M').format('YYYY-MM-DD')}`;
 		}
 		if(date_end) {
 			url = `${url}&date[lte]=${date_end}`;
@@ -131,7 +131,7 @@ function __addUrlDateTime(date_ini, date_end, optionName, optionValue) {
 			url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
 		}
 	} else {
-		url = `${url}&date[gte]=${moment().add(-6, 'M').format('YYYY-MM-DD')}`;
+		url = `${url}&date[gte]=${moment().add(lastDateDefault, 'M').format('YYYY-MM-DD')}`;
 		url = `${url}&date[lte]=${moment().format('YYYY-MM-DD')}`;
 	}
 
