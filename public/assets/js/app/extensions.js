@@ -279,81 +279,52 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				}
 			},
 			{
-				field: "fchot",
-				title: "Fecha",
-				align: 'center',
-				class: 'text-nowrap',
+				field: "candoc",
+				title: "Can Doc",
+				align: 'right',
 				searchable: true,
-				formatter: __dateFormatTable,
+				formatter: __numeralFormatTable,
             },
 			{
-				field: "tipo",
-				title: "Tipo",
-				class: 'text-nowrap',
-				align: 'center',
-				sortable: true,
-				searchable: true,
-			},
-			{
 				field: "mondoc",
-				title: "Mon Doc.",
+				title: "Mon Doc",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "monant",
-				title: "Mon Ant.",
+				field: "interes",
+				title: "Interes",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "monrec",
-				title: "Mon Rec.",
+				field: "comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "capamort",
-				title: "Capa Mort",
+				field: "iva",
+				title: "I.V.A.",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "saldo",
-				title: "Saldo",
+				field: "total",
+				title: "Total",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
-            {
-				field: "docvig",
-				title: "Doc Vig",
-				align: 'right',
-                sortable: true,
-				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            }
 		],
 		url: [],
 		locale: "es-SP",
