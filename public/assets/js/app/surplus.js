@@ -395,6 +395,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Contrato",
 				searchable: true,
 				sortable: true,
+				align: 'center',
 				formatter: function(value, row, index) {
 					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
 				}
@@ -920,8 +921,8 @@ function urlSp14carTable(rut, date_ini, date_end) {
 
 			$('#tblSpRes').hide('slow');
 			$('#tblSpDet').hide('slow');
-			$('#tblSpDoc').show('slow');
-			$('#tblSpAbo').hide('slow');
+			$('#tblSpDoc').hide('slow');
+			$('#tblSpAbo').show('slow');
 			$('#tblSpCar').hide('slow');
 		}
 	});
