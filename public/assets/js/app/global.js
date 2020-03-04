@@ -81,6 +81,10 @@ var __exportOptionsTable = {
 	worksheetName: "Informe"
 };
 
+function __amountFormatTable(value, row, index) {
+    return numeral(value).format("0,000[.]0");
+}
+
 function __numeralFormatTable(value, row, index) {
     return numeral(value).format("0,000[.]0");
 }

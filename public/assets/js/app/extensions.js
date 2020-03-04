@@ -284,11 +284,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __dateFormatTable,
             },
 			{
 				field: "tipo",
@@ -414,109 +410,88 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				field: "contrato",
 				title: "Contrato",
 				searchable: true,
+				align: 'center',
 			},
 			{
-				field: "fchot",
-				title: "Fecha Ot.",
-				align: 'center',
-				class: 'text-nowrap',
+				field: "numdoc",
+				title: "Num Doc",
+				align: 'right',
+                sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "tipo",
-				title: "Tipo",
-				class: 'text-nowrap',
-				align: 'center',
-				sortable: true,
+				field: "dias",
+				title: "Días",
+				align: 'right',
+                sortable: true,
 				searchable: true,
-			},
-			{
-				field: "docto",
-				title: "Docto",
-				searchable: true,
-            },
-			{
-				field: "fchvcto",
-				title: "Fecha Vcto.",
-				align: 'center',
-				class: 'text-nowrap',
-				searchable: true,
-				formatter: function(value, row, index) {
-					const fecha = moment(value, 'DD-MM-YYYY H:mm:SS');
-
-                    return fecha.format('DD-MM-YYYY');
-                },
-            },
-			{
-				field: "mora",
-				title: "Mora",
-				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "mondoc",
-				title: "Mon Doc.",
+				title: "Mon Doc",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "monant",
-				title: "Mon Ant.",
+				field: "interes",
+				title: "Interes",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "monrec",
-				title: "Mon Rec.",
+				field: "comision",
+				title: "Comisión",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "capamort",
-				title: "Capa Mort",
+				field: "iva",
+				title: "I.V.A.",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
-				field: "saldo",
-				title: "Saldo",
+				field: "total",
+				title: "Total",
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
-            {
-				field: "operacion",
-				title: "Operacion",
-				align: 'right',
-                sortable: true,
+			{
+				field: "fchpro",
+				title: "Fch Pro",
+				align: 'center',
+				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
-            }
+				formatter: __dateFormatTable,
+			},
+			{
+				field: "fchvcto1",
+				title: "Fch Vcto 1",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+				formatter: __dateFormatTable,
+			},
+			{
+				field: "fchvcto2",
+				title: "Fch Vcto 2",
+				align: 'center',
+				class: 'text-nowrap',
+				searchable: true,
+				formatter: __dateFormatTable,
+			}
 		],
 		url: [],
 		locale: "es-SP",
