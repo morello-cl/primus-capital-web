@@ -915,7 +915,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 			const nro_client = row.idcliente;
 			const nro_contrato = row.contrato;
 
-			$("#tbl_sp_doc").bootstrapTable("refresh", {
+			$("#tbl_sp_abo").bootstrapTable("refresh", {
 				url: urlSp14aboTable(nro_client, nro_contrato, dt_ini, dt_end),
 			});
 
