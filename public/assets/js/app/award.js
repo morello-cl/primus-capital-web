@@ -1042,7 +1042,7 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_aplicacion').val(numeral(r.data[0].aplicacion).format("$ 0,000[.]0"));
 					$('#btn_aw_agirar').text(numeral(r.data[0].aGirar).format("$ 0,000[.]0"));
 
-					if(parseInt(r.data[0].aplicacionadocto) > 0) {
+					if(parseInt(r.data[0].aGirar) > 0) {
 						$('#btn_aw_agirar').attr('type', 'button');
 						$('#btn_aw_agirar').attr('href', '#');
 					} else {
