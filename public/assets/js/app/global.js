@@ -81,6 +81,10 @@ var __exportOptionsTable = {
 	worksheetName: "Informe"
 };
 
+function __linkTable(value, row, index) {
+	return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+}
+
 function __amountFormatTable(value, row, index) {
     return numeral(value).format("0,000[.]0");
 }

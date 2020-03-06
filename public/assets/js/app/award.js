@@ -169,11 +169,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
@@ -188,14 +184,13 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "tasa_min",
 				title: "Tasa Min",
 				align: 'center',
+				sortable: true,
 				searchable: true,
             },
             {
@@ -329,11 +324,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
@@ -348,9 +339,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "fotorgam",
@@ -358,6 +347,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
             },
             {
@@ -388,9 +378,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "mon_ant",
@@ -398,9 +386,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "dif_precio",
@@ -408,9 +394,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
             {
 				field: "comision",
@@ -418,9 +402,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "iva",
@@ -428,9 +410,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "gastos",
@@ -438,9 +418,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "impto",
@@ -448,9 +426,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "mon_gir",
@@ -458,9 +434,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "apl",
@@ -468,9 +442,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "agirar",
@@ -478,9 +450,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "diaspond",
@@ -531,9 +501,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "iddeudor",
@@ -541,11 +509,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
-
-                    return rut_client;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
 				field: "nomdeudor",
@@ -575,114 +539,102 @@ function urlSp11IndApl(rut, contrato) {
 				title: "Tasa",
 				align: 'center',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "tipo",
 				title: "Tipo",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "docto",
 				title: "Docto",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "operacion",
 				title: "Operación",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "dias_cob",
 				title: "Días Prom",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "mondcto",
 				title: "Mon dcto",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "difprecio",
 				title: "Dif Precio",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "comision",
 				title: "Comisión",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "ivacom",
 				title: "I.V.A.",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "gastos",
 				title: "Gastos",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "impto",
 				title: "Impto",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "montoagirar",
 				title: "A Girar",
 				align: 'right',
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				sortable: true,
+				formatter: __amountFormatTable,
 			},
 		],
 		url: [],
@@ -710,7 +662,8 @@ function urlSp11IndApl(rut, contrato) {
 				title: "R.U.T. Deudor",
 				searchable: true,
 				sortable: true,
-				class: 'text-nowrap'
+				class: 'text-nowrap',
+				formatter: __rutDeudorFormatTable
 			},
 			{
 				field: "nomdeudor",
@@ -725,6 +678,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
+				formatter: __numeralFormatTable
 			},
 			{
 				field: "fvcmto",
@@ -740,9 +694,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -750,9 +702,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "saldoPrecio",
@@ -761,9 +711,7 @@ function urlSp11IndApl(rut, contrato) {
 				visible: false,
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "difpecio",
@@ -771,9 +719,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "comision",
@@ -781,9 +727,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "dias_cob",
@@ -791,9 +735,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "actpago",
@@ -802,9 +744,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "operacion",
@@ -813,9 +753,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -867,6 +805,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
             },
             {
 				field: "ctacteclie",
@@ -1028,6 +967,8 @@ function urlSp11IndApl(rut, contrato) {
 	});
 
 	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		e.preventDefault();
+		
 		if(field === 'contratos') {			
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -1046,6 +987,8 @@ function urlSp11IndApl(rut, contrato) {
 	});
 
 	$("#tbl_award_det").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		e.preventDefault();
+
 		if(field === 'contrato') {
 			console.log('doc.field', field);
 			console.log('doc.row', row);
@@ -1066,6 +1009,8 @@ function urlSp11IndApl(rut, contrato) {
 	});
 
 	$("#tbl_award_doc").on('click-cell.bs.table', function(e, field, value, row, $element) {
+		e.preventDefault();
+
 		if(field === 'contrato') {
 			const url = urlSp11Ind1(row.idcliente, row.contrato);
 
@@ -1095,7 +1040,13 @@ function urlSp11IndApl(rut, contrato) {
 					$('#ot_gastos').val(numeral(r.data[0].gastos).format("$ 0,000[.]0"));
 					$('#ot_mon_oper').val(numeral(r.data[0].montoOperacion).format("$ 0,000[.]0"));
 					$('#ot_aplicacion').val(numeral(r.data[0].aplicacion).format("$ 0,000[.]0"));
-					$('#ot_mon_gir').text(numeral(r.data[0].aGirar).format("$ 0,000[.]0"));
+					$('#btn_aw_agirar').text(numeral(r.data[0].aGirar).format("$ 0,000[.]0"));
+
+					if(parseInt(r.data[0].aplicacionadocto) > 0) {
+						$('#btn_aw_agirar').attr('type', 'button');
+					} else {
+						$('#btn_aw_agirar').removeAttr('type');
+					}
 					
 					// llenamos futuro modal de agirar
 					$('#aw_cli').val(r.data[0].nomcliente);
