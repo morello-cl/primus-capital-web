@@ -968,7 +968,7 @@ function urlSp11IndApl(rut, contrato) {
 
 	$("#tbl_award_res").on('click-cell.bs.table', function(e, field, value, row, $element) {
 		e.preventDefault();
-		
+
 		if(field === 'contratos') {			
 			const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
 			const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
@@ -1044,8 +1044,10 @@ function urlSp11IndApl(rut, contrato) {
 
 					if(parseInt(r.data[0].aplicacionadocto) > 0) {
 						$('#btn_aw_agirar').attr('type', 'button');
+						$('#btn_aw_agirar').attr('href', '#');
 					} else {
 						$('#btn_aw_agirar').removeAttr('type');
+						$('#ot_apli_doc').removeAttr('href');
 					}
 					
 					// llenamos futuro modal de agirar
