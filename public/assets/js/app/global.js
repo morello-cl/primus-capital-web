@@ -82,7 +82,7 @@ var __exportOptionsTable = {
 };
 
 function __linkTable(value, row, index) {
-	return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
+	return `<a href="" class="badge badge-secondary"><strong>${value}</strong></a>`;
 }
 
 function __amountFormatTable(value, row, index) {
