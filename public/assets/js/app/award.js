@@ -192,6 +192,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable
             },
             {
 				field: "tasa_max",
@@ -199,6 +200,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable
 			},
 			{
 				field: "mon_doc",
@@ -206,9 +208,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "mont_ant",
@@ -216,9 +216,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "dif_precio",
@@ -226,9 +224,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "comision",
@@ -236,9 +232,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "iva",
@@ -246,9 +240,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "gastos",
@@ -256,9 +248,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "impto",
@@ -266,9 +256,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "mon_oper",
@@ -276,16 +264,15 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "apl",
 				title: "Aplic",
 				align: 'right',
                 sortable: true,
-                searchable: true,
+				searchable: true,
+				formatter: __amountFormatTable,
             },
             {
 				field: "agirar",
@@ -293,9 +280,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			}
 		],
 		url: [],
@@ -348,6 +333,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				sortable: true,
+				sorter: __dateSorterTable,
 				formatter: __dateFormatTable,
             },
             {
@@ -525,6 +511,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: __dateFormatTable,
+				sorter: __dateSorterTable
 			},
 			{
 				field: "fvcmto",
@@ -533,6 +520,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: __dateFormatTable,
+				sorter: __dateSorterTable
 			},
 			{
 				field: "tasa_doc",

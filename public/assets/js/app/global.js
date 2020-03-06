@@ -147,3 +147,17 @@ function __addUrlDateTime(date_ini, date_end, optionName, optionValue, lastDateD
 }
 
 
+var __dateSorterTable = function (a, b) {
+	var v_d1 = moment(a, "DD-MM-YYYY");
+	var v_d2 = moment(b, "DD-MM-YYYY");
+
+	if (v_d2.isBefore(v_d1)) {
+		return 1;
+	}
+	if (v_d1.isBefore(v_d2)) {
+		return -1;
+	}
+	return 0;
+};
+
+
