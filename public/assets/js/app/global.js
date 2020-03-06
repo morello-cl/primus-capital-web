@@ -149,8 +149,8 @@ function __addUrlDateTime(date_ini, date_end, optionName, optionValue, lastDateD
 
 function __sorterDateTable (a, b) {
 	console.log('a', a, 'b', b);
-	const v_d1 = moment(a, "DD-MM-YYYY");
-	const v_d2 = moment(b, "DD-MM-YYYY");
+	const v_d1 = moment(a);
+	const v_d2 = moment(b);
 
 	if (v_d2.isBefore(v_d1)) {
 		return 1;
