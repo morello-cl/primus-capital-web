@@ -161,6 +161,7 @@ function __sorterDateTable (a, b) {
 };
 
 function __sorterRutTable (a, b) {
+	console.log('a', a, 'b', b);
 	let v_m1 = $.formatRut(a, false);
 	let v_m2 = $.formatRut(b, false);
 
