@@ -1047,7 +1047,7 @@ function urlSp11IndApl(rut, contrato) {
 						$('#btn_aw_agirar').attr('href', '#');
 					} else {
 						$('#btn_aw_agirar').removeAttr('type');
-						$('#ot_apli_doc').removeAttr('href');
+						$('#btn_aw_agirar').removeAttr('href');
 					}
 					
 					// llenamos futuro modal de agirar
