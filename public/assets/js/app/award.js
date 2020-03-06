@@ -134,9 +134,11 @@ function urlSp11IndApl(rut, contrato) {
 		$('#ot_date_end').data("DateTimePicker").toggle();
 	});   
     $("#ot_date_ini").on("dp.change", function(e) {
+		console.log('ini.e.date', e.date);
 		$("#ot_date_end").data("DateTimePicker").minDate(e.date);
     });
     $("#ot_date_end").on("dp.change", function(e) {
+		console.log('end.e.date', e.date);
 		$("#ot_date_ini").data("DateTimePicker").maxDate(e.date);
     });
 
