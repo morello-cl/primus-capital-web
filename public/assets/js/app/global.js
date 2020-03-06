@@ -162,14 +162,9 @@ function __sorterDateTable (a, b) {
 
 function __sorterRutTable (a, b) {
 	console.log('a', a, 'b', b);
-	let v_m1 = $.formatRut(a, false);
-	let v_m2 = $.formatRut(b, false);
 
-	v_m1 = v_m1.slice(0, -2);
-	v_m2 = v_m1.slice(0, -2);
-
-	const x1 = parseInt(v_m1);
-	const x2 = parseInt(v_m2);
+	const x1 = parseInt(a);
+	const x2 = parseInt(b);
 
 	if (x1 > x2) {
 		return 1;
