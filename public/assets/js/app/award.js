@@ -170,6 +170,7 @@ function urlSp11IndApl(rut, contrato) {
 				sortable: true,
 				class: 'text-nowrap',
 				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",
@@ -310,6 +311,7 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable,
 			},
 			{
 				field: "nomcliente",
@@ -333,7 +335,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				sortable: true,
-				sorter: __dateSorterTable,
+				sorter: __sorterDateTable,
 				formatter: __dateFormatTable,
             },
             {
@@ -473,6 +475,7 @@ function urlSp11IndApl(rut, contrato) {
 				sortable: true,
 				class: 'text-nowrap',
 				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",
@@ -510,8 +513,9 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
-				sorter: __dateSorterTable
+				sorter: __sorterDateTable
 			},
 			{
 				field: "fvcmto",
@@ -519,14 +523,16 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
-				sorter: __dateSorterTable
+				sorter: __sorterDateTable
 			},
 			{
 				field: "tasa_doc",
 				title: "Tasa",
 				align: 'center',
 				searchable: true,
+				sortable: true,
 				formatter: __amountFormatTable,
 			},
 			{
@@ -651,7 +657,8 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: __rutDeudorFormatTable
+				formatter: __rutDeudorFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomdeudor",
@@ -675,6 +682,7 @@ function urlSp11IndApl(rut, contrato) {
 				class: 'text-nowrap',
 				searchable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable
             },
             {
 				field: "mondcto",
@@ -770,7 +778,8 @@ function urlSp11IndApl(rut, contrato) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: __rutClientFormatTable
+				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",

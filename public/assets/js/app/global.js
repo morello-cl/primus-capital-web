@@ -147,9 +147,9 @@ function __addUrlDateTime(date_ini, date_end, optionName, optionValue, lastDateD
 }
 
 
-var __dateSorterTable = function (a, b) {
-	var v_d1 = moment(a, "DD-MM-YYYY");
-	var v_d2 = moment(b, "DD-MM-YYYY");
+function __sorterDateTable (a, b) {
+	const v_d1 = moment(a, "DD-MM-YYYY");
+	const v_d2 = moment(b, "DD-MM-YYYY");
 
 	if (v_d2.isBefore(v_d1)) {
 		return 1;
@@ -159,5 +159,23 @@ var __dateSorterTable = function (a, b) {
 	}
 	return 0;
 };
+
+function __sorterRutTable (a, b) {
+	let v_m1 = $.formatRut(a, false);
+	let v_m2 = $.formatRut(b, false);
+
+	v_m1 = v_m1.slice(0, -2);
+	v_m2 = v_m1.slice(0, -2);
+
+	const x1 = parseInt(v_m1);
+	const x2 = parseInt(v_m2);
+
+	if (x1 > x2) {
+		return 1;
+	}
+	if (x1 < x2) {
+		return -1;
+	}
+}
 
 
