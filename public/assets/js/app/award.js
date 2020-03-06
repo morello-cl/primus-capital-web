@@ -114,13 +114,15 @@ function urlSp11IndApl(rut, contrato) {
     $("#ot_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
+		useCurrent: false,
 		defaultDate: date_ini
     });
     
 	$("#ot_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_end,
+		useCurrent: true,
+		//defaultDate: date_end,
 		minDate: date_ini,
 		maxDate: date_end
 	});
@@ -131,15 +133,11 @@ function urlSp11IndApl(rut, contrato) {
 	$('#btn_ot_date_end').click(function(e){
 		$('#ot_date_end').data("DateTimePicker").toggle();
 	});   
-    $("#ot_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ot_date_end").datetimepicker({
-			minDate: $("#ot_date_ini").data("DateTimePicker").date()
-        });
+    $("#ot_date_ini").on("dp.change", function(e) {
+		$("#ot_date_end").data("DateTimePicker").minDate(e.date);
     });
-    $("#ot_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ot_date_ini").datetimepicker({
-			maxDate: $("#ot_date_end").data("DateTimePicker").date()
-        });
+    $("#ot_date_end").on("dp.change", function(e) {
+		$("#ot_date_ini").data("DateTimePicker").maxDate(e.date);
     });
 
     $('input:radio[name=ot_op2]').click(function(e){
