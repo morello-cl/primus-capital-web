@@ -42,7 +42,8 @@ function urlSp16docTable(rut, date_ini, date_end) {
     $("#ex_date").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_now
+		useCurrent: false,
+		date: date_ini
     });
 
 	$('#btn_ex_date').click(function(e){
@@ -70,20 +71,19 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
@@ -91,15 +91,15 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "candoc",
 				title: "Candoc",
 				align: 'center',
 				searchable: true,
+				sortable: true,
+				formatter: __numeralFormatTable
 			},
 			{
 				field: "mondoc",
@@ -107,9 +107,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "interes",
@@ -117,9 +115,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "comision",
@@ -127,9 +123,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "iva",
@@ -137,9 +131,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "total",
@@ -147,9 +139,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -173,20 +163,18 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				sortable: true,
+				__rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
@@ -194,15 +182,14 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "candoc",
 				title: "Can Doc",
 				align: 'right',
 				searchable: true,
+				sortable: true,
 				formatter: __numeralFormatTable,
             },
 			{
@@ -269,12 +256,10 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T.",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",
@@ -286,21 +271,21 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				title: "R.U.T. Deudor",
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_deudor = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_deudor;
-                },
+				formatter: __rutDeudorFormatTable,
+				sorter: __sorterRutTable
 			},
 			{
 				field: "nomcliente",
 				title: "Deudor",
 				searchable: true,
+				class: 'text-nowrap',
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				searchable: true,
+				sortable: true,
 				align: 'center',
 			},
 			{
@@ -365,7 +350,9 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable
 			},
 			{
 				field: "fchvcto1",
@@ -373,7 +360,9 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable
 			},
 			{
 				field: "fchvcto2",
@@ -381,7 +370,9 @@ function urlSp16docTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable
 			}
 		],
 		url: [],

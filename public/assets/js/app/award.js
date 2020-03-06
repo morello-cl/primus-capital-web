@@ -105,8 +105,6 @@ function urlSp11IndApl(rut, contrato) {
 		$('#ot_nro').removeClass('is-invalid');
 	});
 
-    const date_now = moment().startOf("day");
-
     const date_end = moment().startOf("day");
 
     const date_ini = moment().add(-6, 'M');
@@ -140,7 +138,8 @@ function urlSp11IndApl(rut, contrato) {
     $("#ot_date_end").on("dp.change", function(e) {
 		console.log('end.e.date', e.date);
 		$("#ot_date_ini").data("DateTimePicker").maxDate(e.date);
-    });
+	});
+	
 
     $('input:radio[name=ot_op2]').click(function(e){
         if($('input:radio[name=ot_op2]:checked').val() === 'ot_opt_per') {

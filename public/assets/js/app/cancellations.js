@@ -66,8 +66,6 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 
 	let _originalOption = '';
 
-    const date_now = moment().startOf("day");
-
     const date_end = moment().startOf("day");
 
     const date_ini = moment().add(-6, 'M');
@@ -75,13 +73,15 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
     $("#ca_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_ini
+		useCurrent: false,
+		date: date_ini
     });
     
 	$("#ca_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_end,
+		useCurrent: false,
+		date: date_end,
 		minDate: date_ini,
 		maxDate: date_end
 	});
@@ -93,17 +93,15 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 	$('#btn_ca_date_end').click(function(e){
 		$('#ca_date_end').data("DateTimePicker").toggle();
 	});
-    
-    $("#ca_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ca_date_end").datetimepicker({
-			minDate: $("#ca_date_ini").data("DateTimePicker").date()
-        });
+	
+	$("#ca_date_ini").on("dp.change", function(e) {
+		console.log('ini.e.date', e.date);
+		$("#ca_date_end").data("DateTimePicker").minDate(e.date);
     });
-    $("#ca_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ca_date_ini").datetimepicker({
-			maxDate: $("#ca_date_end").data("DateTimePicker").date()
-        });
-    });
+    $("#ca_date_end").on("dp.change", function(e) {
+		console.log('end.e.date', e.date);
+		$("#ca_date_ini").data("DateTimePicker").maxDate(e.date);
+	});
 
 
     $('input:radio[name=ca_op2]').click(function(e){

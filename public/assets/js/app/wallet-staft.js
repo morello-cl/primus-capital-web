@@ -40,8 +40,6 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 
 	__exportOptionsTable.worksheetName = 'Cartera Vigente';
 
-    const date_now = moment().startOf("day");
-
     const date_end = moment().startOf("day");
 
     const date_ini = moment().add(-6, 'M');
@@ -49,13 +47,15 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
     $("#ws_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_ini
+		useCurrent: false,
+		date: date_ini
     });
     
 	$("#ws_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_end,
+		useCurrent: false,
+		date: date_end,
 		minDate: date_ini,
 		maxDate: date_end
 	});
@@ -67,17 +67,15 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 	$('#btn_ws_date_end').click(function(e){
 		$('#ws_date_end').data("DateTimePicker").toggle();
 	});
-    
-    $("#ws_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_end").datetimepicker({
-			minDate: $("#ws_date_ini").data("DateTimePicker").date()
-        });
+	
+	$("#ws_date_ini").on("dp.change", function(e) {
+		console.log('ini.e.date', e.date);
+		$("#ws_date_end").data("DateTimePicker").minDate(e.date);
     });
-    $("#ws_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#ws_date_ini").datetimepicker({
-			maxDate: $("#ws_date_end").data("DateTimePicker").date()
-        });
-    });
+    $("#ws_date_end").on("dp.change", function(e) {
+		console.log('end.e.date', e.date);
+		$("#ws_date_ini").data("DateTimePicker").maxDate(e.date);
+	});
 
 
     $('input:radio[name=ws_op2]').click(function(e){
@@ -95,20 +93,18 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contratos",
@@ -116,9 +112,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "mondoc",
@@ -126,9 +120,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -136,9 +128,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
@@ -146,9 +136,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "capamort",
@@ -156,9 +144,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "saldo",
@@ -166,9 +152,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "docvig",
@@ -176,6 +160,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: false,
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -200,20 +185,18 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				sortable: true,
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
@@ -221,9 +204,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "fchot",
@@ -231,7 +212,9 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
 			{
 				field: "tipo",
@@ -247,9 +230,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -257,9 +238,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
@@ -267,9 +246,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "capamort",
@@ -277,9 +254,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "saldo",
@@ -287,9 +262,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
             {
 				field: "docvig",
@@ -297,9 +270,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -324,40 +295,39 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				sortable: true,
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Cliente",
+				title: "Nombre Cliente",
+				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_deudor = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_deudor;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Deudor",
+				title: "Nombre Deudor",
+				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "fchot",
@@ -365,7 +335,9 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "tipo",
@@ -379,6 +351,8 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				field: "docto",
 				title: "Docto",
 				searchable: true,
+				sortable: true,
+				formatter: __numeralFormatTable,
             },
 			{
 				field: "fchvcto",
@@ -386,12 +360,17 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
 			{
 				field: "mora",
 				title: "Mora",
+				align: 'right',
 				searchable: true,
+				sortable: true,
+				formatter: __amountFormatTable
 			},
 			{
 				field: "mondoc",
@@ -399,9 +378,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -409,9 +386,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
@@ -419,9 +394,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "capamort",
@@ -429,9 +402,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "saldo",
@@ -439,9 +410,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
             {
 				field: "operacion",
@@ -449,9 +418,7 @@ function urlSp13docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
