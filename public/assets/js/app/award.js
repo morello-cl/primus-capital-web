@@ -115,14 +115,14 @@ function urlSp11IndApl(rut, contrato) {
 		format: "DD-MM-YYYY",
 		locale: "es",
 		useCurrent: false,
-		defaultDate: date_ini
+		date: date_ini
     });
     
 	$("#ot_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		useCurrent: true,
-		//defaultDate: date_end,
+		useCurrent: false,
+		date: date_end,
 		minDate: date_ini,
 		maxDate: date_end
 	});
