@@ -57,7 +57,8 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
     $("#po_date").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_now
+		useCurrent: false,
+		date: date_ini
     });
 
 	$('#btn_po_date').click(function(e){
@@ -85,21 +86,18 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contratos",
@@ -107,9 +105,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "candoc",
@@ -117,9 +113,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "mondoc",
@@ -127,9 +121,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			}
 		],
 		url: [],
@@ -158,17 +150,14 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				class: 'text-nowrap',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contratos",
@@ -176,9 +165,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "candoc",
@@ -186,9 +173,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "mondoc",
@@ -196,9 +181,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			}
 		],
 		url: [],
@@ -227,34 +210,29 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, true);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Cliente",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_deudor = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_deudor;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Deudor",
+				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contratos",
@@ -269,7 +247,9 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "mondoc",
@@ -277,27 +257,28 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "banco",
 				title: "Banco",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "motivo",
 				title: "Motivo",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "estado",
 				title: "Estado",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			}
 		],
 		url: [],

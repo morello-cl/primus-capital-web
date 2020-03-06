@@ -64,23 +64,23 @@ function urlSp14carTable(rut, date_ini, date_end) {
 	"use strict";
 
 	__exportOptionsTable.worksheetName = 'Excedentes';
-	
-    const date_now = moment().startOf("day");
 
     const date_end = moment().startOf("day");
 
-	const date_ini = moment().add(-3, 'M');
+	const date_ini = moment().add(-6, 'M');
      
     $("#sp_date_ini").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_ini
+		useCurrent: false,
+		date: date_ini
     });
     
 	$("#sp_date_end").datetimepicker({
 		format: "DD-MM-YYYY",
 		locale: "es",
-		defaultDate: date_end,
+		useCurrent: false,
+		date: date_end,
 		minDate: date_ini,
 		maxDate: date_end
 	});
@@ -92,17 +92,15 @@ function urlSp14carTable(rut, date_ini, date_end) {
 	$('#btn_sp_date_end').click(function(e){
 		$('#sp_date_end').data("DateTimePicker").toggle();
 	});
-    
-    $("#sp_date_ini").datetimepicker().on("dp.change", function(e) {
-		$("#sp_date_end").datetimepicker({
-			minDate: $("#sp_date_ini").data("DateTimePicker").date()
-        });
+	
+	$("#sp_date_ini").on("dp.change", function(e) {
+		console.log('ini.e.date', e.date);
+		$("#sp_date_end").data("DateTimePicker").minDate(e.date);
     });
-    $("#sp_date_end").datetimepicker().on("dp.change", function(e) {
-		$("#sp_date_ini").datetimepicker({
-			maxDate: $("#sp_date_end").data("DateTimePicker").date()
-        });
-    });
+    $("#sp_date_end").on("dp.change", function(e) {
+		console.log('end.e.date', e.date);
+		$("#sp_date_ini").data("DateTimePicker").maxDate(e.date);
+	});
 
 
     $('input:radio[name=sp_op2]').click(function(e){
@@ -119,20 +117,18 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true
 			},
 			{
 				field: "contratos",
@@ -140,9 +136,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable
 			},
 			{
 				field: "mondoc",
@@ -150,9 +144,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -160,9 +152,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "noant",
@@ -170,9 +160,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "monrec",
@@ -180,9 +168,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "excendete",
@@ -190,9 +176,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "egresos",
@@ -200,9 +184,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                }
+				formatter: __amountFormatTable,
             },
             {
 				field: "saldo",
@@ -210,9 +192,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                }
+				formatter: __amountFormatTable,
 			}
 		],
 		url: [],
@@ -236,20 +216,18 @@ function urlSp14carTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Cliente",
 				class: 'text-nowrap',
 				searchable: true,
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				sortable: true,
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "contrato",
@@ -257,9 +235,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				searchable: true,
 				sortable: true,
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable,
 			},
 			{
 				field: "fecha",
@@ -267,7 +243,9 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "tipo",
@@ -283,9 +261,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
@@ -293,9 +269,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "noant",
@@ -303,9 +277,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
@@ -313,9 +285,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
 			},
             {
 				field: "excedente",
@@ -323,9 +293,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             },
             {
 				field: "aplic",
@@ -333,9 +301,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: function(value, row, index) {
-                    return numeral(value).format("0,000[.]0");
-                },
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -361,33 +327,31 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
 				title: "Nombre Cliente",
 				searchable: true,
+				sortable: true,
+				class: 'text-nowrap',
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
-
-                    return rut_client;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
 				field: "nomdeudor",
 				title: "Nombre Deudor",
 				searchable: true,
+				sortable: true,
+				class: 'text-nowrap',
 			},
 			
 			{
@@ -396,9 +360,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				align: 'center',
-				formatter: function(value, row, index) {
-					return `<a href="#" class="badge badge-secondary"><strong>${value}</strong></a>`;
-				}
+				formatter: __linkTable,
 			},
 			{
 				field: "f_otorg",
@@ -406,19 +368,25 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "tipo",
 				title: "Tipo",
+				align: 'center',
 				class: 'text-nowrap',
-				searchable: true
+				searchable: true,
+				sortable: true,
             },
             {
 				field: "docto",
 				title: "Docto",
+				align: 'right',
 				sortable: true,
 				searchable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "f_vcmto",
@@ -426,84 +394,96 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "mondoc",
 				title: "Mon Doc",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "intmora",
 				title: "Int Mora",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "intdev",
 				title: "Int Dev",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "excedente",
 				title: "Excedente",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "operacion",
 				title: "Operacion",
+				align: 'right',
                 sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
             }
 		],
 		url: [],
@@ -529,39 +509,38 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "idcliente",
 				title: "R.U.T. Cliente",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvcliente, false);
-
-                    return rut_client;
-                },
+				formatter: __rutClientFormatTable,
 			},
 			{
 				field: "nomcliente",
-				title: "Nombre",
+				title: "Nombre Cliente",
+				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
-				formatter: function(value, row, index) {
-					const rut_client = $.formatRut(value + "-" + row.dvdeudor, false);
-
-                    return rut_client;
-                },
+				formatter: __rutDeudorFormatTable,
 			},
 			{
 				field: "nomdeudor",
 				title: "Nombre Deudor",
 				searchable: true,
+				sortable: true,
+				class: 'text-nowrap',
 			},
 			{
 				field: "contrato",
 				title: "Contrato",
+				align: 'center',
 				searchable: true,
-				sortable: true
+				sortable: true,
 			},
 			{
 				field: "f_otorg",
@@ -569,10 +548,12 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "tipo",
 				title: "Tipo",
+				align: 'center',
 				searchable: true,
 				sortable: true
 			},
@@ -588,6 +569,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "f_pago",
@@ -595,88 +577,101 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "quienpaga",
 				title: "Quien Paga",
+				align: 'center',
 				searchable: true,
 				sortable: true
 			},
 			{
 				field: "formpago",
 				title: "Form Pago",
+				align: 'center',
 				searchable: true,
 				sortable: true
 			},
 			{
 				field: "mondcto",
 				title: "Mon Dcto",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monant",
 				title: "Mon Ant",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "monrec",
 				title: "Mon Rec",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "capamort",
 				title: "Cap Amort",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "int_mora",
 				title: "Int Mora",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "int_dev",
 				title: "Int Dev",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "reajuste",
 				title: "Reajuste",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "saldo",
 				title: "Saldo",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "excgen",
 				title: "Excgen",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "aplic",
 				title: "Aplic",
+				align: 'right',
 				searchable: true,
 				sortable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 		],
 		url: [],
@@ -702,12 +697,14 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "concepto",
 				title: "Concepto",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap'
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: __rutDeudorFormatTable,
 			},
@@ -715,32 +712,40 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				field: "nomdeudor",
 				title: "Nombre Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 			},
 			{
 				field: "docto",
 				title: "Docto",
+				align: 'right',
 				searchable: true,
+				sortable: true,
+				formatter: __numeralFormatTable,
 			},
 			{
 				field: "monto",
 				title: "Monto",
+				align: 'right',
 				searchable: true,
-				formatter: __numeralFormatTable,
+				sortable: true,
+				formatter: __amountFormatTable,
             },
             {
 				field: "cargo",
 				title: "Cargo",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "abono",
 				title: "Abono",
+				align: 'right',
 				sortable: true,
 				searchable: true,
-				formatter: __numeralFormatTable,
+				formatter: __amountFormatTable,
 			},
 			{
 				field: "fecha",
@@ -748,6 +753,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				sortable: true,
 				searchable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			}
 		],
 		url: [],
