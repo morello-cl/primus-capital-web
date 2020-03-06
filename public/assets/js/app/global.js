@@ -94,15 +94,27 @@ function __numeralFormatTable(value, row, index) {
 }
 
 function __rutClientFormatTable(value, row, index) {
-    const rut_format = $.formatRut(value + "-" + row.dvcliente, true);
+	if(row) {
+		if(row.dvcliente) {
+			const rut_format = $.formatRut(value + "-" + row.dvcliente, true);
 
-    return rut_format;
+			return rut_format;
+		}
+	}
+	
+	return value;
 }
 
 function __rutDeudorFormatTable(value, row, index) {
-    const rut_format = $.formatRut(value + "-" + row.dvdeudor, true);
+	if(row) {
+		if(row.dvdeudor) {
+				const rut_format = $.formatRut(value + "-" + row.dvdeudor, true);
 
-    return rut_format;
+				return rut_format;
+		}
+	}
+
+	return value;
 }
 
 function __dateFormatTable(value, row, index) {
