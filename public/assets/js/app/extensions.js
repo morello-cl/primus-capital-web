@@ -254,7 +254,7 @@ function urlSp16docTable(rut, date_ini, date_end) {
 		columns: [
 			{
 				field: "idcliente",
-				title: "R.U.T.",
+				title: "R.U.T. Clinte",
 				searchable: true,
 				sortable: true,
 				class: 'text-nowrap',
@@ -263,20 +263,23 @@ function urlSp16docTable(rut, date_ini, date_end) {
 			},
 			{
 				field: "nomcliente",
-				title: "Cliente",
+				title: "Nombre Cliente",
+				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 			},
 			{
 				field: "iddeudor",
 				title: "R.U.T. Deudor",
 				searchable: true,
+				sortable: true,
 				class: 'text-nowrap',
 				formatter: __rutDeudorFormatTable,
 				sorter: __sorterRutTable
 			},
 			{
-				field: "nomcliente",
-				title: "Deudor",
+				field: "nomdeudor",
+				title: "Nombre Deudor",
 				searchable: true,
 				class: 'text-nowrap',
 				sortable: true,
