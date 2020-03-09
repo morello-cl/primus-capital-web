@@ -568,6 +568,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Fch Vcto",
 				searchable: true,
 				sortable: true,
+				class: 'text-nowrap',
 				formatter: __dateFormatTable,
 				sorter: __sorterDateTable,
 			},
@@ -576,6 +577,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Fch Pago",
 				searchable: true,
 				sortable: true,
+				class: 'text-nowrap',
 				formatter: __dateFormatTable,
 				sorter: __sorterDateTable,
 			},
@@ -752,6 +754,7 @@ function urlSp14carTable(rut, date_ini, date_end) {
 				title: "Fecha",
 				sortable: true,
 				searchable: true,
+				class: 'text-nowrap',
 				formatter: __dateFormatTable,
 				sorter: __sorterDateTable,
 			}
