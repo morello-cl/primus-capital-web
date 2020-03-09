@@ -941,6 +941,8 @@ $(window).on('load', function(){
 		console.log('date[gte]', getUrlVars()['date[gte]']);
 		console.log('date[lte]', getUrlVars()['date[lte]']);
 
+		$('input:radio[name=ca_op2]').filter('[value=ca_opt_per]').prop('checked', true);
+
 		$("#tbl_cancel_abo").bootstrapTable("refresh", {
 			url: urlSp12aboTable(getUrlVars()['rut'], getUrlVars()['contrato'], getUrlVars()['date[gte]'], getUrlVars()['date[lte]']),
 		});
