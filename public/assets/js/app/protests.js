@@ -228,7 +228,7 @@ function urlSp15docTable(rut, contrato, date_ini, date_end) {
 				formatter: __rutDeudorFormatTable,
 			},
 			{
-				field: "nomcliente",
+				field: "nomdeudor",
 				title: "Nombre Deudor",
 				class: 'text-nowrap',
 				searchable: true,
