@@ -680,6 +680,7 @@ function urlSp11IndApl(rut, contrato) {
 				align: 'center',
 				class: 'text-nowrap',
 				searchable: true,
+				sortable: true,
 				formatter: __dateFormatTable,
 				sorter: __sorterDateTable
             },

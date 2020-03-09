@@ -287,6 +287,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				sortable: true,
 				class: 'text-nowrap',
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
             {
 				field: "tipo",
@@ -435,6 +436,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
 			{
 				field: "tipo",
@@ -459,6 +461,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
 			{
 				field: "mondcto",
@@ -598,6 +601,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
             },
 			{
 				field: "tipo",
@@ -622,6 +626,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "f_pago",
@@ -631,6 +636,7 @@ function urlSp12aboTable(rut, contrato, date_ini, date_end) {
 				searchable: true,
 				sortable: true,
 				formatter: __dateFormatTable,
+				sorter: __sorterDateTable,
 			},
 			{
 				field: "quienpaga",
