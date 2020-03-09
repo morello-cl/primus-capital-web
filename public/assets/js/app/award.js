@@ -1068,7 +1068,10 @@ function urlSp11IndApl(rut, contrato) {
 								$('#ot_apli_prote').val(numeral(r.data[0].aplprotesto).format("$ 0,000[.]0"));
 
 								if(parseInt(r.data[0].aplicacionadocto) > 0) {
-									$('#ot_apli_doc').attr('href', `/cancellations?page=abono&rut=${_awardCliente}&contrato=${_awardContrato}`);
+									const dt_ini = $("#ot_date_ini").data("DateTimePicker").date().format("YYYY-MM-DD");
+									const dt_end = $("#ot_date_end").data("DateTimePicker").date().format("YYYY-MM-DD");
+
+									$('#ot_apli_doc').attr('href', `/cancellations?page=abono&rut=${_awardCliente}&contrato=${_awardContrato}&${__addUrlDateTime(dt_ini, dt_end, 'ot_op2', 'ot_opt_per', -1)}`);
 								} else {
 									$('#ot_apli_doc').removeAttr('href');
 								}
