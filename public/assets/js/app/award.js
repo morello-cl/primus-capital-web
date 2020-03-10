@@ -169,7 +169,8 @@ function urlSp11IndApl(rut, contrato) {
 				sortable: true,
 				class: 'text-nowrap',
 				formatter: __rutClientFormatTable,
-				sorter: __sorterRutTable
+				sorter: __sorterRutTable,
+				searchFormatter: false
 			},
 			{
 				field: "nomcliente",
@@ -209,6 +210,7 @@ function urlSp11IndApl(rut, contrato) {
 				sortable: true,
 				searchable: true,
 				formatter: __amountFormatTable,
+				searchFormatter: false
 			},
 			{
 				field: "mont_ant",
